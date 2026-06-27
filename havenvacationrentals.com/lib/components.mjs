@@ -228,6 +228,15 @@ export function testimonial(t) {
   </figure>`;
 }
 
+/* ---- Distribution / trust channel strip (social proof) ---- */
+export function channelStrip() {
+  const channels = ["airbnb", "Vrbo", "Booking.com", "Marriott", "Google"];
+  return `<div class="channel-strip">
+    <span class="label">Listed &amp; ranked across</span>
+    ${channels.map((c) => `<span class="ch">${escapeHtml(c)}</span>`).join("")}
+  </div>`;
+}
+
 /* ---- Cross-links to other markets ---- */
 export function crossLinks(links) {
   return `<div class="xlinks">

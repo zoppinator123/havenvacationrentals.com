@@ -2,9 +2,10 @@ import { page } from "../layout.mjs";
 import { icon } from "../icons.mjs";
 import { escapeHtml, escapeAttr } from "../util.mjs";
 import { ridgeStrip } from "../art.mjs";
-import { breadcrumbs, sectionHead, ctaBand } from "../components.mjs";
+import { breadcrumbs, sectionHead, ctaBand, crossLinks } from "../components.mjs";
 import { organizationLd, websiteLd, breadcrumbLd } from "../seo.mjs";
 import { CTA_PRIMARY } from "../../content/site.mjs";
+import { MARKETS } from "../../content/markets.mjs";
 
 function fmtDate(iso) {
   if (!iso) return "";
@@ -86,6 +87,13 @@ ${breadcrumbs(crumbs)}
   <div class="container">
     ${sectionHead({ eyebrow: "Latest", title: "From the Haven blog" })}
     <div class="grid grid--3 blog-grid">${cards}</div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+    ${sectionHead({ eyebrow: "By market", title: "Local management where you own", center: true })}
+    ${crossLinks(MARKETS.map((m) => ({ label: `${m.city} vacation rental management`, href: `/vacation-rental-management-${m.slug}/` })))}
   </div>
 </section>
 

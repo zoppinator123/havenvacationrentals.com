@@ -4,7 +4,7 @@ import { escapeHtml, paragraphs } from "../util.mjs";
 import { ridgeStrip } from "../art.mjs";
 import {
   breadcrumbs, sectionHead, statsRow, serviceGrid, pillars, steps,
-  regulations, callout, faqAccordion, testimonial, crossLinks, ctaBand, leadForm,
+  regulations, callout, faqAccordion, testimonial, crossLinks, ctaBand, leadForm, channelStrip,
 } from "../components.mjs";
 import {
   localBusinessLd, serviceLd, faqLd, breadcrumbLd, organizationLd, websiteLd,
@@ -103,6 +103,9 @@ ${breadcrumbs(crumbs)}
     </div>
   </div>
 </section>
+
+<!-- 1b. CHANNEL / TRUST STRIP -->
+<section class="channel-band"><div class="container">${channelStrip()}</div></section>
 
 <!-- 2. INTRO / PROBLEM-AGITATE [LOCAL] -->
 <section class="section">
