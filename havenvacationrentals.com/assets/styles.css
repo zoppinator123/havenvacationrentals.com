@@ -920,3 +920,20 @@ h1, h2, h3, h4 { overflow-wrap: anywhere; }
 .compare thead th.compare__haven { background: var(--brand); color: #fff; }
 .compare td.compare__haven { font-weight: 800; }
 .compare td.compare__haven svg { color: var(--brand); }
+
+/* ----------------------------------------------------------------------------
+   29. Service grid -> frosted glass tiles (home, hub, every market page)
+   ---------------------------------------------------------------------------- */
+.service {
+  display: flex; gap: 0.9rem; align-items: flex-start;
+  padding: 1.2rem 1.25rem;
+  background: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(10px) saturate(150%); backdrop-filter: blur(10px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-xs), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), border-color 0.2s;
+}
+.service:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: rgba(255, 255, 255, 0.9); }
+.service__icon { transition: transform 0.25s var(--ease); box-shadow: var(--shadow-xs); }
+.service:hover .service__icon { transform: scale(1.08) rotate(-3deg); }
