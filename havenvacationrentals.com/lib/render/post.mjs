@@ -40,8 +40,13 @@ export function renderPost(post, allPosts = []) {
   const img = post.featuredImage || SITE.baseUrl + "/assets/og/blog.png";
   const author = authorName(post.author);
 
+  const withBrand = `${post.title} | Haven`;
+  const metaTitle = withBrand.length <= 62
+    ? withBrand
+    : (post.title.length <= 65 ? post.title : post.title.slice(0, 62).replace(/\s+\S*$/, "") + "…");
+
   const head = {
-    title: `${post.title} | Haven Vacation Rentals`.slice(0, 65),
+    title: metaTitle,
     description,
     path,
     ogType: "article",
