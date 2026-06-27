@@ -861,3 +861,18 @@ h1, h2, h3, h4 { overflow-wrap: anywhere; }
   border: 1px solid rgba(255,255,255,0.6);
   box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255,255,255,0.7);
 }
+
+/* ----------------------------------------------------------------------------
+   26. Mobile overflow hardening (hero CTA was forcing page width > viewport)
+   ---------------------------------------------------------------------------- */
+@media (max-width: 880px) {
+  .hero__cta { flex-direction: column; align-items: stretch; width: 100%; }
+  .hero__cta .btn { width: 100%; white-space: normal; }
+}
+/* Belt-and-suspenders: never let a button force horizontal scroll */
+.btn { white-space: normal; }
+@media (min-width: 561px) { .nav a, .header-phone { white-space: nowrap; } }
+.cta-row { max-width: 100%; }
+.rating-row, .channel-strip { max-width: 100%; }
+/* Keep the compact header CTA on one line (global wrap is for hero/large CTAs) */
+.header-actions .btn { white-space: nowrap; }
