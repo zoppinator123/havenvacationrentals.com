@@ -40,6 +40,7 @@ const PATHS = {
   alert: '<path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/>',
   mail: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/>',
   heart: '<path d="M12 21s-7-4.5-9.5-9A5 5 0 0 1 12 6a5 5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9Z"/>',
+  play: '<path d="M7 4.5 19 12 7 19.5z" fill="currentColor" stroke="currentColor" stroke-linejoin="round"/>',
 };
 
 export function icon(name, attrs = {}) {

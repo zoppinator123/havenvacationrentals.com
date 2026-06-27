@@ -228,6 +228,25 @@ export function testimonial(t) {
   </figure>`;
 }
 
+/* ---- YouTube video (click-to-load facade; iframe loads only on play, so it
+   stays fast / Core Web Vitals friendly). Wired up in main.js. ---- */
+export function videoEmbed(id, title = "Haven owner testimonial") {
+  const thumb = `https://i.ytimg.com/vi/${escapeAttr(id)}/hqdefault.jpg`;
+  return `<div class="yt" data-yt-id="${escapeAttr(id)}" role="button" tabindex="0" aria-label="Play video: ${escapeAttr(title)}" style="background-image:url('${thumb}'),linear-gradient(150deg,#3c4143,#1d2327)">
+    <span class="yt__play" aria-hidden="true">${icon("play", { width: 26, height: 26 })}</span>
+    <span class="yt__label">${escapeHtml(title)}</span>
+  </div>`;
+}
+
+export function videoTestimonials(items) {
+  return `<div class="video-grid">
+    ${items.map((v) => `<figure class="video-card">
+      ${videoEmbed(v.id, v.title)}
+      ${v.caption ? `<figcaption>${escapeHtml(v.caption)}</figcaption>` : ""}
+    </figure>`).join("")}
+  </div>`;
+}
+
 /* ---- Distribution / trust channel strip (social proof) ---- */
 export function channelStrip() {
   const channels = ["airbnb", "Vrbo", "Booking.com", "Marriott", "Google"];

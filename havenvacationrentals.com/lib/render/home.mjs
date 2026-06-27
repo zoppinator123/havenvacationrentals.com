@@ -2,7 +2,7 @@ import { page } from "../layout.mjs";
 import { icon } from "../icons.mjs";
 import { escapeHtml, escapeAttr, paragraphs } from "../util.mjs";
 import {
-  sectionHead, serviceGrid, pillars, faqAccordion, leadForm,
+  sectionHead, serviceGrid, pillars, faqAccordion, leadForm, videoTestimonials,
 } from "../components.mjs";
 import { organizationLd, websiteLd, localBusinessLd, faqLd } from "../seo.mjs";
 import { SITE, SERVICES, PILLARS, CTA_PRIMARY } from "../../content/site.mjs";
@@ -58,6 +58,12 @@ const NUMBERS = [
   { value: "+30%", label: "Revenue ahead of the market" },
   { value: "4.9★", label: "Across 3,400+ five-star reviews" },
   { value: "Top 1%", label: "Of Airbnb listings worldwide" },
+];
+
+/* Owner video testimonials (YouTube, click-to-load). */
+const VIDEOS = [
+  { id: "iiEjEci1IlA", title: "Haven owner testimonial", caption: "A Smoky Mountain owner on why they trust Haven with their cabin." },
+  { id: "w_My74hQY_Y", title: "Haven owner testimonial", caption: "An owner shares what changed after switching to Haven." },
 ];
 
 /* Real, attributed owner/industry testimonials (from the live Haven site). */
@@ -288,8 +294,9 @@ export function renderHome(copy) {
 <!-- OWNER STORIES -->
 <section class="section">
   <div class="container">
-    ${sectionHead({ eyebrow: "Owner stories", title: "Owners who made the switch", center: true })}
-    <div class="grid grid--2">
+    ${sectionHead({ eyebrow: "Owner stories", title: "Hear it from Haven owners", intro: "Real owners on what changed when a local team took over the day-to-day.", center: true })}
+    ${videoTestimonials(VIDEOS)}
+    <div class="grid grid--2" style="margin-top:var(--space-lg)">
       ${STORIES.map((t) => `<figure class="quote" reveal>
         <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
         <blockquote>${escapeHtml(t.quote)}</blockquote>

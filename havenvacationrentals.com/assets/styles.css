@@ -966,3 +966,42 @@ h1, h2, h3, h4 { overflow-wrap: anywhere; }
   box-shadow: var(--shadow-lg);
 }
 .site-header.is-scrolled { box-shadow: 0 6px 22px -16px rgba(29,35,39,0.25); }
+
+/* ----------------------------------------------------------------------------
+   31. Video testimonials (YouTube click-to-load facade)
+   ---------------------------------------------------------------------------- */
+.video-grid { display: grid; gap: clamp(1rem, 2.5vw, 1.75rem); grid-template-columns: 1fr; }
+@media (min-width: 720px) { .video-grid { grid-template-columns: 1fr 1fr; } }
+.video-card { margin: 0; }
+.video-card figcaption { margin-top: 0.75rem; color: var(--text-muted); font-size: var(--step--1); text-align: center; }
+
+.yt {
+  position: relative; aspect-ratio: 16 / 9; border-radius: var(--radius-lg); overflow: hidden;
+  background-size: cover; background-position: center; cursor: pointer;
+  box-shadow: var(--shadow-lg); border: 1px solid rgba(255,255,255,0.5);
+  display: block; width: 100%;
+}
+.yt::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(29,35,39,0.05), rgba(29,35,39,0.45));
+  transition: background 0.2s var(--ease);
+}
+.yt:hover::after { background: linear-gradient(180deg, rgba(29,35,39,0.05), rgba(29,35,39,0.3)); }
+.yt__play {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2;
+  width: 68px; height: 68px; border-radius: 50%;
+  background: var(--brand); color: #fff;
+  display: grid; place-items: center;
+  box-shadow: 0 10px 28px -8px rgba(214,56,56,0.65);
+  transition: transform 0.2s var(--ease), background 0.2s var(--ease);
+}
+.yt:hover .yt__play { transform: translate(-50%, -50%) scale(1.08); background: var(--brand-strong); }
+.yt__play svg { margin-left: 3px; }
+.yt__label {
+  position: absolute; left: 1rem; bottom: 0.9rem; right: 1rem; z-index: 2;
+  color: #fff; font-family: var(--font-display); font-weight: 700; letter-spacing: 0.04em;
+  text-transform: uppercase; font-size: var(--step-0); text-shadow: 0 1px 12px rgba(0,0,0,0.5);
+}
+.yt:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.yt iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.yt--loaded::after, .yt--loaded .yt__play, .yt--loaded .yt__label { display: none; }

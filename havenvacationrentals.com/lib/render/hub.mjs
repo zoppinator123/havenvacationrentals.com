@@ -1,7 +1,7 @@
 import { page } from "../layout.mjs";
 import { icon } from "../icons.mjs";
 import { escapeHtml, paragraphs } from "../util.mjs";
-import { mountainScene, MARKET_PALETTES, ridgeStrip } from "../art.mjs";
+import { ridgeStrip } from "../art.mjs";
 import {
   breadcrumbs, sectionHead, statsRow, serviceGrid, pillars, steps,
   faqAccordion, ctaBand, leadForm,
@@ -11,16 +11,17 @@ import {
 } from "../seo.mjs";
 import { SITE, SERVICES, PILLARS, PROCESS, PROOF, CTA_PRIMARY } from "../../content/site.mjs";
 import { MARKETS } from "../../content/markets.mjs";
+import { PHOTOS, MARKET_PHOTOS, coverPhoto } from "../../content/photos.mjs";
 
 function areaCards(marketCopies) {
   return `<div class="grid grid--4">
     ${MARKETS.map((m) => {
-      const pal = MARKET_PALETTES[m.palette] || MARKET_PALETTES.smokies;
+      const photo = (MARKET_PHOTOS[m.slug] && MARKET_PHOTOS[m.slug].hero) || PHOTOS.heroExterior;
       const blurb = (marketCopies[m.slug] && marketCopies[m.slug].crossLinkBlurb) ||
         `Full-service vacation rental management in ${m.city}.`;
       const href = `/vacation-rental-management-${m.slug}/`;
       return `<a class="area-card" href="${href}" aria-label="${escapeHtml(m.city)} vacation rental management">
-        <div class="area-card__art" aria-hidden="true">${mountainScene({ ...pal, ratio: "16 / 9" })}</div>
+        ${coverPhoto(photo, { ratio: "16 / 9", cls: "area-card__art", label: `${m.city} cabin managed by Haven` })}
         <div class="area-card__body">
           <h3>${escapeHtml(m.city)}</h3>
           <p>${escapeHtml(blurb)}</p>
@@ -33,7 +34,6 @@ function areaCards(marketCopies) {
 
 export function renderHub(copy, marketCopies = {}) {
   const path = "/property-management/";
-  const pal = MARKET_PALETTES.smokies;
   const crumbs = [
     { label: "Home", href: "/" },
     { label: "Property Management", href: path },
@@ -74,8 +74,8 @@ ${breadcrumbs(crumbs)}
           ${PROOF.slice(0, 3).map((p) => `<div class="hero__trust-item"><b>${escapeHtml(p.value)}</b><span>${escapeHtml(p.label)}</span></div>`).join("")}
         </div>
       </div>
-      <div class="hero__media" data-photo-slot="Haven-managed Smoky Mountain cabin with mountain views">
-        ${mountainScene({ ...pal, ratio: "4 / 3" })}
+      <div class="hero__media">
+        ${coverPhoto(PHOTOS.heroExterior, { ratio: "4 / 3", label: "Haven-managed Smoky Mountain cabin at dusk" })}
         <div class="hero__badge">
           <span class="stars" aria-hidden="true">★★★★★</span>
           <span><b>4.9 stars, 3,400+ reviews</b><small>Top 1% of Airbnb listings worldwide</small></span>

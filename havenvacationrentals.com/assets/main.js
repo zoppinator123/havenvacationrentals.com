@@ -85,4 +85,28 @@
       // window.dataLayer && window.dataLayer.push({ event: "book_a_call_submit" });
     });
   });
+
+  /* ---- YouTube facade: load the iframe only when the user clicks play ----
+     Keeps the page fast (no YouTube JS until requested) and privacy-friendly. */
+  doc.querySelectorAll("[data-yt-id]").forEach(function (el) {
+    function load() {
+      if (el.classList.contains("yt--loaded")) return;
+      var id = el.getAttribute("data-yt-id");
+      var frame = doc.createElement("iframe");
+      frame.src = "https://www.youtube-nocookie.com/embed/" + id + "?autoplay=1&rel=0";
+      frame.title = el.getAttribute("aria-label") || "Video";
+      frame.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      frame.setAttribute("allowfullscreen", "");
+      frame.loading = "lazy";
+      el.innerHTML = "";
+      el.appendChild(frame);
+      el.classList.add("yt--loaded");
+      el.removeAttribute("role");
+      el.removeAttribute("tabindex");
+    }
+    el.addEventListener("click", load);
+    el.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); load(); }
+    });
+  });
 })();
