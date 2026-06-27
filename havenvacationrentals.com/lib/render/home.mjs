@@ -7,37 +7,32 @@ import {
 import { organizationLd, websiteLd, localBusinessLd, faqLd } from "../seo.mjs";
 import { SITE, SERVICES, PILLARS, CTA_PRIMARY } from "../../content/site.mjs";
 import { MARKETS } from "../../content/markets.mjs";
+import { PHOTOS, MARKET_PHOTOS, coverPhoto, PHOTO_FALLBACK } from "../../content/photos.mjs";
 
-/* Real Haven photography (hosted on the live WordPress media library). Each
-   photo is rendered as a background-image with an on-brand gradient fallback
-   layered underneath, so a missing asset degrades to a tasteful brand backdrop
-   rather than a broken-image icon. */
-const WP = "https://havenvacationrentals.com/wp-content/uploads";
+/* Real Haven photography, resolved by content/photos.mjs (self-hosted file if
+   present in assets/photos/, else the live WordPress URL). Rendered as a
+   background-image with a gradient fallback so a missing asset never shows a
+   broken-image icon. */
+const WP = "https://havenvacationrentals.com/wp-content/uploads"; // testimonial avatars
+const FALLBACK = PHOTO_FALLBACK;
+const photo = coverPhoto;
 const PHOTO = {
-  hero: `${WP}/2025/10/AdobeStock_115261749-scaled.jpeg`,
-  difA: `${WP}/2020/03/2.jpg`,
-  difB: `${WP}/2020/03/4.jpg`,
-  step1: `${WP}/2020/03/1.jpg`,
-  step2: `${WP}/2020/03/2.jpg`,
-  step3: `${WP}/2020/03/3.jpg`,
-  step4: `${WP}/2020/03/4.jpg`,
-  contact: `${WP}/2020/05/IMG_2853.jpg`,
+  hero:  PHOTOS.heroFall,        // fall A-frame
+  difA:  PHOTOS.interiorLiving,  // great room
+  difB:  PHOTOS.interiorDetail,
+  step1: PHOTOS.deckView,
+  step2: PHOTOS.interiorLiving,
+  step3: PHOTOS.interiorKitchen,
+  step4: PHOTOS.interiorDetail,
+  contact: PHOTOS.contactBg,
 };
-const FALLBACK = "linear-gradient(150deg, #3c4143, #1d2327)";
-
-/* A cover-photo box with a gradient fallback. `label` gives it an accessible
-   name (these are decorative; page text carries the semantics/SEO). */
-function photo(url, { ratio = "4 / 5", cls = "", label = "" } = {}) {
-  const a = label ? ` role="img" aria-label="${escapeAttr(label)}"` : ' aria-hidden="true"';
-  return `<div class="ph ${cls}"${a} style="aspect-ratio:${ratio};background-image:url('${url}'),${FALLBACK}"></div>`;
-}
 
 /* Per-market hero photo + one-line angle for the Service Areas cards. */
 const MARKET_CARD = {
-  gatlinburg: { photo: `${WP}/2020/03/cabin.jpg`, blurb: "In-town walkability and the zoning angle that protects rentals." },
-  "pigeon-forge": { photo: `${WP}/2020/03/2.jpg`, blurb: "High demand, occupancy caps, and grandfathering you need to know." },
-  sevierville: { photo: `${WP}/2020/03/3.jpg`, blurb: "The emerging value market with room to run on revenue." },
-  "wears-valley": { photo: `${WP}/2020/03/1.jpg`, blurb: "County rules, the Three Strikes policy, and an uncontested gap." },
+  gatlinburg: { photo: MARKET_PHOTOS.gatlinburg.hero, blurb: "In-town walkability and the zoning angle that protects rentals." },
+  "pigeon-forge": { photo: MARKET_PHOTOS["pigeon-forge"].hero, blurb: "High demand, occupancy caps, and grandfathering you need to know." },
+  sevierville: { photo: MARKET_PHOTOS.sevierville.hero, blurb: "The emerging value market with room to run on revenue." },
+  "wears-valley": { photo: MARKET_PHOTOS["wears-valley"].hero, blurb: "County rules, the Three Strikes policy, and an uncontested gap." },
 };
 
 const PROBLEMS = [
