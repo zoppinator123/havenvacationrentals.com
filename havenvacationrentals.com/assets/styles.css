@@ -901,3 +901,22 @@ h1, h2, h3, h4 { overflow-wrap: anywhere; }
 .footer-bottom a:hover { background: var(--brand); border-color: var(--brand); color: #fff; }
 .footer-social a { transition: background 0.18s, transform 0.18s var(--ease); }
 .footer-social a:hover { transform: translateY(-2px); }
+
+/* ----------------------------------------------------------------------------
+   28. Comparison table (homepage conversion element)
+   ---------------------------------------------------------------------------- */
+.compare-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: var(--radius-lg); }
+.compare { width: 100%; min-width: 560px; border-collapse: separate; border-spacing: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); }
+.compare th, .compare td { padding: 1rem 1.15rem; text-align: center; border-bottom: 1px solid var(--line-soft); }
+.compare thead th { font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.05em; font-size: var(--step--1); color: var(--muted); background: var(--surface-3); }
+.compare tbody th[scope="row"] { text-align: left; font-family: var(--font-body); font-weight: 600; color: var(--brand-deep); width: 38%; }
+.compare td { color: var(--ink-soft); font-weight: 600; font-size: var(--step--1); }
+.compare td.yes { color: var(--brand); }
+.compare td.no svg { color: var(--muted-soft); }
+.compare td svg, .compare .compare__haven svg { display: inline-block; vertical-align: middle; }
+.compare tr:last-child th, .compare tr:last-child td { border-bottom: 0; }
+/* Highlighted Haven column */
+.compare__haven { position: relative; background: var(--gold-50); color: var(--brand-strong) !important; }
+.compare thead th.compare__haven { background: var(--brand); color: #fff; }
+.compare td.compare__haven { font-weight: 800; }
+.compare td.compare__haven svg { color: var(--brand); }

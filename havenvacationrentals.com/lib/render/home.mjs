@@ -81,6 +81,37 @@ function accentH1(h1) {
     : safe;
 }
 
+const COMPARE = [
+  { label: "Local team, minutes from your cabin", self: false, national: false, haven: true },
+  { label: "One flat fee — no booking or cleaning markups", self: "You pay it all", national: false, haven: true },
+  { label: "Rates set by a real revenue manager", self: false, national: "Algorithm", haven: true },
+  { label: "24/7 five-star guest communication", self: false, national: true, haven: true },
+  { label: "Time you spend each week", self: "All of it", national: "Some", haven: "Almost none" },
+  { label: "Revenue vs. the market", self: "At or below", national: "About market", haven: "~30% ahead" },
+];
+
+function compareCell(v) {
+  if (v === true) return `<td class="yes">${icon("check", { width: 20, height: 20 })}<span class="visually-hidden">Yes</span></td>`;
+  if (v === false) return `<td class="no">${icon("close", { width: 18, height: 18 })}<span class="visually-hidden">No</span></td>`;
+  return `<td>${escapeHtml(String(v))}</td>`;
+}
+
+function comparisonTable() {
+  return `<div class="compare-wrap">
+    <table class="compare">
+      <thead>
+        <tr><th scope="col"><span class="visually-hidden">Capability</span></th>
+          <th scope="col">Self-managing</th>
+          <th scope="col">National manager</th>
+          <th scope="col" class="compare__haven">Haven</th></tr>
+      </thead>
+      <tbody>
+        ${COMPARE.map((r) => `<tr><th scope="row">${escapeHtml(r.label)}</th>${compareCell(r.self)}${compareCell(r.national)}<td class="compare__haven">${typeof r.haven === "boolean" ? (r.haven ? `${icon("check", { width: 20, height: 20 })}<span class="visually-hidden">Yes</span>` : "") : escapeHtml(String(r.haven))}</td></tr>`).join("")}
+      </tbody>
+    </table>
+  </div>`;
+}
+
 function marketCards() {
   return `<div class="grid grid--4">
     ${MARKETS.map((m) => {
@@ -235,6 +266,14 @@ export function renderHome(copy) {
     ${sectionHead({ eyebrow: "Why owners switch", title: copy.valueHeading })}
     <div class="prose stack" style="margin-bottom:var(--space-lg)">${paragraphs(copy.valueParagraphs)}</div>
     ${pillars(PILLARS)}
+  </div>
+</section>
+
+<!-- THE HAVEN DIFFERENCE: COMPARISON -->
+<section class="section">
+  <div class="container">
+    ${sectionHead({ eyebrow: "The honest comparison", title: "Self-managing vs. a national manager vs. Haven", intro: "Where your time and your revenue actually go.", center: true })}
+    ${comparisonTable()}
   </div>
 </section>
 
