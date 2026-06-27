@@ -51,6 +51,9 @@ export function renderHead({
     `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,600;0,700;1,500;1,700&family=Raleway:wght@400;500;600;700;900&display=swap" media="print" onload="this.media='all'">`,
     `<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400..700;1,500..700&family=Raleway:wght@400..900&display=swap"></noscript>`,
     `<link rel="stylesheet" href="/assets/styles.css">`,
+    // No-JS resilience: scroll-reveal elements start hidden and are revealed by
+    // main.js. With JS disabled, force them visible so all content still shows.
+    `<noscript><style>[reveal]{opacity:1!important;transform:none!important}</style></noscript>`,
   ];
   const ld = jsonLd.filter(Boolean).map(jsonLdScript).join("\n");
   return parts.filter(Boolean).join("\n") + (ld ? "\n" + ld : "");
