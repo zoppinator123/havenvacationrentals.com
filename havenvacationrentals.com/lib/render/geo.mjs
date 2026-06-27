@@ -1,7 +1,7 @@
 import { page } from "../layout.mjs";
 import { icon } from "../icons.mjs";
 import { escapeHtml, paragraphs } from "../util.mjs";
-import { mountainScene, MARKET_PALETTES, ridgeStrip } from "../art.mjs";
+import { ridgeStrip } from "../art.mjs";
 import {
   breadcrumbs, sectionHead, statsRow, serviceGrid, pillars, steps,
   regulations, callout, faqAccordion, testimonial, crossLinks, ctaBand, leadForm,
@@ -11,6 +11,20 @@ import {
 } from "../seo.mjs";
 import { SITE, SERVICES, PILLARS, PROCESS, CTA_PRIMARY } from "../../content/site.mjs";
 import { MARKETS } from "../../content/markets.mjs";
+import { MARKET_PHOTOS, PHOTOS, coverPhoto } from "../../content/photos.mjs";
+
+function galleryStrip(market) {
+  const set = (MARKET_PHOTOS[market.slug] && MARKET_PHOTOS[market.slug].gallery) ||
+    [PHOTOS.interiorLiving, PHOTOS.deckView, PHOTOS.interiorKitchen];
+  const labels = [
+    `Interior of a Haven-managed ${market.city} cabin`,
+    `Mountain-view deck on a ${market.city} rental`,
+    `Kitchen in a ${market.city} vacation rental`,
+  ];
+  return `<div class="gallery">
+    ${set.slice(0, 3).map((src, i) => coverPhoto(src, { ratio: "4 / 3", cls: `gallery__img gallery__img--${i}`, label: labels[i] || "" })).join("")}
+  </div>`;
+}
 
 function snapshotTable(rows, city) {
   return `<table class="data-table">
@@ -30,7 +44,7 @@ function crossLinksFor(market) {
 
 export function renderGeoPage(market, copy) {
   const path = `/vacation-rental-management-${market.slug}/`;
-  const pal = MARKET_PALETTES[market.palette] || MARKET_PALETTES.smokies;
+  const heroPhoto = (MARKET_PHOTOS[market.slug] && MARKET_PHOTOS[market.slug].hero) || PHOTOS.heroExterior;
   const heroAlt = `Luxury cabin rental managed by Haven in ${market.city}, TN, set in the Smoky Mountains`;
 
   const crumbs = [
@@ -79,8 +93,8 @@ ${breadcrumbs(crumbs)}
           <div class="hero__trust-item"><b>One flat fee</b><span>No hidden booking fees</span></div>
         </div>
       </div>
-      <div class="hero__media" data-photo-slot="${escapeHtml(heroAlt)}">
-        ${mountainScene({ ...pal, ratio: "4 / 3" })}
+      <div class="hero__media">
+        ${coverPhoto(heroPhoto, { ratio: "4 / 3", label: heroAlt })}
         <div class="hero__badge">
           <span class="stars" aria-hidden="true">★★★★★</span>
           <span><b>Top 1% of Airbnb listings worldwide</b><small>Locally owned in the Smokies since ${SITE.foundingYear}</small></span>
@@ -110,6 +124,14 @@ ${breadcrumbs(crumbs)}
       <div class="prose stack">${paragraphs(copy.snapshotParagraphs)}</div>
       ${snapshotTable(market.snapshotTable, market.city)}
     </div>
+  </div>
+</section>
+
+<!-- 3b. PROPERTY GALLERY [LOCAL] -->
+<section class="section--tight">
+  <div class="container">
+    ${sectionHead({ eyebrow: "The Haven standard", title: `What a professionally managed ${market.city} cabin looks like`, center: true })}
+    ${galleryStrip(market)}
   </div>
 </section>
 

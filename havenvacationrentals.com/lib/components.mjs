@@ -2,17 +2,10 @@ import { icon } from "./icons.mjs";
 import { escapeHtml, escapeAttr, paragraphs } from "./util.mjs";
 import { SITE, NAV, SERVICE_AREA_NAV, FOOTER_GROUPS, CTA_PRIMARY } from "../content/site.mjs";
 
-/* ---- Brand mark (SVG wordmark, always renders; swap for real logo if desired) */
+/* ---- Brand mark (real Haven logo; CSS inverts it to white on dark surfaces) */
 export function brandMark({ onDark = false } = {}) {
-  const tent = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <path d="M4.5 18.5 l3.2 0 l-1.6 -6.4 z" fill="#fff" opacity="0.85"/>
-    <path d="M16.3 18.5 l3.2 0 l-1.6 -6.4 z" fill="#fff" opacity="0.85"/>
-    <path d="M6 18.5 L12 6.5 L18 18.5 Z" fill="#fff"/>
-    <path d="M12 6.5 L12 18.5 L9 18.5 Z" fill="#1d2327" opacity="0.18"/>
-  </svg>`;
-  return `<a class="brand" href="/" aria-label="${escapeAttr(SITE.name)} home">
-    <span class="brand__mark">${tent}</span>
-    <span>Haven</span>
+  return `<a class="brand${onDark ? " brand--on-dark" : ""}" href="/" aria-label="${escapeAttr(SITE.name)} home">
+    <img class="brand__logo" src="${SITE.logo.dark}" alt="${escapeAttr(SITE.name)}" height="38" decoding="async">
   </a>`;
 }
 
