@@ -1,30 +1,42 @@
 import { page } from "../layout.mjs";
 import { icon } from "../icons.mjs";
-import { escapeHtml } from "../util.mjs";
+import { escapeHtml, escapeAttr } from "../util.mjs";
 import { ridgeStrip } from "../art.mjs";
 import { breadcrumbs, sectionHead, ctaBand } from "../components.mjs";
 import { organizationLd, websiteLd, breadcrumbLd } from "../seo.mjs";
 import { CTA_PRIMARY } from "../../content/site.mjs";
 
-/* Bottom-funnel content plan (spec Section 10). This stands up the URL/category
-   so the content team can publish into it; each post links into a geo page. */
-const PLANNED = [
-  { title: "How much do vacation rental property managers charge in the Smoky Mountains?", tag: "Cost", desc: "A plain-English breakdown of management fees, what is and is not included, and how a flat fee compares to a percentage model." },
-  { title: "Best vacation rental management companies in the Smoky Mountains (2026)", tag: "Comparison", desc: "An honest look at how to compare Smoky Mountain property managers, and the questions every owner should ask." },
-  { title: "Should you self-manage or hire a property manager for your Smoky Mountain cabin?", tag: "Guide", desc: "The real cost of self-management in time, money, and missed revenue, and when hiring a pro pays for itself." },
-  { title: "What does a Gatlinburg, Pigeon Forge, or Sevierville cabin actually earn?", tag: "Earnings", desc: "Per-market revenue expectations, what drives them, and how professional management changes the math." },
-  { title: "Haven vs the national property managers: how to choose", tag: "Comparison", desc: "Why a smaller, local, guest-obsessed team often outperforms a national manager on net owner revenue." },
-];
+function fmtDate(iso) {
+  if (!iso) return "";
+  const d = new Date(iso);
+  return isNaN(d) ? "" : d.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" });
+}
 
-export function renderBlog() {
+function postCard(p) {
+  const media = p.featuredImage
+    ? `<div class="ph blog-card__art" aria-hidden="true" style="aspect-ratio:16 / 10;background-image:url('${p.featuredImage}'),linear-gradient(150deg,#3c4143,#1d2327)"></div>`
+    : `<div class="blog-card__art blog-card__art--plain" aria-hidden="true" style="aspect-ratio:16 / 10"><span>${icon("mountain", { width: 30, height: 30 })}</span></div>`;
+  const cat = p.categories && p.categories[0];
+  return `<a class="area-card blog-card" href="${p.route}" reveal aria-label="${escapeAttr(p.title)}">
+    ${media}
+    <div class="area-card__body">
+      <span class="blog-card__meta">${cat ? `<span class="blog-card__cat">${escapeHtml(cat)}</span> · ` : ""}${escapeHtml(fmtDate(p.date))}</span>
+      <h3>${escapeHtml(p.title)}</h3>
+      <p>${escapeHtml(p.excerpt || "")}</p>
+      <span class="link-arrow">Read more ${icon("arrowRight", { width: 16, height: 16 })}</span>
+    </div>
+  </a>`;
+}
+
+export function renderBlog(posts = []) {
   const path = "/blog/";
   const crumbs = [
     { label: "Home", href: "/" },
     { label: "Blog", href: path },
   ];
-  const title = "Owner Resources & Smoky Mountain STR Guides | Haven";
+  const title = "Smoky Mountain Owner Guides & STR Insights | Haven";
   const description =
-    "Guides for Smoky Mountain cabin owners: management costs, earnings by market, regulations, and how to choose a vacation rental manager in Gatlinburg, Pigeon Forge, Sevierville, and Wears Valley.";
+    "Data-backed guides and market updates for Smoky Mountain cabin owners: revenue strategy, dynamic pricing, regulations, and what the booking data shows.";
 
   const head = {
     title,
@@ -34,19 +46,26 @@ export function renderBlog() {
     jsonLd: [
       organizationLd(),
       websiteLd(),
-      { "@context": "https://schema.org", "@type": "CollectionPage", url: "https://havenvacationrentals.com" + path, name: title, description },
+      {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        url: "https://havenvacationrentals.com" + path,
+        name: title,
+        description,
+        blogPost: posts.slice(0, 20).map((p) => ({
+          "@type": "BlogPosting",
+          headline: p.title,
+          url: "https://havenvacationrentals.com" + p.route,
+          datePublished: p.date || undefined,
+        })),
+      },
       breadcrumbLd(crumbs),
     ],
   };
 
-  const cards = PLANNED.map(
-    (p) => `<article class="card" reveal>
-      <span class="tag">${icon("doc", { width: 14, height: 14 })} ${escapeHtml(p.tag)}</span>
-      <h3 style="margin-top:.75rem">${escapeHtml(p.title)}</h3>
-      <p>${escapeHtml(p.desc)}</p>
-      <p style="margin-top:.85rem"><span class="link-arrow">Coming soon ${icon("arrowRight", { width: 16, height: 16 })}</span></p>
-    </article>`
-  ).join("");
+  const cards = posts.length
+    ? posts.map(postCard).join("")
+    : `<p class="note-box">New owner guides are publishing here soon.</p>`;
 
   const body = `
 ${breadcrumbs(crumbs)}
@@ -57,7 +76,7 @@ ${breadcrumbs(crumbs)}
       <div class="stack" style="max-width:680px">
         <span class="eyebrow hero__eyebrow">Owner resources</span>
         <h1>Smoky Mountain owner guides</h1>
-        <p class="hero__sub" style="max-width:60ch">Straight, useful answers for cabin owners weighing management, comparing companies, or trying to understand local rules and earnings.</p>
+        <p class="hero__sub" style="max-width:60ch">Straight, data-backed answers for cabin owners: revenue strategy, pricing, local regulations, and what the latest booking data shows.</p>
       </div>
     </div>
   </div>
@@ -65,9 +84,8 @@ ${breadcrumbs(crumbs)}
 
 <section class="section">
   <div class="container">
-    ${sectionHead({ eyebrow: "Coming soon", title: "Guides we are publishing for owners" })}
-    <div class="grid grid--3">${cards}</div>
-    <p class="note-box" style="margin-top:var(--space-lg)">This category is live so new owner-intent guides can publish here and link directly into the relevant market page. Have a question you want answered? <a href="${CTA_PRIMARY.href}"><b>Ask us on a call.</b></a></p>
+    ${sectionHead({ eyebrow: "Latest", title: "From the Haven blog" })}
+    <div class="grid grid--3 blog-grid">${cards}</div>
   </div>
 </section>
 

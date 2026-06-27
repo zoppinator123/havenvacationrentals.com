@@ -631,6 +631,44 @@ body.has-sticky-cta { padding-bottom: 76px; }
 .photo-cta .lede { color: var(--forest-100); }
 
 /* ----------------------------------------------------------------------------
+   22. Blog index + article (imported posts)
+   ---------------------------------------------------------------------------- */
+/* Blog index cards (built on .area-card) */
+.blog-grid { align-items: start; }
+.blog-card__art--plain { display: grid; place-items: center; background: linear-gradient(150deg, var(--forest-800), var(--brand-deep)); color: var(--gold-400); }
+.blog-card__meta { display: block; font-size: var(--step--1); color: var(--muted); margin-bottom: 0.35rem; }
+.blog-card__cat { color: var(--brand-strong); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+.blog-card h3 { font-size: var(--step-1); margin-bottom: 0.45rem; }
+.blog-card p { color: var(--text-muted); font-size: var(--step--1); margin-bottom: 0.85rem; }
+
+/* Post header */
+.post-head { padding-block: clamp(1.5rem, 4vw, 2.75rem) 0; }
+.post-head__inner { max-width: var(--container-narrow); }
+.post-head h1 { margin-top: 0.5rem; font-size: var(--step-4); }
+.post-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: 1rem; color: var(--muted); font-size: var(--step--1); font-weight: 600; }
+.post-meta .dot { color: var(--line); }
+.post-hero-img { max-width: 960px; margin: clamp(1.5rem, 4vw, 2.5rem) auto 0; aspect-ratio: 16 / 9; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); background-size: cover; background-position: center; }
+
+/* Long-form article body */
+.article { max-width: var(--container-narrow); margin: clamp(1.75rem, 4vw, 2.75rem) auto clamp(2.5rem, 6vw, 4rem); font-size: var(--step-1); line-height: 1.75; color: var(--ink); }
+.article > * + * { margin-top: 1.15em; }
+.article p { text-wrap: pretty; }
+.article h2 { font-size: var(--step-2); margin-top: 2em; margin-bottom: 0.1em; }
+.article h3 { font-size: var(--step-1); letter-spacing: 0.04em; margin-top: 1.6em; margin-bottom: 0.1em; }
+.article h2 + p, .article h3 + p { margin-top: 0.4em; }
+.article a { color: var(--brand-strong); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+.article a:hover { color: var(--accent); }
+.article strong, .article b { font-weight: 700; color: var(--brand-deep); }
+.article ul, .article ol { padding-left: 1.4em; }
+.article ul { list-style: disc; }
+.article ol { list-style: decimal; }
+.article li + li { margin-top: 0.4em; }
+.article li::marker { color: var(--accent); }
+.article img { border-radius: var(--radius); margin-block: 1.5em; box-shadow: var(--shadow-sm); }
+.article blockquote { margin: 1.5em 0; padding: 0.5em 0 0.5em 1.25em; border-left: 3px solid var(--accent); color: var(--ink-soft); font-style: italic; }
+.article hr { border: 0; border-top: 1px solid var(--line); margin-block: 2em; }
+
+/* ----------------------------------------------------------------------------
    20. Small-screen overflow hardening (real phones run 360-390px)
    ---------------------------------------------------------------------------- */
 h1, h2, h3, h4 { overflow-wrap: anywhere; }

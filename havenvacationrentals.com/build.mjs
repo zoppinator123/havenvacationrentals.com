@@ -13,6 +13,7 @@ import { renderHub } from "./lib/render/hub.mjs";
 import { renderHome } from "./lib/render/home.mjs";
 import { renderContact } from "./lib/render/contact.mjs";
 import { renderBlog } from "./lib/render/blog.mjs";
+import { renderPost } from "./lib/render/post.mjs";
 import { renderRegGuide } from "./lib/render/regguide.mjs";
 import { renderListings } from "./lib/render/listings.mjs";
 import { renderNotFound } from "./lib/render/notfound.mjs";
@@ -21,6 +22,25 @@ import { wordCount, findEmDashes } from "./lib/util.mjs";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DIST = join(__dirname, "dist");
 const GEN = join(__dirname, "content", "generated");
+const GEN_BLOG = join(GEN, "blog");
+
+/* ---- load imported blog posts (newest-first per _index.json) ---- */
+function loadPosts() {
+  const idxFile = join(GEN_BLOG, "_index.json");
+  if (!existsSync(idxFile)) return [];
+  try {
+    const order = JSON.parse(readFileSync(idxFile, "utf8"));
+    return order
+      .map((slug) => {
+        const f = join(GEN_BLOG, `${slug}.json`);
+        return existsSync(f) ? JSON.parse(readFileSync(f, "utf8")) : null;
+      })
+      .filter(Boolean);
+  } catch (e) {
+    console.warn(`! blog index failed to load (${e.message})`);
+    return [];
+  }
+}
 
 /* ---- load generated copy, fall back if missing ---- */
 function loadCopy(slug, fallback) {
@@ -133,12 +153,25 @@ const staticPages = [
   { r: renderContact(), priority: "0.8" },
   { r: renderRegGuide(), priority: "0.7" },
   { r: renderListings(), priority: "0.6" },
-  { r: renderBlog(), priority: "0.5" },
 ];
 for (const { r, priority } of staticPages) {
   writePage(r.path, r.html);
   sitemapUrls.push({ path: r.path, priority, changefreq: "monthly" });
 }
+
+/* blog index + imported posts */
+const posts = loadPosts();
+{
+  const r = renderBlog(posts);
+  writePage(r.path, r.html);
+  sitemapUrls.push({ path: r.path, priority: "0.7", changefreq: "weekly" });
+}
+for (const post of posts) {
+  const { path, html } = renderPost(post, posts);
+  writePage(path, html);
+  sitemapUrls.push({ path, priority: "0.6", changefreq: "monthly" });
+}
+console.log(`Blog: ${posts.length} imported post(s).`);
 
 /* 404 (not in sitemap) */
 {
