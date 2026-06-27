@@ -14,7 +14,7 @@ import { MARKETS } from "../../content/markets.mjs";
    rather than a broken-image icon. */
 const WP = "https://havenvacationrentals.com/wp-content/uploads";
 const PHOTO = {
-  hero: `${WP}/2025/09/DJI_20250606153127_0461_D-scaled.jpg`,
+  hero: `${WP}/2025/10/AdobeStock_115261749-scaled.jpeg`,
   difA: `${WP}/2020/03/2.jpg`,
   difB: `${WP}/2020/03/4.jpg`,
   step1: `${WP}/2020/03/1.jpg`,

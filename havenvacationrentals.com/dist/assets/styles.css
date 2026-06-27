@@ -937,3 +937,32 @@ h1, h2, h3, h4 { overflow-wrap: anywhere; }
 .service:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: rgba(255, 255, 255, 0.9); }
 .service__icon { transition: transform 0.25s var(--ease); box-shadow: var(--shadow-xs); }
 .service:hover .service__icon { transform: scale(1.08) rotate(-3deg); }
+
+/* ----------------------------------------------------------------------------
+   30. Tone down "liquid glass" -> realistic, high-quality service-business UI
+   (per feedback: buttons read too glossy/fake). Keep tasteful frosted cards,
+   drop the shiny specular and button gloss.
+   ---------------------------------------------------------------------------- */
+/* Clean, solid primary buttons (no glossy sheen) */
+.btn--accent {
+  background-image: none;
+  box-shadow: 0 6px 16px -8px rgba(214, 56, 56, 0.5);
+}
+.btn--accent:hover {
+  background-image: none;
+  box-shadow: 0 10px 22px -10px rgba(214, 56, 56, 0.55);
+}
+/* Ghost-on-dark: simple outline, just a hint of fill on hover (no heavy blur) */
+.btn--ghost-on-dark { -webkit-backdrop-filter: none; backdrop-filter: none; background: transparent; }
+.btn--ghost-on-dark:hover { background: rgba(255, 255, 255, 0.1); }
+
+/* Softer, realistic frosted glass: cut the shiny diagonal specular way down */
+.glass::after { opacity: 0.3; background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0) 52%); }
+.cta-band::after { background: linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0) 45%); }
+
+/* Frosted surfaces: trim the bright inner highlight so they read as glass, not plastic */
+.home-hero-stat, .hero__badge {
+  border-color: rgba(255, 255, 255, 0.55);
+  box-shadow: var(--shadow-lg);
+}
+.site-header.is-scrolled { box-shadow: 0 6px 22px -16px rgba(29,35,39,0.25); }
