@@ -3,7 +3,7 @@ import { icon } from "../icons.mjs";
 import { escapeHtml, paragraphs } from "../util.mjs";
 import { mountainScene, MARKET_PALETTES, ridgeStrip } from "../art.mjs";
 import {
-  sectionHead, statsRow, serviceGrid, pillars, steps, faqAccordion, ctaBand, leadForm, crossLinks,
+  sectionHead, statsRow, serviceGrid, pillars, steps, faqAccordion, ctaBand, leadForm,
 } from "../components.mjs";
 import { organizationLd, websiteLd, localBusinessLd, faqLd } from "../seo.mjs";
 import { SITE, SERVICES, PILLARS, PROCESS, PROOF, CTA_PRIMARY } from "../../content/site.mjs";

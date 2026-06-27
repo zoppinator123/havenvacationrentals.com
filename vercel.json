@@ -1,0 +1,18 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "node havenvacationrentals.com/build.mjs",
+  "outputDirectory": "havenvacationrentals.com/dist",
+  "installCommand": "echo 'zero dependencies, nothing to install'",
+  "trailingSlash": true,
+  "cleanUrls": true,
+  "headers": [
+    {
+      "source": "/assets/og/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }]
+    },
+    {
+      "source": "/assets/favicon.svg",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }]
+    }
+  ]
+}

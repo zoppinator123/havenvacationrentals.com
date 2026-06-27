@@ -35,7 +35,7 @@ export const SITE = {
     locality: "Sevierville", // serving the greater Smoky Mountains
   },
   foundingYear: "2016",
-  ogImageDefault: "/assets/og/og-default.png", // see README for generation
+  ogImageDefault: "/assets/og/hub.png", // generic brand card; per-page images override this
 };
 
 /* Headline proof points (confirm exact figures with Jack before publishing). */
