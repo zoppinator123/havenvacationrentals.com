@@ -52,7 +52,7 @@ export const PROOF = [
 export const NAV = [
   { label: "Property Management", href: "/property-management/" },
   { label: "Invest", href: "/smoky-mountain-str-investment-listings/" },
-  { label: "Guides", href: "/blog/" },
+  { label: "Blog", href: "/blog/" },
   { label: "Contact", href: "/contact-us/" },
 ];
 
