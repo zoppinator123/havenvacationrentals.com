@@ -1,11 +1,11 @@
 import { page } from "../layout.mjs";
 import { icon } from "../icons.mjs";
 import { escapeHtml } from "../util.mjs";
-import { ridgeStrip, mountainScene, MARKET_PALETTES } from "../art.mjs";
-import { breadcrumbs, sectionHead, ctaBand, crossLinks, leadForm } from "../components.mjs";
+import { breadcrumbs, sectionHead, crossLinks, leadForm } from "../components.mjs";
 import { organizationLd, websiteLd, breadcrumbLd, serviceLd } from "../seo.mjs";
 import { SITE, CTA_PRIMARY } from "../../content/site.mjs";
 import { MARKETS } from "../../content/markets.mjs";
+import { PHOTOS, PHOTO_FALLBACK, coverPhoto } from "../../content/photos.mjs";
 
 const LIVE_LISTINGS_URL = "https://zillowtohavensite.vercel.app/";
 
@@ -44,8 +44,7 @@ export function renderListings() {
 
   const body = `
 ${breadcrumbs(crumbs)}
-<section class="hero">
-  ${ridgeStrip("#15181a")}
+<section class="hero photo-hero" style="--photo-hero:url('${PHOTOS.heroExterior}'),${PHOTO_FALLBACK}">
   <div class="container">
     <div class="hero__inner">
       <div class="stack">
@@ -58,7 +57,7 @@ ${breadcrumbs(crumbs)}
         </div>
       </div>
       <div class="hero__media" data-photo-slot="Smoky Mountain investment cabin for sale, managed by Haven">
-        ${mountainScene({ ...MARKET_PALETTES.sevierville, ratio: "4 / 3" })}
+        ${coverPhoto(PHOTOS.exteriorCraftsman, { ratio: "4 / 3", label: "Smoky Mountain investment cabin managed by Haven" })}
       </div>
     </div>
   </div>
@@ -79,7 +78,7 @@ ${breadcrumbs(crumbs)}
   <div class="container">
     ${sectionHead({ eyebrow: "How we help", title: "From offer to operating, with one local team" })}
     <div class="grid grid--4">
-      ${helps.map((h) => `<div class="card card--accent" reveal><span class="card__icon">${icon(h.icon, { width: 26, height: 26 })}</span><h3>${escapeHtml(h.title)}</h3><p>${escapeHtml(h.desc)}</p></div>`).join("")}
+      ${helps.map((h) => `<div class="card card--accent"><span class="card__icon">${icon(h.icon, { width: 26, height: 26 })}</span><h3>${escapeHtml(h.title)}</h3><p>${escapeHtml(h.desc)}</p></div>`).join("")}
     </div>
     <div class="live-listings">
       <div class="live-listings__head">
@@ -100,7 +99,6 @@ ${breadcrumbs(crumbs)}
           sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
         ></iframe>
       </div>
-      <p class="note-box live-listings__note">If the live listings do not load, <a href="${LIVE_LISTINGS_URL}" target="_blank" rel="noopener">open them in a new tab</a>. Listing data is provided by the embedded Zillow-to-Haven app and should be verified before making an offer.</p>
     </div>
   </div>
 </section>
