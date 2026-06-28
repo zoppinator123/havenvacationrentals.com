@@ -39,7 +39,7 @@ export function renderListings() {
     { icon: "compass", title: "Find cabins that pencil", desc: "We know which streets, views, and floor plans actually rent. We help you filter past the listings that look good but earn poorly." },
     { icon: "chartUp", title: "Run the real numbers", desc: "A grounded revenue projection for any property you are considering, based on this market, not a generic national estimate." },
     { icon: "scale", title: "Check the rules before you buy", desc: "Zoning, permits, and jurisdiction can make or break a deal. We verify a parcel's STR eligibility before you commit." },
-    { icon: "key", title: "Manage it to outperform", desc: "Close the deal and hand us the keys. Haven owners target around 70% occupancy and run roughly 30% ahead of the market." },
+    { icon: "key", title: "Manage it to outperform", desc: "Close the deal and hand us the keys. Haven owners benefit from stronger pricing, Superhost-level guest care, and revenue that runs roughly 30% ahead of the market." },
   ];
 
   const body = `

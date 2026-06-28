@@ -23,13 +23,13 @@ export const MARKETS = [
     ],
     snapshotStats: [
       { value: "$321", label: "Smoky Mountains average nightly rate (ADR)" },
-      { value: "70", unit: "%", label: "Haven target occupancy vs ~55% market average" },
+      { value: "Airbnb", label: "Superhost guest care" },
       { value: "~30", unit: "%", label: "Ahead of market on revenue with Haven" },
       { value: "~1", unit: "%", label: "Supply growth in 2026 (an execution market)" },
     ],
     snapshotTable: [
       { label: "Typical nightly rate (ADR)", value: "Around the ~$321 Smokies average, higher for in-town and view cabins" },
-      { label: "Occupancy opportunity", value: "70% with Haven vs roughly 55% market average" },
+      { label: "Occupancy opportunity", value: "Professional management with Superhost-level guest care" },
       { label: "Top demand drivers", value: "Great Smoky Mountains National Park gateway, the Parkway, Ober Mountain, peak summer, fall color, and holidays" },
       { label: "Supply trend (2026)", value: "Growth cooled to about 1% year over year, so wins come from operations, not a rising tide" },
       { label: "The Haven advantage", value: "Local pricing, a five-star guest experience, and one flat fee that lifts net revenue" },
@@ -65,12 +65,12 @@ export const MARKETS = [
     snapshotStats: [
       { value: "$321", label: "Smoky Mountains average nightly rate (ADR)" },
       { value: "12", label: "Maximum guests per property under city rules" },
-      { value: "70", unit: "%", label: "Haven target occupancy vs ~55% market average" },
+      { value: "Airbnb", label: "Superhost guest care" },
       { value: "~30", unit: "%", label: "Ahead of market on revenue with Haven" },
     ],
     snapshotTable: [
       { label: "Typical nightly rate (ADR)", value: "Around the ~$321 Smokies average, with strong premiums for larger group cabins" },
-      { label: "Occupancy opportunity", value: "70% with Haven vs roughly 55% market average" },
+      { label: "Occupancy opportunity", value: "Professional management with Superhost-level guest care" },
       { label: "Top demand drivers", value: "Dollywood, The Island, the Parkway entertainment corridor, and year-round family and group travel" },
       { label: "Occupancy cap", value: "City rules allow 2 guests per bed, 2 beds per room, and a property maximum of 12 people" },
       { label: "The Haven advantage", value: "Group-cabin pricing, fast guest response, and a flat fee with no booking-fee markups" },
@@ -103,13 +103,13 @@ export const MARKETS = [
     ],
     snapshotStats: [
       { value: "$321", label: "Smoky Mountains average nightly rate (ADR)" },
-      { value: "70", unit: "%", label: "Haven target occupancy vs ~55% market average" },
+      { value: "Airbnb", label: "Superhost guest care" },
       { value: "~30", unit: "%", label: "Ahead of market on revenue with Haven" },
       { value: "2016", label: "Locally owned in the Smokies since" },
     ],
     snapshotTable: [
       { label: "Typical nightly rate (ADR)", value: "Around the ~$321 Smokies average, with newer large builds commanding more" },
-      { label: "Occupancy opportunity", value: "70% with Haven vs roughly 55% market average" },
+      { label: "Occupancy opportunity", value: "Professional management with Superhost-level guest care" },
       { label: "Top demand drivers", value: "Newer construction, outlet shopping, the Tennessee Smokies ballpark, and an affordable gateway to the Park" },
       { label: "Why owners like it", value: "Lower entry prices and newer assets that respond well to professional management" },
       { label: "The Haven advantage", value: "We maximize a newer build with smart pricing, strong listings, and a five-star guest experience" },
@@ -143,13 +143,13 @@ export const MARKETS = [
     snapshotStats: [
       { value: "6,500", label: "Rentals operating outside the cities in Sevier County" },
       { value: "$250", label: "County STRU permit per year (sleeping 12 or fewer)" },
-      { value: "70", unit: "%", label: "Haven target occupancy vs ~55% market average" },
+      { value: "Airbnb", label: "Superhost guest care" },
       { value: "2024", label: "County permit program in effect since January 1" },
     ],
     snapshotTable: [
       { label: "Jurisdiction", value: "Unincorporated Sevier County, so county rules apply, not Gatlinburg or Pigeon Forge city rules" },
       { label: "Typical nightly rate (ADR)", value: "Around the ~$321 Smokies average, with a premium for secluded, view, and luxury cabins" },
-      { label: "Occupancy opportunity", value: "70% with Haven vs roughly 55% market average" },
+      { label: "Occupancy opportunity", value: "Professional management with Superhost-level guest care" },
       { label: "Top demand drivers", value: "Quiet, nature-forward settings, National Park access at Metcalf Bottoms, and the Foothills Parkway" },
       { label: "The Haven advantage", value: "A responsive local manager who meets the county's 60-minute contact expectation and keeps you off the Three Strikes list" },
     ],

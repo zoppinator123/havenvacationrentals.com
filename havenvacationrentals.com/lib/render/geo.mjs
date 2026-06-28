@@ -88,7 +88,7 @@ ${breadcrumbs(crumbs)}
           <a class="btn btn--ghost-on-dark btn--lg" href="tel:${SITE.phoneTel}">${icon("phone", { width: 18, height: 18 })} ${escapeHtml(SITE.phone)}</a>
         </div>
         <div class="hero__trust">
-          <div class="hero__trust-item"><b>70%</b><span>Avg occupancy vs ~55% market</span></div>
+          <div class="hero__trust-item"><b>Airbnb</b><span>Superhost guest care</span></div>
           <div class="hero__trust-item"><b>4.9★</b><span>3,400+ five-star reviews</span></div>
           <div class="hero__trust-item"><b>One flat fee</b><span>No hidden booking fees</span></div>
         </div>

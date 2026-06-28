@@ -230,11 +230,10 @@ export function testimonial(t) {
 
 /* ---- YouTube video (click-to-load facade; iframe loads only on play, so it
    stays fast / Core Web Vitals friendly). Wired up in main.js. ---- */
-export function videoEmbed(id, title = "Haven owner testimonial") {
+export function videoEmbed(id, title = "Owner story") {
   const thumb = `https://i.ytimg.com/vi/${escapeAttr(id)}/hqdefault.jpg`;
   return `<div class="yt" data-yt-id="${escapeAttr(id)}" role="button" tabindex="0" aria-label="Play video: ${escapeAttr(title)}" style="background-image:url('${thumb}'),linear-gradient(150deg,#3c4143,#1d2327)">
     <span class="yt__play" aria-hidden="true">${icon("play", { width: 26, height: 26 })}</span>
-    <span class="yt__label">${escapeHtml(title)}</span>
   </div>`;
 }
 
@@ -294,6 +293,7 @@ export function leadForm({ heading = "Book a call about your property", marketDe
     </div>
     <div class="field"><label for="lf-email">Email <span class="req">*</span></label><input id="lf-email" name="email" type="email" autocomplete="email" required></div>
     <div class="field"><label for="lf-market">Where is your property?</label><select id="lf-market" name="market">${opts}</select></div>
+    <div class="field"><label for="lf-property">Property link or address</label><input id="lf-property" name="property" type="text" autocomplete="street-address" placeholder="Airbnb/Vrbo link or street address"></div>
     <div class="field"><label for="lf-msg">Anything we should know? (optional)</label><textarea id="lf-msg" name="message" placeholder="Bedrooms, current management, questions..."></textarea></div>
     <button class="btn btn--accent btn--block btn--lg" type="submit">${escapeHtml(CTA_PRIMARY.label)}</button>
     <p class="form-disclaimer">By submitting you agree to be contacted by Haven about managing your property. We never share your information.</p>

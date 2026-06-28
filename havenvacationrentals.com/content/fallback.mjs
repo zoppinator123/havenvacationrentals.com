@@ -94,7 +94,7 @@ export function hubFallback() {
     feesHeading: "How our fees work, and what owners earn",
     feesParagraphs: [
       "Haven charges one simple flat management fee. There are no hidden booking fees, no markups on cleaning, and no nickel-and-diming. You always know what you pay and what you earn.",
-      "Haven owners average around 70% occupancy versus a market average near 55%, and run roughly 30% ahead of the market on revenue. Confirm current figures with our team for your specific property.",
+      "Haven owners benefit from professional pricing, guest care, and revenue management. Confirm current projections with our team for your specific property.",
     ],
     faqs: [],
     closingHeading: "Ready when you are",

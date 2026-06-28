@@ -17,7 +17,8 @@ const WP = "https://havenvacationrentals.com/wp-content/uploads"; // testimonial
 const FALLBACK = PHOTO_FALLBACK;
 const photo = coverPhoto;
 const PHOTO = {
-  hero:  PHOTOS.heroFall,        // fall A-frame
+  hero:  PHOTOS.exteriorCraftsman,
+  howBg: PHOTOS.heroExterior,
   difA:  PHOTOS.interiorLiving,  // great room
   difB:  PHOTOS.interiorDetail,
   step1: PHOTOS.deckView,
@@ -35,12 +36,6 @@ const MARKET_CARD = {
   "wears-valley": { photo: MARKET_PHOTOS["wears-valley"].hero, blurb: "County rules, the Three Strikes policy, and an uncontested gap." },
 };
 
-const PROBLEMS = [
-  { icon: "chartUp", title: "Underbooked", body: "Empty nights pile up when listings are not marketed and priced by someone who actually knows the local season." },
-  { icon: "tag", title: "Overcharged", body: "Hidden booking fees and padded cleaning charges quietly widen the gap between what a cabin earns and what you keep." },
-  { icon: "alert", title: "Too many headaches", body: "Guest messages at midnight, last-minute turnovers, maintenance calls. The passive income turns into a second job." },
-];
-
 const HOW = [
   { photo: PHOTO.step1, title: "We rent it out", body: "Professional listings and marketing across Airbnb, Vrbo, Booking.com, and direct." },
   { photo: PHOTO.step2, title: "We manage it", body: "Inspected turnovers, trusted local maintenance, and smart human pricing every day." },
@@ -49,7 +44,7 @@ const HOW = [
 ];
 
 const NUMBERS = [
-  { value: "70%", label: "Avg. occupancy vs. ~55% market" },
+  { value: "Airbnb", label: "Superhost" },
   { value: "+30%", label: "Revenue ahead of the market" },
   { value: "4.9★", label: "Across 3,400+ five-star reviews" },
   { value: "Top 1%", label: "Of Airbnb listings worldwide" },
@@ -57,8 +52,8 @@ const NUMBERS = [
 
 /* Owner video testimonials (YouTube, click-to-load). */
 const VIDEOS = [
-  { id: "iiEjEci1IlA", title: "Haven owner testimonial", caption: "A Smoky Mountain owner on why they trust Haven with their cabin." },
-  { id: "w_My74hQY_Y", title: "Haven owner testimonial", caption: "An owner shares what changed after switching to Haven." },
+  { id: "iiEjEci1IlA", title: "Owner story", caption: "A Smoky Mountain owner on why they trust Haven with their cabin." },
+  { id: "w_My74hQY_Y", title: "Owner story", caption: "An owner shares what changed after switching to Haven." },
 ];
 
 /* Real, attributed owner/industry testimonials (from the live Haven site). */
@@ -84,7 +79,6 @@ function accentH1(h1) {
 
 const COMPARE = [
   { label: "Local team, minutes from your cabin", self: false, national: false, haven: true },
-  { label: "One flat fee — no booking or cleaning markups", self: "You pay it all", national: false, haven: true },
   { label: "Rates set by a real revenue manager", self: false, national: "Algorithm", haven: true },
   { label: "24/7 five-star guest communication", self: false, national: true, haven: true },
   { label: "Time you spend each week", self: "All of it", national: "Some", haven: "Almost none" },
@@ -169,9 +163,9 @@ export function renderHome(copy) {
       </div>
       <div class="home-hero-photo" role="img" aria-label="Smoky Mountain cabin managed by Haven" style="background-image:url('${PHOTO.hero}'),${FALLBACK}">
         <div class="home-hero-stat">
-          <b>70%</b>
-          <span>Avg. occupancy</span>
-          <small>vs. ~55% market</small>
+          <b>Airbnb</b>
+          <span>Superhost</span>
+          <small>Local guest care</small>
         </div>
       </div>
     </div>
@@ -202,26 +196,11 @@ export function renderHome(copy) {
         <span class="eyebrow">The Haven difference</span>
         <h2>${escapeHtml(copy.introHeading)}</h2>
         ${paragraphs(copy.introParagraphs)}
-        <div class="minstats">
-          <div><b>2016</b><span>Local since</span></div>
-          <div><b>1 fee</b><span>Flat, all-in</span></div>
-          <div><b>4 markets</b><span>Sevier County</span></div>
+        <div class="local-proof">
+          <span>${icon("mapPin", { width: 18, height: 18 })}</span>
+          <b>Locally owned and operated</b>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- THE PROBLEM -->
-<section class="section">
-  <div class="container">
-    ${sectionHead({ eyebrow: "The problem", title: "Most cabins never meet their potential", intro: "You bought a cabin to build wealth and enjoy the mountains, not to chase cleaners and second-guess your nightly rate. Three things quietly hold most rentals back." })}
-    <div class="grid grid--3">
-      ${PROBLEMS.map((p) => `<div class="card card--soft" reveal>
-        <span class="card__icon">${icon(p.icon, { width: 24, height: 24 })}</span>
-        <h3>${escapeHtml(p.title)}</h3>
-        <p>${escapeHtml(p.body)}</p>
-      </div>`).join("")}
     </div>
   </div>
 </section>
@@ -235,7 +214,7 @@ export function renderHome(copy) {
 </section>
 
 <!-- HOW IT WORKS -->
-<section id="how" class="section">
+<section id="how" class="section how-section" style="--how-bg:url('${PHOTO.howBg}')">
   <div class="container">
     ${sectionHead({ eyebrow: "How it works", title: "Hassle-free from day one", intro: "You hand us the keys. We run the day-to-day operation and the income lands in your account.", center: true })}
     <div class="how-grid">
@@ -270,24 +249,8 @@ export function renderHome(copy) {
   </div>
 </section>
 
-<!-- THE HAVEN DIFFERENCE: COMPARISON -->
-<section class="section">
-  <div class="container">
-    ${sectionHead({ eyebrow: "The honest comparison", title: "Self-managing vs. a national manager vs. Haven", intro: "Where your time and your revenue actually go.", center: true })}
-    ${comparisonTable()}
-  </div>
-</section>
-
-<!-- SERVICE AREAS -->
-<section id="markets" class="section section--alt">
-  <div class="container">
-    ${sectionHead({ eyebrow: "Where we manage", title: "Four Smoky Mountain markets", intro: "Each market has its own rules, demand patterns, and guest profile. We have a dedicated page for every one.", center: true })}
-    ${marketCards()}
-  </div>
-</section>
-
 <!-- OWNER STORIES -->
-<section class="section">
+<section class="section section--alt">
   <div class="container">
     ${sectionHead({ eyebrow: "Owner stories", title: "Hear it from Haven owners", intro: "Real owners on what changed when a local team took over the day-to-day.", center: true })}
     ${videoTestimonials(VIDEOS)}
@@ -301,6 +264,22 @@ export function renderHome(copy) {
         </figcaption>
       </figure>`).join("")}
     </div>
+  </div>
+</section>
+
+<!-- THE HAVEN DIFFERENCE: COMPARISON -->
+<section class="section">
+  <div class="container">
+    ${sectionHead({ eyebrow: "The honest comparison", title: "Self-managing vs. a national manager vs. Haven", intro: "Where your time and your revenue actually go.", center: true })}
+    ${comparisonTable()}
+  </div>
+</section>
+
+<!-- SERVICE AREAS -->
+<section id="markets" class="section section--alt">
+  <div class="container">
+    ${sectionHead({ eyebrow: "Where we manage", title: "Four Smoky Mountain markets", intro: "Each market has its own rules, demand patterns, and guest profile. We have a dedicated page for every one.", center: true })}
+    ${marketCards()}
   </div>
 </section>
 

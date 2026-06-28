@@ -40,7 +40,7 @@ export const SITE = {
 
 /* Headline proof points (confirm exact figures with Jack before publishing). */
 export const PROOF = [
-  { value: "70%", label: "Average occupancy vs ~55% market average" },
+  { value: "Airbnb", label: "Superhost guest care" },
   { value: "~30%", label: "Ahead of market on revenue" },
   { value: "4.9★", label: "From 3,400+ five-star guest reviews" },
   { value: "2016", label: "Locally owned in the Smokies since" },

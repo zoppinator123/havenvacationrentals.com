@@ -608,7 +608,7 @@ body.has-sticky-cta { padding-bottom: 76px; }
 /* Hero photo + floating stat card */
 .home-hero-photo { position: relative; aspect-ratio: 4 / 5; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); background-size: cover; background-position: center; background-repeat: no-repeat; }
 .home-hero-stat { position: absolute; left: 1rem; bottom: 1.25rem; background: var(--surface); border-radius: var(--radius); padding: 0.85rem 1.15rem; box-shadow: var(--shadow-lg); display: grid; gap: 1px; }
-.home-hero-stat b { font-family: var(--font-display); font-size: var(--step-3); color: var(--brand); line-height: 1; }
+.home-hero-stat b { font-family: var(--font-display); font-size: var(--step-1); color: var(--brand); line-height: 1; }
 .home-hero-stat span { font-size: var(--step--1); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
 .home-hero-stat small { font-size: 0.72rem; color: var(--muted-soft); }
 
@@ -629,19 +629,23 @@ body.has-sticky-cta { padding-bottom: 76px; }
 .collage__main { width: 100%; box-shadow: var(--shadow-lg); }
 .collage__sub { position: absolute; right: 0; bottom: 0; width: 46%; border: 6px solid var(--bg-alt); border-radius: var(--radius); box-shadow: var(--shadow-lg); }
 
-/* Inline mini-stats */
-.minstats { display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 1.75rem; }
-.minstats b { display: block; font-family: var(--font-display); font-size: var(--step-3); color: var(--brand-deep); line-height: 1; }
-.minstats span { font-size: var(--step--1); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+/* Local proof chip */
+.local-proof { display: inline-flex; align-items: center; gap: 0.55rem; margin-top: 1.75rem; padding: 0.7rem 0.95rem; border-radius: var(--radius-pill); background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-xs); color: var(--brand-deep); }
+.local-proof span { display: grid; place-items: center; color: var(--brand); }
+.local-proof b { font-size: var(--step--1); letter-spacing: 0.04em; text-transform: uppercase; }
 
 /* Soft card variant (the problem) */
 .card--soft { background: var(--surface-3); border-color: transparent; box-shadow: none; }
 .card--soft .card__icon { background: #fff; color: var(--accent); box-shadow: var(--shadow-sm); }
 
 /* How it works — photo steps */
-.how-grid { display: grid; gap: clamp(1.25rem, 2.5vw, 1.75rem); grid-template-columns: 1fr; }
+.how-section { position: relative; overflow: hidden; isolation: isolate; }
+.how-section::before { content: ""; position: absolute; inset: 0; z-index: -2; background-image: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.94)), var(--how-bg); background-size: cover; background-position: center; }
+.how-section::after { content: ""; position: absolute; inset-inline: 0; bottom: 0; height: 42%; z-index: -1; background: linear-gradient(180deg, transparent, var(--surface-3)); }
+.how-grid { display: grid; gap: clamp(1.25rem, 2.5vw, 1.75rem); grid-template-columns: 1fr; max-width: 1120px; margin-inline: auto; align-items: start; }
 @media (min-width: 560px) { .how-grid { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 960px) { .how-grid { grid-template-columns: repeat(4, 1fr); } }
+.how-step { max-width: 270px; margin-inline: auto; width: 100%; }
 .how-step__media { position: relative; }
 .how-step__photo { border-radius: var(--radius); box-shadow: var(--shadow-md); }
 .how-step__num { position: absolute; top: 0.85rem; left: 0.85rem; width: 2.25rem; height: 2.25rem; border-radius: 50%; background: var(--accent); color: #fff; font-family: var(--font-display); font-weight: 700; display: grid; place-items: center; box-shadow: var(--shadow-sm); }
@@ -652,6 +656,7 @@ body.has-sticky-cta { padding-bottom: 76px; }
 .numbers { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1.5rem, 3vw, 3rem); text-align: center; }
 @media (min-width: 760px) { .numbers { grid-template-columns: repeat(4, 1fr); } }
 .numbers b { display: block; font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); color: var(--gold-400); line-height: 1; }
+.numbers > div:first-child b { font-size: clamp(1.9rem, 4vw, 3rem); }
 .numbers span { display: block; margin-top: 0.6rem; font-size: var(--step--1); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--forest-100); }
 
 /* Photo market cards (square top corners under the rounded card) */
