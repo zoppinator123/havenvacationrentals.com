@@ -1,11 +1,10 @@
 import { page } from "../layout.mjs";
-import { icon } from "../icons.mjs";
 import { escapeHtml, escapeAttr } from "../util.mjs";
-import { ridgeStrip } from "../art.mjs";
 import { breadcrumbs, sectionHead, ctaBand, crossLinks } from "../components.mjs";
 import { organizationLd, websiteLd, breadcrumbLd } from "../seo.mjs";
 import { CTA_PRIMARY } from "../../content/site.mjs";
 import { MARKETS } from "../../content/markets.mjs";
+import { PHOTOS, PHOTO_FALLBACK } from "../../content/photos.mjs";
 
 function fmtDate(iso) {
   if (!iso) return "";
@@ -14,17 +13,13 @@ function fmtDate(iso) {
 }
 
 function postCard(p) {
-  const media = p.featuredImage
-    ? `<div class="ph blog-card__art" aria-hidden="true" style="aspect-ratio:16 / 10;background-image:url('${p.featuredImage}'),linear-gradient(150deg,#3c4143,#1d2327)"></div>`
-    : `<div class="blog-card__art blog-card__art--plain" aria-hidden="true" style="aspect-ratio:16 / 10"><span>${icon("mountain", { width: 30, height: 30 })}</span></div>`;
   const cat = p.categories && p.categories[0];
-  return `<a class="area-card blog-card" href="${p.route}" reveal aria-label="${escapeAttr(p.title)}">
-    ${media}
+  return `<a class="area-card blog-card" href="${p.route}" aria-label="${escapeAttr(p.title)}">
     <div class="area-card__body">
       <span class="blog-card__meta">${cat ? `<span class="blog-card__cat">${escapeHtml(cat)}</span> · ` : ""}${escapeHtml(fmtDate(p.date))}</span>
       <h3>${escapeHtml(p.title)}</h3>
       <p>${escapeHtml(p.excerpt || "")}</p>
-      <span class="link-arrow">Read more ${icon("arrowRight", { width: 16, height: 16 })}</span>
+      <span class="link-arrow">Read more <span aria-hidden="true">→</span></span>
     </div>
   </a>`;
 }
@@ -70,8 +65,7 @@ export function renderBlog(posts = []) {
 
   const body = `
 ${breadcrumbs(crumbs)}
-<section class="hero" style="padding-block:0">
-  ${ridgeStrip("#15181a")}
+<section class="hero photo-hero" style="--photo-hero:url('${PHOTOS.heroFall}'),${PHOTO_FALLBACK}">
   <div class="container">
     <div class="hero__inner" style="grid-template-columns:1fr;padding-block:clamp(2.5rem,7vw,4rem)">
       <div class="stack" style="max-width:680px">

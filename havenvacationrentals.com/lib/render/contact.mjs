@@ -1,11 +1,11 @@
 import { page } from "../layout.mjs";
 import { icon } from "../icons.mjs";
 import { escapeHtml } from "../util.mjs";
-import { ridgeStrip } from "../art.mjs";
 import { breadcrumbs, sectionHead, leadForm, crossLinks } from "../components.mjs";
 import { organizationLd, websiteLd, breadcrumbLd } from "../seo.mjs";
 import { SITE, CTA_PRIMARY } from "../../content/site.mjs";
 import { MARKETS } from "../../content/markets.mjs";
+import { PHOTOS, PHOTO_FALLBACK } from "../../content/photos.mjs";
 
 export function renderContact() {
   const path = "/contact-us/";
@@ -43,8 +43,7 @@ export function renderContact() {
 
   const body = `
 ${breadcrumbs(crumbs)}
-<section class="hero" style="padding-block:0">
-  ${ridgeStrip("#15181a")}
+<section class="hero photo-hero" style="--photo-hero:url('${PHOTOS.heroExterior}'),${PHOTO_FALLBACK}">
   <div class="container">
     <div class="hero__inner" style="grid-template-columns:1fr;padding-block:clamp(2.5rem,7vw,4.5rem)">
       <div class="stack" style="max-width:680px">

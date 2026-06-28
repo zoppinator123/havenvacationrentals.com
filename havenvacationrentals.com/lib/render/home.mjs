@@ -156,7 +156,7 @@ export function renderHome(copy) {
         </div>
         <div class="rating-row">
           <span class="stars" aria-hidden="true">★★★★★</span>
-          <b>4.9 stars · 4,000+ Google reviews</b>
+          <b>4.9 · 4,000+ Google reviews</b>
           <span class="sep" aria-hidden="true"></span>
           <b>Airbnb Superhost</b>
         </div>
