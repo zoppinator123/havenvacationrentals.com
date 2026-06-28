@@ -625,7 +625,16 @@ body.has-sticky-cta { padding-bottom: 76px; }
    21. Homepage — photo-rich refresh (design inspiration)
    ---------------------------------------------------------------------------- */
 /* Light hero variant (homepage only) */
-.hero--light { background: var(--surface-3); color: var(--text); }
+.hero--light {
+  color: var(--text);
+  background:
+    linear-gradient(90deg, rgba(255,252,246,0.96) 0%, rgba(255,252,246,0.9) 44%, rgba(255,252,246,0.74) 100%),
+    radial-gradient(70% 80% at 78% 18%, rgba(255,86,78,0.12), transparent 64%),
+    var(--home-hero-bg),
+    var(--surface-3);
+  background-size: cover;
+  background-position: center;
+}
 .hero--light::after { display: none; }
 .hero--light h1 { color: var(--brand-deep); }
 .hero--light .hero__eyebrow { color: var(--brand); }

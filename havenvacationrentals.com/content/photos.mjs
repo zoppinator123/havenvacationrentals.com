@@ -26,8 +26,8 @@ function resolve(name, fallbackUrl) {
 }
 
 export const PHOTOS = {
-  // Homepage hero — twilight cabin aerial supplied by Jack
-  homeHero:        resolve("home-hero-cabin-dusk",    `${WP}/2025/09/DJI_20250606153127_0461_D-scaled.jpg`),
+  // Homepage hero — A-frame cabin image supplied by Jack
+  homeHero:        resolve("front-hero-aframe",       `${WP}/2025/09/DJI_20250606153127_0461_D-scaled.jpg`),
   // Marquee fall A-frame (portfolio image)
   heroFall:        resolve("cabin-fall-aframe",       `${WP}/2025/10/AdobeStock_115261749-scaled.jpeg`),
   // Twilight aerial of the big multi-gable cabin — portfolio image
