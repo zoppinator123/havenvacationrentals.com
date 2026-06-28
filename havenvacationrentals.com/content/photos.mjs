@@ -34,6 +34,7 @@ export const PHOTOS = {
   exteriorCraftsman: resolve("cabin-craftsman-sunset", `${WP}/2025/11/Three-Pines-110-1-1-scaled.jpg`),
   exteriorDusk:    resolve("cabin-exterior-dusk",      `${WP}/2020/03/cabin.jpg`),
   exteriorAlt:     resolve("cabin-exterior-alt",       `${WP}/2025/12/04-DJI_0038.jpg`),
+  wearsValleyCabin: resolve("wears-valley-cabin",      `${WP}/2020/04/chair-view.jpg`),
   threePines:      resolve("cabin-craftsman-sunset",   `${WP}/2025/11/Three-Pines-110-1-1-scaled.jpg`),
   // Great room with blue sofa + stone fireplace — portfolio image
   interiorLiving:  resolve("interior-great-room",      `${WP}/2020/03/2.jpg`),
@@ -49,7 +50,7 @@ export const MARKET_PHOTOS = {
   gatlinburg:    { hero: PHOTOS.exteriorCraftsman, gallery: [PHOTOS.interiorLiving, PHOTOS.deckView, PHOTOS.interiorKitchen] },
   "pigeon-forge":{ hero: PHOTOS.heroExterior,      gallery: [PHOTOS.interiorDetail, PHOTOS.interiorLiving, PHOTOS.exteriorAlt] },
   sevierville:   { hero: PHOTOS.exteriorAlt,       gallery: [PHOTOS.interiorKitchen, PHOTOS.interiorLiving, PHOTOS.deckView] },
-  "wears-valley":{ hero: PHOTOS.heroFall,          gallery: [PHOTOS.deckView, PHOTOS.interiorDetail, PHOTOS.interiorKitchen] },
+  "wears-valley":{ hero: PHOTOS.wearsValleyCabin, gallery: [PHOTOS.deckView, PHOTOS.interiorDetail, PHOTOS.interiorKitchen] },
 };
 
 export const PHOTO_FALLBACK = "linear-gradient(150deg, #3c4143, #1d2327)";
