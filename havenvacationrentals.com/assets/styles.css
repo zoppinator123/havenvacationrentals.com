@@ -251,8 +251,8 @@ p { text-wrap: pretty; }
 }
 .site-header.is-scrolled { border-color: var(--line); box-shadow: var(--shadow-xs); background: color-mix(in srgb, var(--surface) 94%, transparent); }
 .site-header__inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: var(--header-h); }
-.brand { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; color: var(--brand-deep); letter-spacing: 0.06em; text-transform: uppercase; }
-.brand img { height: 40px; width: auto; }
+.brand { display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; min-width: 58px; height: 58px; border-radius: 999px; background: rgba(255,255,255,0.82); box-shadow: var(--shadow-xs); font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; color: var(--brand-deep); letter-spacing: 0.06em; text-transform: uppercase; }
+.brand img { height: 50px; width: 50px; object-fit: contain; }
 .brand__mark { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--brand); color: #fff; }
 .brand__mark svg { width: 22px; height: 22px; }
 
@@ -705,6 +705,23 @@ body.has-sticky-cta { padding-bottom: 76px; }
 /* Photo avatar in testimonials */
 .quote__avatar.has-img { background-size: cover; background-position: center; color: transparent; }
 
+/* About section */
+.about-section { background: linear-gradient(180deg, var(--surface), var(--surface-2)); }
+.about-snapshot { gap: clamp(2rem, 5vw, 4rem); }
+.about-principles { display: grid; gap: 0.9rem; margin-top: var(--space-md); }
+.about-principles > div {
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255,255,255,0.72);
+  box-shadow: var(--shadow-sm);
+}
+.about-principles b { display: block; color: var(--brand-deep); font-family: var(--font-display); letter-spacing: 0.04em; text-transform: uppercase; }
+.about-principles span { display: block; color: var(--text-muted); margin-top: 0.25rem; }
+.about-collage { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; align-items: stretch; }
+.about-collage__wide { grid-column: 1 / -1; box-shadow: var(--shadow-lg); }
+.about-collage__card { box-shadow: var(--shadow-md); min-height: 210px; }
+
 /* Photo-background contact CTA */
 .photo-cta { position: relative; overflow: hidden; background: var(--brand-deep); color: var(--forest-100); isolation: isolate; }
 .photo-cta__bg { position: absolute; inset: 0; z-index: -2; background-size: cover; background-position: center; opacity: 0.3; }
@@ -779,9 +796,10 @@ h1, h2, h3, h4 { overflow-wrap: anywhere; }
 }
 
 /* Real logo */
-.brand__logo { height: 38px; width: auto; display: block; }
+.brand__logo { height: 50px; width: 50px; object-fit: contain; display: block; }
 .brand--on-dark .brand__logo { filter: brightness(0) invert(1); }
-.footer-brand .brand__logo { height: 40px; }
+.footer-brand .brand { background: transparent; box-shadow: none; min-width: 58px; height: 58px; }
+.footer-brand .brand__logo { height: 54px; width: 54px; }
 
 /* Frosted-glass utility */
 .glass {

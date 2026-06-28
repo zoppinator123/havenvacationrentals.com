@@ -24,8 +24,8 @@ export const SITE = {
   },
   // Real logo assets (host self-hosted/WebP for production; see README)
   logo: {
-    dark: "https://havenvacationrentals.com/wp-content/uploads/2023/07/Haven-Logo-Black-Transparent-4.png",
-    footer: "https://havenvacationrentals.com/wp-content/uploads/2023/07/Haven-Logo-Black-Transparent-2.png",
+    dark: "/assets/brand/haven-logo-black.png",
+    footer: "/assets/brand/haven-logo-black.png",
   },
   // NAP — street address is an open item for Jack (see README). Keep identical
   // across every page, the GBP, and all citations once confirmed.
@@ -50,7 +50,9 @@ export const PROOF = [
    footer, the hub/home Service Areas cards, and each page's cross-links, and
    are added to the mobile drawer under a "Service areas" group. */
 export const NAV = [
+  { label: "Home", href: "/" },
   { label: "Property Management", href: "/property-management/" },
+  { label: "About", href: "/#about" },
   { label: "Invest", href: "/smoky-mountain-str-investment-listings/" },
   { label: "Blog", href: "/blog/" },
   { label: "Contact", href: "/contact-us/" },

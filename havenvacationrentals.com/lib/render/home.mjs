@@ -26,6 +26,9 @@ const PHOTO = {
   step3: PHOTOS.interiorKitchen,
   step4: PHOTOS.interiorDetail,
   contact: PHOTOS.contactBg,
+  aboutA: PHOTOS.aboutHeader,
+  aboutB: PHOTOS.aboutTeam,
+  aboutC: PHOTOS.aboutBedroom,
 };
 
 /* Per-market hero photo + one-line angle for the Service Areas cards. */
@@ -200,6 +203,29 @@ export function renderHome(copy) {
           <span>${icon("mapPin", { width: 18, height: 18 })}</span>
           <b>Locally owned and operated</b>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT HAVEN -->
+<section id="about" class="section about-section">
+  <div class="container">
+    <div class="snapshot about-snapshot" style="align-items:center">
+      <div class="prose stack">
+        <span class="eyebrow">About us</span>
+        <h2>Owning a profitable vacation rental should be easy</h2>
+        <p>Most vacation rentals never live up to their potential. They are underbooked, take too much time to manage, or just cause too many headaches. Sometimes even the property management companies that promise to make you more profitable end up charging so much that you lose the additional profit they helped create.</p>
+        <p>At Haven Vacation Rentals, we believe making passive income from vacation rentals should feel a lot more passive. As property owners ourselves, we know how important it is for each property to earn as much as it possibly can without taking up a bunch of your time.</p>
+        <div class="about-principles">
+          <div><b>Run it like we own it.</b><span>Keep costs low. Fix issues fast. Book it full.</span></div>
+          <div><b>Wow our guests.</b><span>Anticipate their needs. Communicate clearly. Make them want to come back.</span></div>
+        </div>
+      </div>
+      <div class="about-collage">
+        ${photo(PHOTO.aboutA, { ratio: "16 / 10", cls: "about-collage__wide", label: "Haven cabin in the Smoky Mountains" })}
+        ${photo(PHOTO.aboutB, { ratio: "1 / 1", cls: "about-collage__card", label: "Haven property managers Dylan and Suzanne Robinson" })}
+        ${photo(PHOTO.aboutC, { ratio: "1 / 1", cls: "about-collage__card", label: "Cabin bedroom managed by Haven" })}
       </div>
     </div>
   </div>

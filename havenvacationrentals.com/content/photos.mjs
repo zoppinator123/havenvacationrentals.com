@@ -45,6 +45,9 @@ export const PHOTOS = {
   deckView:        resolve("deck-view",                `${WP}/2020/03/1.jpg`),
   contactBg:       resolve("contact-bg",               `${WP}/2020/05/IMG_2853.jpg`),
   smokiesStock:    resolve("smokies-stock",            `${WP}/2025/10/AdobeStock_115261749-scaled.jpeg`),
+  aboutHeader:     resolve("about-header",             `${WP}/2020/04/about-header.jpg`),
+  aboutTeam:       resolve("about-team-dylan-suzanne", `${WP}/2024/08/Screenshot-2024-08-20-at-9.47.29%E2%80%AFAM-1.png`),
+  aboutBedroom:    resolve("about-cabin-bedroom",      `${WP}/2020/05/IMG_2855.jpg`),
 };
 
 /* Per-market hero + supporting photos for the geo pages. */
