@@ -7,9 +7,11 @@ import { organizationLd, websiteLd, breadcrumbLd, serviceLd } from "../seo.mjs";
 import { SITE, CTA_PRIMARY } from "../../content/site.mjs";
 import { MARKETS } from "../../content/markets.mjs";
 
+const LIVE_LISTINGS_URL = "https://zillowtohavensite.vercel.app/";
+
 /* /smoky-mountain-str-investment-listings/
-   Landing for investors looking to buy a Smoky Mountain STR. The live listings
-   feed (IDX / MLS) should be embedded where noted; this is the marketing shell. */
+   Landing for investors looking to buy a Smoky Mountain STR. Live investment
+   listings are embedded from the Zillow-to-Haven Vercel app. */
 export function renderListings() {
   const path = "/smoky-mountain-str-investment-listings/";
   const crumbs = [
@@ -18,7 +20,7 @@ export function renderListings() {
   ];
   const title = "Smoky Mountain STR Investment Listings | Haven";
   const description =
-    "Buy a short-term rental in the Smoky Mountains with a local team. Haven helps investors find cabins that pencil, run the numbers, and manage them to outperform.";
+    "Browse live Smoky Mountain STR investment listings and buy with a local operating team. Haven helps investors find cabins that pencil, run the numbers, and manage them to outperform.";
 
   const head = {
     title,
@@ -79,7 +81,27 @@ ${breadcrumbs(crumbs)}
     <div class="grid grid--4">
       ${helps.map((h) => `<div class="card card--accent" reveal><span class="card__icon">${icon(h.icon, { width: 26, height: 26 })}</span><h3>${escapeHtml(h.title)}</h3><p>${escapeHtml(h.desc)}</p></div>`).join("")}
     </div>
-    <p class="note-box" style="margin-top:var(--space-lg)">Looking for current listings? Connect your live MLS / IDX feed here to show available Smoky Mountain investment cabins. In the meantime, tell us what you are looking for and we will send properties that fit.</p>
+    <div class="live-listings">
+      <div class="live-listings__head">
+        <div>
+          <span class="eyebrow">Live listings</span>
+          <h3>Browse active Smoky Mountain STR opportunities</h3>
+          <p>These properties are pulled from the Zillow-to-Haven investment listings app. Use this to scan live inventory, then talk with Haven before you write an offer so we can pressure-test the numbers and operating plan.</p>
+        </div>
+        <a class="btn btn--ghost" href="${LIVE_LISTINGS_URL}" target="_blank" rel="noopener">Open full-screen ${icon("arrowRight", { width: 18, height: 18 })}</a>
+      </div>
+      <div class="live-listings__frame-wrap">
+        <iframe
+          class="live-listings__frame"
+          title="Live Smoky Mountain STR investment listings"
+          src="${LIVE_LISTINGS_URL}"
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+        ></iframe>
+      </div>
+      <p class="note-box live-listings__note">If the live listings do not load, <a href="${LIVE_LISTINGS_URL}" target="_blank" rel="noopener">open them in a new tab</a>. Listing data is provided by the embedded Zillow-to-Haven app and should be verified before making an offer.</p>
+    </div>
   </div>
 </section>
 

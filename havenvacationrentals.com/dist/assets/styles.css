@@ -548,6 +548,44 @@ body.has-sticky-cta { padding-bottom: 76px; }
 .bullet-list svg { flex: none; width: 1.25em; height: 1.25em; color: var(--brand); margin-top: 0.2em; }
 .note-box { background: var(--surface-3); border: 1px dashed var(--forest-300); border-radius: var(--radius); padding: 1rem 1.25rem; font-size: var(--step--1); color: var(--ink-soft); }
 
+/* Live Zillow-to-Haven investment listings embed */
+.live-listings {
+  margin-top: var(--space-xl);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+.live-listings__head {
+  display: grid;
+  gap: 1rem;
+  align-items: end;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--surface), var(--surface-2));
+}
+@media (min-width: 820px) {
+  .live-listings__head { grid-template-columns: minmax(0, 1fr) auto; }
+}
+.live-listings__head h3 { margin-bottom: 0.35rem; }
+.live-listings__head p { max-width: 72ch; color: var(--text-muted); margin: 0; }
+.live-listings__frame-wrap {
+  background: #fff;
+  min-height: 720px;
+}
+.live-listings__frame {
+  display: block;
+  width: 100%;
+  min-height: min(1120px, 120vh);
+  border: 0;
+  background: #fff;
+}
+.live-listings__note {
+  margin: 1rem clamp(1rem, 3vw, 1.5rem) clamp(1rem, 3vw, 1.5rem);
+}
+.live-listings__note a { color: var(--brand); font-weight: 700; }
+
 [reveal] { opacity: 0; transform: translateY(16px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
 [reveal].is-in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { [reveal] { opacity: 1; transform: none; } }
