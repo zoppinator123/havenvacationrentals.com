@@ -17,7 +17,7 @@ const WP = "https://havenvacationrentals.com/wp-content/uploads"; // testimonial
 const FALLBACK = PHOTO_FALLBACK;
 const photo = coverPhoto;
 const PHOTO = {
-  hero:  PHOTOS.exteriorCraftsman,
+  hero:  PHOTOS.homeHero,        // supplied cabin-at-dusk hero
   howBg: PHOTOS.heroExterior,
   difA:  PHOTOS.interiorLiving,  // great room
   difB:  PHOTOS.interiorDetail,
