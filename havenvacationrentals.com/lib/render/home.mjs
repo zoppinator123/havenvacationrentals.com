@@ -46,7 +46,7 @@ const HOW = [
 const NUMBERS = [
   { value: "Airbnb", label: "Superhost" },
   { value: "+30%", label: "Revenue ahead of the market" },
-  { value: "4.9★", label: "Across 3,400+ five-star reviews" },
+  { value: "4.9★", label: "Across 4,000+ Google reviews" },
   { value: "Top 1%", label: "Of Airbnb listings worldwide" },
 ];
 
@@ -156,7 +156,7 @@ export function renderHome(copy) {
         </div>
         <div class="rating-row">
           <span class="stars" aria-hidden="true">★★★★★</span>
-          <b>4.9 · 3,400+ reviews</b>
+          <b>4.9 stars · 4,000+ Google reviews</b>
           <span class="sep" aria-hidden="true"></span>
           <b>Airbnb Superhost</b>
         </div>

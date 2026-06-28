@@ -328,6 +328,9 @@ p { text-wrap: pretty; }
 .hero__badge .stars { color: var(--accent); letter-spacing: 0.1em; }
 .hero__badge b { color: var(--brand-deep); }
 .hero__badge small { display: block; color: var(--muted); font-size: var(--step--1); }
+.hero__visual { display: grid; gap: 1rem; }
+.hero__badge--below { position: static; }
+.hero__badge--below .stars { flex: 0 0 auto; }
 
 @media (min-width: 880px) {
   .hero__inner { grid-template-columns: 1.05fr 0.95fr; }

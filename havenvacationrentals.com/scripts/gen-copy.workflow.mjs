@@ -26,7 +26,7 @@ BRAND PILLARS (weave in with LOCAL framing, do not just list them):
 PROOF POINTS (these are Haven's own figures; use naturally and sparingly, do not stuff every section):
 - Around 70% average occupancy versus a market average near 55%.
 - Roughly 30% ahead of the market on revenue.
-- 4.9 stars from more than 3,400 five-star reviews.
+- 4.9 stars from 4,000+ Google reviews.
 - Top 1, 5, and 10 percent of Airbnb listings worldwide.
 - Local since 2016.
 

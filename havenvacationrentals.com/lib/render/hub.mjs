@@ -74,11 +74,13 @@ ${breadcrumbs(crumbs)}
           ${PROOF.slice(0, 3).map((p) => `<div class="hero__trust-item"><b>${escapeHtml(p.value)}</b><span>${escapeHtml(p.label)}</span></div>`).join("")}
         </div>
       </div>
-      <div class="hero__media">
-        ${coverPhoto(PHOTOS.heroExterior, { ratio: "4 / 3", label: "Haven-managed Smoky Mountain cabin at dusk" })}
-        <div class="hero__badge">
+      <div class="hero__visual">
+        <div class="hero__media">
+          ${coverPhoto(PHOTOS.heroExterior, { ratio: "4 / 3", label: "Haven-managed Smoky Mountain cabin at dusk" })}
+        </div>
+        <div class="hero__badge hero__badge--below">
           <span class="stars" aria-hidden="true">★★★★★</span>
-          <span><b>4.9 stars, 3,400+ reviews</b><small>Top 1% of Airbnb listings worldwide</small></span>
+          <span><b>4.9 stars, 4,000+ Google reviews</b><small>Top 1% of Airbnb listings worldwide</small></span>
         </div>
       </div>
     </div>

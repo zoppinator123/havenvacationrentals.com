@@ -42,7 +42,7 @@ export const SITE = {
 export const PROOF = [
   { value: "Airbnb", label: "Superhost guest care" },
   { value: "~30%", label: "Ahead of market on revenue" },
-  { value: "4.9★", label: "From 3,400+ five-star guest reviews" },
+  { value: "4.9★", label: "From 4,000+ Google reviews" },
   { value: "2016", label: "Locally owned in the Smokies since" },
 ];
 

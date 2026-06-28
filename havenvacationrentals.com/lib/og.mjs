@@ -29,7 +29,7 @@ export function ogHtml({ eyebrow = "Smoky Mountain property management", title =
         <path d="M6 18.5 L12 6.5 L18 18.5 Z" fill="#fff"/>
       </svg></span><span>Haven Vacation Rentals</span></div>
     <div><div class="eyebrow">${eyebrow}</div><h1>${title}</h1></div>
-    <div class="foot"><span class="pill"><span class="star">★</span> 4.9 from 3,400+ reviews</span><span>865-263-7366</span><span>havenvacationrentals.com</span></div>
+    <div class="foot"><span class="pill"><span class="star">★</span> 4.9 stars from 4,000+ Google reviews</span><span>865-263-7366</span><span>havenvacationrentals.com</span></div>
   </div>
   </body></html>`;
 }

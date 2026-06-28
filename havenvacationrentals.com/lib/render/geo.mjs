@@ -89,7 +89,7 @@ ${breadcrumbs(crumbs)}
         </div>
         <div class="hero__trust">
           <div class="hero__trust-item"><b>Airbnb</b><span>Superhost guest care</span></div>
-          <div class="hero__trust-item"><b>4.9★</b><span>3,400+ five-star reviews</span></div>
+          <div class="hero__trust-item"><b>4.9★</b><span>4,000+ Google reviews</span></div>
           <div class="hero__trust-item"><b>One flat fee</b><span>No hidden booking fees</span></div>
         </div>
       </div>
