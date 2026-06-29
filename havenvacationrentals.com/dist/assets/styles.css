@@ -567,6 +567,15 @@ body.has-sticky-cta { padding-bottom: 76px; }
 .note-box { background: var(--surface-3); border: 1px dashed var(--forest-300); border-radius: var(--radius); padding: 1rem 1.25rem; font-size: var(--step--1); color: var(--ink-soft); }
 
 /* Live Zillow-to-Haven investment listings embed */
+.invest-markets {
+  margin-top: var(--space-xl);
+}
+.invest-market-grid {
+  margin-top: var(--space-md);
+}
+.invest-market-card .area-card__body {
+  padding-top: 1.2rem;
+}
 .live-listings {
   margin-top: var(--space-xl);
   width: min(100%, 1180px);

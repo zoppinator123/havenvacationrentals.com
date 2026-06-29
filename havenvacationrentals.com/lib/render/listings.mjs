@@ -1,13 +1,37 @@
 import { page } from "../layout.mjs";
 import { icon } from "../icons.mjs";
-import { escapeHtml } from "../util.mjs";
+import { escapeAttr, escapeHtml } from "../util.mjs";
 import { breadcrumbs, sectionHead, crossLinks, leadForm } from "../components.mjs";
 import { organizationLd, websiteLd, breadcrumbLd, serviceLd } from "../seo.mjs";
 import { SITE, CTA_PRIMARY } from "../../content/site.mjs";
 import { MARKETS } from "../../content/markets.mjs";
-import { PHOTOS, PHOTO_FALLBACK, coverPhoto } from "../../content/photos.mjs";
+import { MARKET_PHOTOS, PHOTOS, PHOTO_FALLBACK, coverPhoto } from "../../content/photos.mjs";
 
 const LIVE_LISTINGS_URL = "https://zillowtohavensite.vercel.app/";
+
+const MARKET_INVESTOR_BLURBS = {
+  gatlinburg: "High-demand National Park gateway with strong year-round guest traffic.",
+  "pigeon-forge": "Family and group-travel market built around Dollywood, The Island, and the Parkway.",
+  sevierville: "Newer-build and value-oriented market with strong investor interest.",
+  "wears-valley": "Quieter view-driven cabin market with county rules and strong nature appeal.",
+};
+
+function investmentMarketCards() {
+  return `<div class="invest-market-grid grid grid--4">
+    ${MARKETS.map((m) => {
+      const href = `/vacation-rental-management-${m.slug}/`;
+      const photo = (MARKET_PHOTOS[m.slug] && MARKET_PHOTOS[m.slug].hero) || PHOTOS.heroExterior;
+      return `<a class="area-card invest-market-card" href="${href}" aria-label="Explore ${escapeAttr(m.city)} STR market">
+        ${coverPhoto(photo, { ratio: "16 / 10", cls: "area-card__art", label: `${m.city} investment cabin market` })}
+        <div class="area-card__body">
+          <h3>${escapeHtml(m.city)}</h3>
+          <p>${escapeHtml(MARKET_INVESTOR_BLURBS[m.slug] || `Explore the ${m.city} short-term rental market.`)}</p>
+          <span class="link-arrow">View market ${icon("arrowRight", { width: 16, height: 16 })}</span>
+        </div>
+      </a>`;
+    }).join("")}
+  </div>`;
+}
 
 /* /smoky-mountain-str-investment-listings/
    Landing for investors looking to buy a Smoky Mountain STR. Live investment
@@ -79,6 +103,10 @@ ${breadcrumbs(crumbs)}
     ${sectionHead({ eyebrow: "How we help", title: "From offer to operating, with one local team" })}
     <div class="grid grid--4">
       ${helps.map((h) => `<div class="card card--accent"><span class="card__icon">${icon(h.icon, { width: 26, height: 26 })}</span><h3>${escapeHtml(h.title)}</h3><p>${escapeHtml(h.desc)}</p></div>`).join("")}
+    </div>
+    <div class="invest-markets">
+      ${sectionHead({ eyebrow: "Choose a market", title: "Explore Smoky Mountain STR markets", intro: "Click into the market you are considering so you can understand the local opportunity, rules, demand drivers, and management plan before you write an offer." })}
+      ${investmentMarketCards()}
     </div>
     <div class="live-listings">
       <div class="live-listings__head">
