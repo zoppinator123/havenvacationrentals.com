@@ -46,7 +46,7 @@ export const PHOTOS = {
   contactBg:       resolve("contact-bg",               `${WP}/2020/05/IMG_2853.jpg`),
   smokiesStock:    resolve("smokies-stock",            `${WP}/2025/10/AdobeStock_115261749-scaled.jpeg`),
   aboutFamily:     resolve("about-zoppa-family",       `${WP}/2020/04/about-header.jpg`),
-  aboutFamilyAlt:  resolve("about-zoppa-family-alt",   `${WP}/2020/04/about-header.jpg`),
+  aboutDillon:     resolve("about-dillon-family",      `${WP}/2024/08/Screenshot-2024-08-20-at-9.47.29%E2%80%AFAM-1.png`),
   aboutHeader:     resolve("about-header",             `${WP}/2020/04/about-header.jpg`),
   aboutTeam:       resolve("about-team-dylan-suzanne", `${WP}/2024/08/Screenshot-2024-08-20-at-9.47.29%E2%80%AFAM-1.png`),
   aboutBedroom:    resolve("about-cabin-bedroom",      `${WP}/2020/05/IMG_2855.jpg`),

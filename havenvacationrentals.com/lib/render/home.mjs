@@ -27,7 +27,7 @@ const PHOTO = {
   step4: PHOTOS.interiorDetail,
   contact: PHOTOS.contactBg,
   aboutA: PHOTOS.aboutFamily,
-  aboutB: PHOTOS.aboutFamilyAlt,
+  aboutB: PHOTOS.aboutDillon,
   aboutC: PHOTOS.aboutBedroom,
 };
 
@@ -223,8 +223,8 @@ export function renderHome(copy) {
         </div>
       </div>
       <div class="about-collage about-collage--pair">
-        ${photo(PHOTO.aboutA, { ratio: "4 / 3", cls: "about-collage__photo about-collage__family", label: "Jack and Sarah Zoppa with their daughter" })}
-        ${photo(PHOTO.aboutB, { ratio: "4 / 3", cls: "about-collage__photo about-collage__family", label: "Jack and Sarah Zoppa with their family" })}
+        ${photo(PHOTO.aboutA, { ratio: "4 / 3", cls: "about-collage__photo about-collage__family", label: "Jack Zoppa family photo" })}
+        ${photo(PHOTO.aboutB, { ratio: "4 / 3", cls: "about-collage__photo about-collage__family", label: "Dillon family photo" })}
       </div>
     </div>
   </div>
