@@ -26,7 +26,7 @@ const PHOTO = {
   step3: PHOTOS.interiorKitchen,
   step4: PHOTOS.interiorDetail,
   contact: PHOTOS.contactBg,
-  aboutA: PHOTOS.aboutHeader,
+  aboutA: PHOTOS.aboutFamily,
   aboutB: PHOTOS.aboutTeam,
   aboutC: PHOTOS.aboutBedroom,
 };
@@ -222,10 +222,8 @@ export function renderHome(copy) {
           <div><b>Wow our guests.</b><span>Anticipate their needs. Communicate clearly. Make them want to come back.</span></div>
         </div>
       </div>
-      <div class="about-collage">
-        ${photo(PHOTO.aboutA, { ratio: "16 / 10", cls: "about-collage__wide", label: "Haven cabin in the Smoky Mountains" })}
-        ${photo(PHOTO.aboutB, { ratio: "1 / 1", cls: "about-collage__card", label: "Haven property managers Dylan and Suzanne Robinson" })}
-        ${photo(PHOTO.aboutC, { ratio: "1 / 1", cls: "about-collage__card", label: "Cabin bedroom managed by Haven" })}
+      <div class="about-collage about-collage--single">
+        ${photo(PHOTO.aboutA, { ratio: "1 / 1", cls: "about-collage__wide about-collage__family", label: "Jack and Sarah Zoppa with their daughter" })}
       </div>
     </div>
   </div>
