@@ -28,7 +28,7 @@ function galleryStrip(market) {
 
 function snapshotTable(rows, city) {
   return `<table class="data-table">
-    <caption>${escapeHtml(city)} market snapshot. Confirm current per-market ADR against AirDNA / Key Data before publishing.</caption>
+    <caption>${escapeHtml(city)} market snapshot. Public market metrics and sources are noted below.</caption>
     <tbody>
       ${rows.map((r) => `<tr><th scope="row">${escapeHtml(r.label)}</th><td>${escapeHtml(r.value)}</td></tr>`).join("")}
     </tbody>
