@@ -81,10 +81,8 @@ export const SERVICES = [
 /* Five brand pillars (reused with local framing on each page). */
 export const PILLARS = [
   { title: "A local team", body: "We are based right here in the Smoky Mountains, not in a call center three time zones away. When something needs a person on-site, we are minutes from your door." },
-  { title: "One simple flat fee", body: "A single, transparent management fee. No hidden booking fees, no markups on cleaning, no nickel-and-diming. You always know exactly what you pay and what you earn." },
   { title: "Smart human pricing", body: "A real revenue manager who knows this market sets your rates, not just an algorithm guessing from afar. That is how Haven owners run ahead of the market." },
   { title: "Guest-obsessed", body: "A five-star guest experience is the engine of profit. Happy guests leave five-star reviews, rebook, and refer, which lifts your ranking and your rate." },
-  { title: "Smaller, so we try harder", body: "We deliberately manage a select group of homes well rather than thousands poorly. Your property gets attention a national manager cannot match." },
 ];
 
 /* 3-step onboarding flow (shared). */

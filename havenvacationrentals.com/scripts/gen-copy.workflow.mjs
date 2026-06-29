@@ -18,10 +18,8 @@ HARD STYLE RULE (non-negotiable): NO em dashes and NO en dashes anywhere ( — o
 
 BRAND PILLARS (weave in with LOCAL framing, do not just list them):
 1. A local team, based right here in the Smokies, not a national call center.
-2. One simple flat fee. No hidden booking fees, no markups on cleaning, no nickel-and-diming.
-3. Smart human pricing. A real revenue manager who knows this market sets rates, not just an algorithm.
-4. Guest-obsessed. A five-star guest experience drives five-star reviews, which drive ranking and revenue.
-5. Smaller, so we try harder. We manage a select group of homes well rather than thousands poorly.
+2. Smart human pricing. A real revenue manager who knows this market sets rates, not just an algorithm.
+3. Guest-obsessed. A five-star guest experience drives five-star reviews, which drive ranking and revenue.
 
 PROOF POINTS (these are Haven's own figures; use naturally and sparingly, do not stuff every section):
 - Around 70% average occupancy versus a market average near 55%.
