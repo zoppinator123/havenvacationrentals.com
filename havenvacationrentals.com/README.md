@@ -162,11 +162,11 @@ Haven-managed cabins in each market:
 
 ## The Book-a-Call form
 
-`components.leadForm()` posts to `/contact-us/` by default and shows an inline
-success state client-side. **Wire it to HubSpot / your existing CRM** (the same
-destination as the live `/contact-us/` form) by pointing the form `action` (and,
-if needed, `main.js`’s submit handler) at your endpoint, then run a test
-submission end to end.
+`components.leadForm()` validates the lead fields client-side, then redirects
+the visitor to `/book-a-call/`, which embeds the Haven Calendly scheduler. The
+form currently uses `GET` with no CRM post endpoint. **Wire it to HubSpot / your
+existing CRM** by posting the form data first, then keep the successful-submit
+redirect to `/book-a-call/` so leads can immediately schedule a call.
 
 ---
 

@@ -284,7 +284,7 @@ export function leadForm({ heading = "Book a call about your property", marketDe
     .map((m) => `<option value="${escapeAttr(m)}"${m === marketDefault ? " selected" : ""}>${escapeHtml(m)}</option>`)
     .join("");
   return `<div>
-  <form class="lead-form" data-lead-form action="https://havenvacationrentals.com/contact-us/" method="post" novalidate>
+  <form class="lead-form" data-lead-form data-calendly-redirect="/book-a-call/" action="/book-a-call/" method="get" novalidate>
     <h3>${escapeHtml(heading)}</h3>
     <p class="form-note">Tell us about your cabin and we will show you what it can earn with Haven. No pressure, no obligation.</p>
     <div class="field-row">
@@ -298,6 +298,6 @@ export function leadForm({ heading = "Book a call about your property", marketDe
     <button class="btn btn--accent btn--block btn--lg" type="submit">${escapeHtml(CTA_PRIMARY.label)}</button>
     <p class="form-disclaimer">By submitting you agree to be contacted by Haven about managing your property. We never share your information.</p>
   </form>
-  <div class="form-success" tabindex="-1" role="status">Thanks. Your request is in. A local Haven advisor will reach out shortly to talk through your property. Prefer to talk now? Call <a href="tel:${SITE.phoneTel}">${escapeHtml(SITE.phone)}</a>.</div>
+  <div class="form-success" tabindex="-1" role="status">Thanks. Your request is in. We are sending you to the scheduler now. Prefer to talk now? Call <a href="tel:${SITE.phoneTel}">${escapeHtml(SITE.phone)}</a>.</div>
 </div>`;
 }

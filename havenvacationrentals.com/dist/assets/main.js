@@ -71,18 +71,20 @@
     revealEls.forEach(function (el) { el.classList.add("is-in"); });
   }
 
-  /* ---- Book a Call form (client-side demo handler) ----
-     Wire `form[data-lead-form]` to HubSpot / the existing /contact-us/ CRM
-     endpoint in production. Until then this shows an inline success state so
-     the flow is testable locally. */
+  /* ---- Lead form -> Calendly scheduling page ----
+     Once a visitor fills out a lead form, send them to the booking page with
+     Calendly embedded. The form uses GET so field data is not posted anywhere
+     until a CRM endpoint is wired in. */
   doc.querySelectorAll("form[data-lead-form]").forEach(function (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
       var success = form.parentNode.querySelector(".form-success");
+      var redirect = form.getAttribute("data-calendly-redirect") || form.getAttribute("action") || "/book-a-call/";
       form.style.display = "none";
       if (success) { success.classList.add("is-visible"); success.focus && success.focus(); }
-      // window.dataLayer && window.dataLayer.push({ event: "book_a_call_submit" });
+      window.dataLayer && window.dataLayer.push({ event: "book_a_call_submit" });
+      window.location.href = redirect;
     });
   });
 
