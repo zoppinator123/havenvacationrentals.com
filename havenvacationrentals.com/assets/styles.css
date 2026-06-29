@@ -160,7 +160,7 @@ p { text-wrap: pretty; }
 .section { padding-block: clamp(3rem, 8vw, var(--space-2xl)); }
 .section--tight { padding-block: clamp(2.25rem, 5vw, var(--space-xl)); }
 .section--alt { background: var(--bg-alt); }
-.section--tint { background: var(--brand-tint); }
+.section--tint { background: var(--surface-3); }
 .section--dark { background: var(--brand-deep); color: var(--forest-100); }
 .section--dark h2, .section--dark h3 { color: #fff; }
 
