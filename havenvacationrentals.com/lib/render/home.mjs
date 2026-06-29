@@ -223,7 +223,7 @@ export function renderHome(copy) {
         </div>
       </div>
       <div class="about-collage about-collage--pair">
-        ${photo(PHOTO.aboutA, { ratio: "4 / 3", cls: "about-collage__photo about-collage__family", label: "Jack and Sarah Zoppa with their family" })}
+        ${photo(PHOTO.aboutA, { ratio: "4 / 3", cls: "about-collage__photo about-collage__family", label: "Jack and Sarah Zoppa with their daughter" })}
         ${photo(PHOTO.aboutB, { ratio: "4 / 3", cls: "about-collage__photo about-collage__family", label: "Jack and Sarah Zoppa with their family" })}
       </div>
     </div>
