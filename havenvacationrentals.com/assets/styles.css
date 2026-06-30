@@ -735,7 +735,8 @@ body.has-sticky-cta { padding-bottom: 76px; }
 .live-listings__mobile-note a { color: var(--brand); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
 .live-listings__frame-wrap {
   position: relative;
-  height: clamp(720px, 84vh, 1060px);
+  height: var(--live-listings-frame-height, clamp(640px, 82svh, 1120px));
+  max-height: calc(100svh - 5.5rem);
   background: #fff;
   overflow: auto;
   overscroll-behavior: contain;
@@ -744,7 +745,7 @@ body.has-sticky-cta { padding-bottom: 76px; }
 .live-listings__frame {
   display: block;
   width: 100%;
-  height: max(100%, 980px);
+  height: 100%;
   border: 0;
   background: #fff;
   opacity: 0;
@@ -792,10 +793,11 @@ body.has-sticky-cta { padding-bottom: 76px; }
   .live-listings__toolbar-link { display: none; }
   .live-listings__mobile-note { display: flex; }
   .live-listings__frame-wrap {
-    height: clamp(600px, 76vh, 820px);
+    height: var(--live-listings-frame-height, clamp(560px, 78svh, 820px));
+    max-height: calc(100svh - 4.75rem);
   }
   .live-listings__frame {
-    min-width: 760px;
+    min-width: 0;
   }
 }
 

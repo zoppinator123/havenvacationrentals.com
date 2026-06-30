@@ -71,7 +71,26 @@
     revealEls.forEach(function (el) { el.classList.add("is-in"); });
   }
 
-  /* ---- Live listings iframe loading state ---- */
+  /* ---- Live listings iframe loading + browser-fit sizing ---- */
+  var listingsFrameWraps = doc.querySelectorAll(".live-listings__frame-wrap");
+  function fitListingsFrames() {
+    if (!listingsFrameWraps.length) return;
+    var viewport = window.visualViewport || window;
+    var vh = viewport.height || window.innerHeight || doc.documentElement.clientHeight;
+    var vw = viewport.width || window.innerWidth || doc.documentElement.clientWidth;
+    var isMobile = vw < 720;
+    var reservedChrome = isMobile ? 76 : 88;
+    var min = isMobile ? 520 : 640;
+    var max = isMobile ? 820 : 1120;
+    var height = Math.min(max, Math.max(min, Math.round(vh - reservedChrome)));
+    listingsFrameWraps.forEach(function (wrap) {
+      wrap.style.setProperty("--live-listings-frame-height", height + "px");
+    });
+  }
+  fitListingsFrames();
+  window.addEventListener("resize", fitListingsFrames, { passive: true });
+  if (window.visualViewport) window.visualViewport.addEventListener("resize", fitListingsFrames, { passive: true });
+
   doc.querySelectorAll("[data-listings-frame]").forEach(function (frame) {
     function loaded() {
       frame.classList.add("is-loaded");
