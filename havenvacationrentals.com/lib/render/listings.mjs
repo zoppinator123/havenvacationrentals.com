@@ -9,6 +9,12 @@ import { MARKET_PHOTOS, PHOTOS, PHOTO_FALLBACK, coverPhoto } from "../../content
 
 const LIVE_LISTINGS_URL = "https://zillowtohavensite.vercel.app/";
 
+const LISTING_STEPS = [
+  { icon: "compass", label: "Scan live inventory", desc: "Use the embedded app to shortlist cabins by market, price, and fit." },
+  { icon: "chartUp", label: "Pressure-test the numbers", desc: "Send us a property and we will sanity-check revenue, costs, and risk." },
+  { icon: "key", label: "Buy with operations ready", desc: "If it pencils, Haven can take over pricing, guests, cleaning, and maintenance." },
+];
+
 const MARKET_INVESTOR_BLURBS = {
   gatlinburg: "High-demand National Park gateway with strong year-round guest traffic.",
   "pigeon-forge": "Family and group-travel market built around Dollywood, The Island, and the Parkway.",
@@ -109,23 +115,45 @@ ${breadcrumbs(crumbs)}
       ${investmentMarketCards()}
     </div>
     <div class="live-listings">
-      <div class="live-listings__head">
-        <div>
-          <span class="eyebrow">Live listings</span>
-          <h3>Browse active Smoky Mountain STR opportunities</h3>
-          <p>These properties are pulled from the Zillow-to-Haven investment listings app. Use this to scan live inventory, then talk with Haven before you write an offer so we can pressure-test the numbers and operating plan.</p>
+      <div class="live-listings__hero">
+        <div class="live-listings__copy">
+          <span class="eyebrow">Live investment search</span>
+          <h3>Browse live Smoky Mountain STR deals without leaving Haven</h3>
+          <p>Search current listings in the embedded investment app, then bring the best candidates back to Haven for a local revenue, compliance, and operations read before you write an offer.</p>
+          <div class="live-listings__actions">
+            <a class="btn btn--accent" href="${LIVE_LISTINGS_URL}" target="_blank" rel="noopener">Open full-screen ${icon("arrowRight", { width: 18, height: 18 })}</a>
+            <a class="btn btn--ghost" href="${CTA_PRIMARY.href}">Review a property with Haven</a>
+          </div>
         </div>
-        <a class="btn btn--ghost" href="${LIVE_LISTINGS_URL}" target="_blank" rel="noopener">Open full-screen ${icon("arrowRight", { width: 18, height: 18 })}</a>
+        <div class="live-listings__steps" aria-label="How to use the live listing search">
+          ${LISTING_STEPS.map((step) => `<div class="live-listings__step"><span class="live-listings__step-icon">${icon(step.icon, { width: 20, height: 20 })}</span><div><strong>${escapeHtml(step.label)}</strong><span>${escapeHtml(step.desc)}</span></div></div>`).join("")}
+        </div>
       </div>
-      <div class="live-listings__frame-wrap">
-        <iframe
-          class="live-listings__frame"
-          title="Live Smoky Mountain STR investment listings"
-          src="${LIVE_LISTINGS_URL}"
-          loading="lazy"
-          referrerpolicy="strict-origin-when-cross-origin"
-          sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
-        ></iframe>
+      <div class="live-listings__browser" aria-label="Embedded live listing search">
+        <div class="live-listings__toolbar">
+          <div class="live-listings__window-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="live-listings__url"><span>Live Smoky Mountain investment listings</span></div>
+          <a class="live-listings__toolbar-link" href="${LIVE_LISTINGS_URL}" target="_blank" rel="noopener">New tab ${icon("arrowRight", { width: 15, height: 15 })}</a>
+        </div>
+        <div class="live-listings__mobile-note">
+          ${icon("phone", { width: 18, height: 18 })}
+          <span>On mobile, the full-screen version is easier to filter and compare.</span>
+          <a href="${LIVE_LISTINGS_URL}" target="_blank" rel="noopener">Open it</a>
+        </div>
+        <div class="live-listings__frame-wrap">
+          <div class="live-listings__loader" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+          <iframe
+            class="live-listings__frame"
+            title="Live Smoky Mountain STR investment listings"
+            src="${LIVE_LISTINGS_URL}"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+            data-listings-frame
+          ></iframe>
+        </div>
       </div>
     </div>
   </div>

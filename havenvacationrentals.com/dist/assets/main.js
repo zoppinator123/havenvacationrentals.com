@@ -71,6 +71,20 @@
     revealEls.forEach(function (el) { el.classList.add("is-in"); });
   }
 
+  /* ---- Live listings iframe loading state ---- */
+  doc.querySelectorAll("[data-listings-frame]").forEach(function (frame) {
+    function loaded() {
+      frame.classList.add("is-loaded");
+      if (frame.parentElement) frame.parentElement.classList.add("is-loaded");
+    }
+    frame.addEventListener("load", loaded, { once: true });
+    // If the browser restores the iframe from cache before this script runs,
+    // remove the skeleton shortly after hydration instead of leaving a blank shell.
+    window.setTimeout(function () {
+      if (!frame.classList.contains("is-loaded")) loaded();
+    }, 3500);
+  });
+
   /* ---- Lead form -> Calendly scheduling page ----
      Once a visitor fills out a lead form, send them to the booking page with
      Calendly embedded. The form uses GET so field data is not posted anywhere
