@@ -1,7 +1,6 @@
 import { page } from "../layout.mjs";
 import { icon } from "../icons.mjs";
 import { escapeHtml, escapeAttr, paragraphs } from "../util.mjs";
-import { ridgeStrip } from "../art.mjs";
 import {
   breadcrumbs, sectionHead, statsRow, serviceGrid, pillars, steps,
   callout, faqAccordion, crossLinks, ctaBand, leadForm, channelStrip,
@@ -11,7 +10,7 @@ import {
 } from "../seo.mjs";
 import { SITE, SERVICES, PILLARS, PROCESS, CTA_PRIMARY } from "../../content/site.mjs";
 import { MARKET_BY_SLUG } from "../../content/markets.mjs";
-import { PHOTOS, coverPhoto } from "../../content/photos.mjs";
+import { PHOTOS, coverPhoto, heroScenicMountains } from "../../content/photos.mjs";
 
 function snapshotTable(rows, name) {
   return `<table class="data-table">
@@ -93,7 +92,7 @@ ${breadcrumbs(crumbs)}
 
 <!-- HERO -->
 <section class="hero">
-  ${ridgeStrip("#15181a")}
+  ${heroScenicMountains()}
   <div class="container">
     <div class="hero__inner">
       <div class="stack">
