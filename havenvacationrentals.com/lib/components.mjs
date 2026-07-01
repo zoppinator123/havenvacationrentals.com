@@ -89,7 +89,10 @@ export function footer() {
     </div>
     <div class="footer-bottom">
       <span>© ${new Date().getFullYear()} ${escapeHtml(SITE.name)}. Locally owned in the Smoky Mountains since ${SITE.foundingYear}.</span>
-      <a href="${CTA_PRIMARY.href}">${escapeHtml(CTA_PRIMARY.label)} →</a>
+      <span class="footer-bottom__links">
+        <a href="/llms.txt">LLMs.txt</a>
+        <a href="${CTA_PRIMARY.href}">${escapeHtml(CTA_PRIMARY.label)} →</a>
+      </span>
     </div>
   </div>
 </footer>`;

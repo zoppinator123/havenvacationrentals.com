@@ -539,6 +539,7 @@ p { text-wrap: pretty; }
 .footer-social a:hover { background: var(--brand); }
 .footer-social svg { width: 18px; height: 18px; color: #fff; }
 .footer-bottom { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; justify-content: space-between; align-items: center; font-size: var(--step--1); color: var(--forest-300); }
+.footer-bottom__links { display: inline-flex; flex-wrap: wrap; gap: 0.6rem 1rem; align-items: center; }
 .footer-bottom a { color: var(--forest-300); }
 .footer-bottom a:hover { color: #fff; }
 

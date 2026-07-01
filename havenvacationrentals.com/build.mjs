@@ -26,6 +26,7 @@ import { renderPost } from "./lib/render/post.mjs";
 import { renderRegGuide } from "./lib/render/regguide.mjs";
 import { renderListings } from "./lib/render/listings.mjs";
 import { renderNotFound } from "./lib/render/notfound.mjs";
+import { renderLlmsTxt } from "./content/llms.mjs";
 import { wordCount, findEmDashes } from "./lib/util.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -234,10 +235,13 @@ ${sitemapUrls
 `;
 writeFileSync(join(DIST, "sitemap.xml"), sitemap);
 
+/* llms.txt — structured AI crawler / assistant guidance */
+writeFileSync(join(DIST, "llms.txt"), renderLlmsTxt(posts));
+
 /* robots.txt */
 writeFileSync(
   join(DIST, "robots.txt"),
-  `User-agent: *\nAllow: /\n\nSitemap: ${SITE.baseUrl}/sitemap.xml\n`
+  `User-agent: *\nAllow: /\n\nSitemap: ${SITE.baseUrl}/sitemap.xml\nLLMs: ${SITE.baseUrl}/llms.txt\n`
 );
 
 /* ---- report ---- */

@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://havenvacationrentals.com/sitemap.xml
+LLMs: https://havenvacationrentals.com/llms.txt
