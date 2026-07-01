@@ -45,7 +45,8 @@ export const PHOTOS = {
   deckView:        resolve("deck-view",                `${WP}/2020/03/1.jpg`),
   contactBg:       resolve("contact-bg",               `${WP}/2020/05/IMG_2853.jpg`),
   smokiesStock:    resolve("smokies-stock",            `${WP}/2025/10/AdobeStock_115261749-scaled.jpeg`),
-  scenicMountains: resolve("home-hero-cabin-dusk",     `${WP}/2025/10/AdobeStock_115261749-scaled.jpeg`),
+  /** Wide mountain ridgeline for hero backdrops (not cabin close-ups). */
+  scenicMountains: resolve("smokies-stock",            `${WP}/2025/10/AdobeStock_115261749-scaled.jpeg`),
   aboutFamily:     resolve("about-zoppa-family",       `${WP}/2020/04/about-header.jpg`),
   aboutDillon:     resolve("about-dillon-family",      `${WP}/2024/08/Screenshot-2024-08-20-at-9.47.29%E2%80%AFAM-1.png`),
   aboutHeader:     resolve("about-header",             `${WP}/2020/04/about-header.jpg`),

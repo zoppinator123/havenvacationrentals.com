@@ -309,7 +309,7 @@ p { text-wrap: pretty; }
     linear-gradient(180deg, var(--brand-deep) 0%, rgba(29,35,39,0.92) 22%, rgba(29,35,39,0.45) 55%, transparent 88%),
     var(--hero-scenic);
   background-size: cover;
-  background-position: center 68%;
+  background-position: center 42%;
   background-repeat: no-repeat;
 }
 .hero__ridge { display: none; }
@@ -829,7 +829,7 @@ body.has-sticky-cta { padding-bottom: 76px; }
     var(--home-hero-bg),
     var(--surface-3);
   background-size: cover;
-  background-position: center;
+  background-position: center 38%;
 }
 .hero--light::after { display: none; }
 .hero--light h1 { color: var(--brand-deep); }
