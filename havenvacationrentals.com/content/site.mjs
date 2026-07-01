@@ -22,6 +22,9 @@ export const SITE = {
     blog: "/blog/",
     regulationsGuide: "/sevier-county-short-term-rental-regulations-2026-guide/",
     loomOffer: "31e3c2e6a77840cea08bc180feb19367",
+    /** From Loom oEmbed (thumbnail_url); refresh if the video is re-recorded. */
+    loomOfferThumb:
+      "https://cdn.loom.com/sessions/thumbnails/31e3c2e6a77840cea08bc180feb19367-4df4af72981bb9bc.gif",
   },
   // Real logo assets (host self-hosted/WebP for production; see README)
   logo: {

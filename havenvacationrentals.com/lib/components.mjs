@@ -247,8 +247,12 @@ export function videoTestimonials(items) {
 }
 
 /* Loom (click-to-load; wired in main.js via data-loom-id). */
-export function loomEmbed(videoId, { title = "Explore our offer" } = {}) {
-  return `<div class="yt loom-facade" data-loom-id="${escapeAttr(videoId)}" role="button" tabindex="0" aria-label="Play video: ${escapeAttr(title)}" style="background:linear-gradient(150deg,#3c4143,#1d2327)">
+export function loomEmbed(videoId, { title = "Explore our offer", thumbnail } = {}) {
+  const thumb =
+    thumbnail ||
+    `https://cdn.loom.com/sessions/thumbnails/${videoId}-with-play.gif`;
+  const bg = `background-image:url('${thumb}'),linear-gradient(150deg,#3c4143,#1d2327)`;
+  return `<div class="yt loom-facade" data-loom-id="${escapeAttr(videoId)}" role="button" tabindex="0" aria-label="Play video: ${escapeAttr(title)}" style="${bg}">
     <span class="yt__play" aria-hidden="true">${icon("play", { width: 26, height: 26 })}</span>
     <span class="yt__label">${escapeHtml(title)}</span>
   </div>`;

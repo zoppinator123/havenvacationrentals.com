@@ -105,7 +105,10 @@ ${breadcrumbs(crumbs)}
       center: true,
     })}
     <div class="loom-feature" style="max-width:min(960px,100%);margin-inline:auto">
-      ${loomEmbed(SITE.links.loomOffer, { title: "Explore our offer" })}
+      ${loomEmbed(SITE.links.loomOffer, {
+        title: "Explore our offer",
+        thumbnail: SITE.links.loomOfferThumb,
+      })}
     </div>
   </div>
 </section>
