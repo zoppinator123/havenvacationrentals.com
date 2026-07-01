@@ -12,6 +12,7 @@ import { renderGeoPage } from "./lib/render/geo.mjs";
 import { renderHub } from "./lib/render/hub.mjs";
 import { renderHome } from "./lib/render/home.mjs";
 import { renderContact } from "./lib/render/contact.mjs";
+import { renderAbout } from "./lib/render/about.mjs";
 import { renderBookCall } from "./lib/render/book-call.mjs";
 import { renderBlog } from "./lib/render/blog.mjs";
 import { renderPost } from "./lib/render/post.mjs";
@@ -151,6 +152,7 @@ for (const m of MARKETS) {
 
 /* supporting static pages */
 const staticPages = [
+  { r: renderAbout(), priority: "0.8" },
   { r: renderContact(), priority: "0.8" },
   { r: renderBookCall(), sitemap: false },
   { r: renderRegGuide(), priority: "0.7" },
