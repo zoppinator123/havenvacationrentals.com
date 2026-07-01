@@ -107,7 +107,7 @@ ${breadcrumbs(crumbs)}
         <div class="hero__trust">
           <div class="hero__trust-item"><b>Airbnb</b><span>Superhost guest care</span></div>
           <div class="hero__trust-item"><b>4.9★</b><span>4,000+ Google reviews</span></div>
-          <div class="hero__trust-item"><b>One flat fee</b><span>No hidden booking fees</span></div>
+          <div class="hero__trust-item"><b>Local team</b><span>Based in the Smokies since ${SITE.foundingYear}</span></div>
         </div>
       </div>
       <div class="hero__media">
@@ -157,7 +157,7 @@ ${area.character ? `<!-- COMMUNITY CHARACTER (neighborhood) -->
 <!-- FULL-SERVICE -->
 <section class="section">
   <div class="container">
-    ${sectionHead({ eyebrow: "Full-service management", title: "Everything your cabin needs, handled by one local team", intro: "One flat fee covers the entire operation. From listing and pricing to cleaning, guest care, and maintenance, we run the day to day so you do not have to." })}
+    ${sectionHead({ eyebrow: "Full-service management", title: "Everything your cabin needs, handled by one local team", intro: "One local team covers the entire operation. From listing and pricing to cleaning, guest care, and maintenance, we run the day to day so you do not have to." })}
     ${serviceGrid(SERVICES)}
   </div>
 </section>

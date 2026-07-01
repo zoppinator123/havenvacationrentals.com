@@ -64,7 +64,7 @@ ${breadcrumbs(crumbs)}
         <div class="hero__trust">
           <div class="hero__trust-item"><b>Airbnb</b><span>Superhost guest care</span></div>
           <div class="hero__trust-item"><b>4.9★</b><span>4,000+ Google reviews</span></div>
-          <div class="hero__trust-item"><b>One flat fee</b><span>No hidden booking fees</span></div>
+          <div class="hero__trust-item"><b>Local team</b><span>Based in the Smokies since ${SITE.foundingYear}</span></div>
         </div>
       </div>
     </div>
@@ -95,7 +95,7 @@ ${breadcrumbs(crumbs)}
 <!-- FULL-SERVICE -->
 <section class="section">
   <div class="container">
-    ${sectionHead({ eyebrow: "Full-service management", title: "Everything handled, under one flat fee", intro: "Bookings and pricing, marketing, housekeeping, guest communication, maintenance, and compliance. You hand us the keys and we run the operation." })}
+    ${sectionHead({ eyebrow: "Full-service management", title: "Everything handled, by one local team", intro: "Bookings and pricing, marketing, housekeeping, guest communication, maintenance, and compliance. You hand us the keys and we run the operation." })}
     ${serviceGrid(SERVICES)}
   </div>
 </section>

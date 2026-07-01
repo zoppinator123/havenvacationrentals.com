@@ -103,7 +103,7 @@ ${breadcrumbs(crumbs)}
         ${paragraphs([
           "If you own a vacation rental in the Smoky Mountains, you have probably been pitched by a dozen management companies. Big names, slick websites, and promises of top-tier revenue with zero effort. We started Haven because we saw a massive problem behind those promises. Owners were being treated like account numbers, with national companies managing their properties from thousands of miles away.",
           "On the other side, local options often had good intentions but lacked the systems, data, and strategy to actually drive revenue. There was a gap between what owners were promised and what they experienced, and it was costing them real money. Haven was built to close that gap with execution, not just promises.",
-          "As property owners ourselves, we know how important it is for each home to earn as much as it can without taking up a bunch of your time. We are based right here in Sevier County, we charge one simple flat fee, and when something needs a person on-site, we are minutes from your door, not three time zones away in a national call center.",
+          "As property owners ourselves, we know how important it is for each home to earn as much as it can without taking up a bunch of your time. We are based right here in Sevier County, and when something needs a person on-site, we are minutes from your door, not three time zones away in a national call center.",
         ])}
         <div class="local-proof">
           <span>${icon("mapPin", { width: 18, height: 18 })}</span>

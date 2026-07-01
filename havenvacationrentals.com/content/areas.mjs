@@ -26,7 +26,7 @@ export const AREAS = [
     heroPhoto: "wearsValleyCabin",
     metaTitle: "Vacation Rental Management in Townsend, TN | Haven",
     metaDescription:
-      "Full-service vacation rental management in Townsend, TN, the quiet side of the Smokies. One flat fee, a local team, and Blount County rules handled.",
+      "Full-service vacation rental management in Townsend, TN, the quiet side of the Smokies. A local team, smart pricing, and Blount County rules handled.",
     heroEyebrow: "The peaceful side of the Smokies",
     h1: "Vacation Rental Management in Townsend, TN",
     heroSubhead:
@@ -35,7 +35,7 @@ export const AREAS = [
     introParagraphs: [
       "Townsend calls itself the peaceful side of the Smokies, and that is exactly why guests choose it. It is the closest town to Cades Cove and the Townsend entrance of Great Smoky Mountains National Park, so your guests come for tubing on the Little River, wildlife, hiking, and a slower pace than Pigeon Forge or Gatlinburg. That guest profile books differently, stays differently, and reviews differently, and a manager who treats Townsend like a Parkway market will leave money on the table.",
       "The tradeoff is a smaller, more seasonal demand pool and a lower average nightly rate than the busy city markets, so occupancy strategy, standout photography, and a genuinely five-star guest experience matter even more here. This is a market where operational excellence, not a rising tide, decides how your cabin performs.",
-      "Haven is a local team, not a national call center, and we build a Townsend cabin's calendar and pricing around how this specific market actually behaves. One flat fee covers the entire operation, so your net stays clean.",
+      "Haven is a local team, not a national call center, and we build a Townsend cabin's calendar and pricing around how this specific market actually behaves. Our local team covers the entire operation, so your net stays clean.",
     ],
     snapshot: {
       heading: "The Townsend market at a glance",
@@ -72,10 +72,10 @@ export const AREAS = [
     whyHeading: "Why Townsend owners choose Haven",
     whyParagraphs: [
       "A quiet market is exactly where a responsive, on-the-ground team earns its keep. When a guest has a question at 9pm or a cabin needs a person on-site, we are minutes away, not three time zones removed. That responsiveness is what turns a Townsend stay into a five-star review, and reviews are what drive ranking and repeat bookings in a smaller market.",
-      "We price your Townsend cabin like a professional who knows this market, market the listing to the right guest, and keep turnovers inspected and hotel-clean. All of it runs under one flat fee, with clean monthly statements and direct-deposit payouts.",
+      "We price your Townsend cabin like a professional who knows this market, market the listing to the right guest, and keep turnovers inspected and hotel-clean. All of it is handled by one local team, with clean monthly statements and direct-deposit payouts.",
     ],
     faqs: [
-      { q: "Do you manage vacation rentals in Townsend, TN?", a: ["Yes. Haven provides full-service vacation rental management in Townsend and across the greater Smoky Mountains. We handle listings, pricing, guest communication, cleaning, maintenance, and compliance, all for one flat fee. Because we are local, we can be on-site quickly when your Townsend cabin needs hands-on attention."] },
+      { q: "Do you manage vacation rentals in Townsend, TN?", a: ["Yes. Haven provides full-service vacation rental management in Townsend and across the greater Smoky Mountains. We handle listings, pricing, guest communication, cleaning, maintenance, and compliance, all in one place. Because we are local, we can be on-site quickly when your Townsend cabin needs hands-on attention."] },
       { q: "Are Townsend's short-term rental rules different from Gatlinburg or Pigeon Forge?", a: ["Yes, and this is important. Townsend is in Blount County, not Sevier County, so it does not follow the Sevier County city rules. The business license, permitting, and lodging tax structure are different. We manage the correct Blount County requirements for you and confirm current rules before we rely on them."] },
       { q: "What lodging taxes apply to a Townsend rental?", a: ["Townsend rentals carry Blount County and state lodging and sales taxes that combine to a higher rate than the roughly 12.75% seen across Sevier County. Rates can change, so we verify the current figure and collect and remit it correctly across Airbnb, Vrbo, Booking.com, and direct bookings."] },
       { q: "How much can a Townsend cabin earn?", a: ["The public AirDNA read for Townsend shows an average daily rate near $247 and about 51% occupancy, which is lower than the Parkway markets because Townsend is a quieter, more seasonal destination. Your specific potential depends on location, size, views, and condition. We build a realistic estimate for your cabin during a no-pressure call."] },
@@ -100,7 +100,7 @@ export const AREAS = [
     heroPhoto: "heroExterior",
     metaTitle: "Chalet Village Cabin Management, Gatlinburg | Haven",
     metaDescription:
-      "Full-service management for Chalet Village cabins and chalets on Ski Mountain in Gatlinburg. Local team, one flat fee, revenue built for view-cabin demand.",
+      "Full-service management for Chalet Village cabins and chalets on Ski Mountain in Gatlinburg. Local team, smart pricing, revenue built for view-cabin demand.",
     heroEyebrow: "Gatlinburg, Ski Mountain",
     h1: "Chalet Village Cabin & Chalet Management",
     heroSubhead:
@@ -109,7 +109,7 @@ export const AREAS = [
     introParagraphs: [
       "Chalet Village is one of the best-known cabin communities in the Smokies, set on Ski Mountain just above downtown Gatlinburg. Its chalets range from cozy one-bedrooms to eight-bedroom mountain homes that sleep large groups, and the draw is the combination of big views, quick access to the Parkway and Great Smoky Mountains National Park, and walkable proximity to Ober Mountain and the shops and restaurants downtown.",
       "That mix creates real revenue upside and real competition. Guests who book Chalet Village expect a view, a clean and well-appointed chalet, and a winter option near the slopes, which means photography, pricing around ski and leaf seasons, and a five-star guest experience decide who wins the booking. This is a community where professional operations lift a good chalet into a great-earning one.",
-      "Haven is a local team based right here in the Smokies. We price Chalet Village chalets around this specific micro-market and its seasonal demand, and we run the whole operation for one flat fee.",
+      "Haven is a local team based right here in the Smokies. We price Chalet Village chalets around this specific micro-market and its seasonal demand, and we run the whole operation for you.",
     ],
     snapshot: null,
     character: {
@@ -131,10 +131,10 @@ export const AREAS = [
     whyHeading: "Why Chalet Village owners choose Haven",
     whyParagraphs: [
       "View chalets reward sharp pricing and standout marketing, and they punish neglect fast, because a slow response or a missed clean shows up in reviews that follow the property for months. Our local team answers guests 24/7, inspects every turnover, and coordinates trusted local maintenance so small issues never become bad reviews.",
-      "The result is a Chalet Village chalet that ranks well, holds a strong rate, and earns ahead of the market, all under one transparent flat fee.",
+      "The result is a Chalet Village chalet that ranks well, holds a strong rate, and earns ahead of the market, all handled by one local team.",
     ],
     faqs: [
-      { q: "Do you manage cabins in Chalet Village, Gatlinburg?", a: ["Yes. Haven provides full-service management for Chalet Village cabins and chalets on Ski Mountain, from one-bedroom getaways to large group homes. We handle listing, pricing, guest care, cleaning, maintenance, and compliance for one flat fee."] },
+      { q: "Do you manage cabins in Chalet Village, Gatlinburg?", a: ["Yes. Haven provides full-service management for Chalet Village cabins and chalets on Ski Mountain, from one-bedroom getaways to large group homes. We handle listing, pricing, guest care, cleaning, maintenance, and compliance end to end."] },
       { q: "What rules apply to a Chalet Village rental?", a: ["Most of Chalet Village is within Gatlinburg city limits, so the Gatlinburg framework generally applies: a Tourist Residency Permit, an annual fire and building inspection, and the roughly 12.75% combined Sevier County lodging tax. We confirm your specific parcel's jurisdiction and permit status before relying on any rule."] },
       { q: "Is Chalet Village a good place to own a rental?", a: ["It is one of the most recognized cabin communities in the Smokies, with strong view-driven demand and genuine four-season booking thanks to nearby Ober Mountain. Returns vary by cabin, so location, views, and condition matter. We will give you a grounded estimate for your specific property."] },
       { q: "Does Chalet Village book in the winter?", a: ["Yes, and it is an advantage many owners underuse. Skiing, snow tubing, and Ober Mountain keep the community booking through winter. We build a calendar and pricing strategy around all four seasons, not just summer."] },
@@ -159,7 +159,7 @@ export const AREAS = [
     heroPhoto: "exteriorAlt",
     metaTitle: "Sky Harbor Cabin Management, Pigeon Forge | Haven",
     metaDescription:
-      "Full-service management for Sky Harbor cabins between Pigeon Forge and Gatlinburg. A local team, one flat fee, and your jurisdiction confirmed first.",
+      "Full-service management for Sky Harbor cabins between Pigeon Forge and Gatlinburg. A local team, smart pricing, and your jurisdiction confirmed first.",
     heroEyebrow: "The Pigeon Forge and Gatlinburg corridor",
     h1: "Sky Harbor Cabin Management",
     heroSubhead:
@@ -168,7 +168,7 @@ export const AREAS = [
     introParagraphs: [
       "Sky Harbor is a large cabin community tucked into the hills off the Spur, the stretch that connects Pigeon Forge and Gatlinburg. For guests, that central position is the whole appeal: they are minutes from Dollywood and the Pigeon Forge Parkway in one direction and downtown Gatlinburg and the National Park in the other. Several hundred privately owned cabins sit on quiet, well-maintained community roads, so guests get seclusion without giving up access.",
       "For owners, that means a listing that can market to two demand engines at once, which is a genuine advantage when you price and position it correctly. It also means competition from a lot of nearby cabins, so photography, pricing, and guest experience decide who gets the booking.",
-      "Haven is local and knows this corridor well. We build your Sky Harbor calendar around demand from both markets and run the entire operation for one flat fee.",
+      "Haven is local and knows this corridor well. We build your Sky Harbor calendar around demand from both markets and run the entire operation for you.",
     ],
     snapshot: null,
     character: {
@@ -190,10 +190,10 @@ export const AREAS = [
     whyHeading: "Why Sky Harbor owners choose Haven",
     whyParagraphs: [
       "A central location only pays off if the operation behind it is sharp. We answer guests 24/7, price around demand from both the Pigeon Forge and Gatlinburg sides, and keep turnovers inspected and hotel-clean so your reviews stay strong.",
-      "Because we are local, we can be on-site quickly when a cabin on those community roads needs attention. All of it runs under one flat fee with clean monthly statements.",
+      "Because we are local, we can be on-site quickly when a cabin on those community roads needs attention. All of it is handled by one local team, with clean monthly statements.",
     ],
     faqs: [
-      { q: "Do you manage cabins in Sky Harbor?", a: ["Yes. Haven provides full-service management for Sky Harbor cabins in the corridor between Pigeon Forge and Gatlinburg. We handle listing, pricing, guest communication, cleaning, maintenance, and compliance for one flat fee."] },
+      { q: "Do you manage cabins in Sky Harbor?", a: ["Yes. Haven provides full-service management for Sky Harbor cabins in the corridor between Pigeon Forge and Gatlinburg. We handle listing, pricing, guest communication, cleaning, maintenance, and compliance end to end."] },
       { q: "Is Sky Harbor in Pigeon Forge or Gatlinburg?", a: ["Sky Harbor sits on the Spur between the two, so it is associated with both. What matters for rules is your parcel's governing jurisdiction, which can be a city or unincorporated Sevier County. We confirm which applies to your specific property before we rely on any regulation."] },
       { q: "What makes Sky Harbor a strong rental location?", a: ["Its central position. Guests are minutes from Dollywood and the Pigeon Forge Parkway on one side and downtown Gatlinburg and the National Park on the other, while the community itself feels quiet and secluded. That lets a well-run listing pull from two demand engines."] },
       { q: "What taxes and permits apply to a Sky Harbor rental?", a: ["Sevier County rentals carry a roughly 12.75% combined lodging tax, and permit and inspection requirements depend on whether your parcel is inside a city or in unincorporated county. Haven verifies your jurisdiction, then handles the correct permit, inspection, and tax remittance for you."] },
@@ -218,7 +218,7 @@ export const AREAS = [
     heroPhoto: "exteriorCraftsman",
     metaTitle: "English Mountain Cabin Management, Sevierville | Haven",
     metaDescription:
-      "Full-service management for English Mountain cabins near Sevierville. A local team, one flat fee, and a value-market strategy that keeps you booked.",
+      "Full-service management for English Mountain cabins near Sevierville. A local team, smart pricing, and a value-market strategy that keeps you booked.",
     heroEyebrow: "Sevierville, the value side",
     h1: "English Mountain Cabin Management",
     heroSubhead:
@@ -227,7 +227,7 @@ export const AREAS = [
     introParagraphs: [
       "English Mountain is a gated cabin community set at about 2,600 feet on the Sevierville side of the Smokies, roughly seven miles from downtown Sevierville and a short drive from Pigeon Forge and Gatlinburg. It draws guests who want seclusion, cooler mountain air, and community amenities like a pool and clubhouse, at a more approachable price point than the in-town Parkway markets.",
       "That value positioning is an opportunity and a challenge. Entry prices are friendlier, so more owners buy here, which means the cabins that keep their calendars full are the ones with strong photography, smart pricing, and genuinely five-star guest care. A newer or well-kept English Mountain cabin can perform well above its purchase price with the right operation behind it.",
-      "Haven is a local team that treats a value-market cabin with the same rigor as a luxury one. We price it, market it, and run it for one flat fee, so more of what it earns stays yours.",
+      "Haven is a local team that treats a value-market cabin with the same rigor as a luxury one. We price it, market it, and run it end to end, so more of what it earns stays yours.",
     ],
     snapshot: null,
     character: {
@@ -248,20 +248,20 @@ export const AREAS = [
       "Much of English Mountain is unincorporated Sevier County despite a Sevierville address. Confirm your parcel's jurisdiction before relying on any rule. See the Sevier County guide below, or let Haven handle it.",
     whyHeading: "Why English Mountain owners choose Haven",
     whyParagraphs: [
-      "In a value market, the manager's fee structure and execution decide your real return. We charge one flat fee with no hidden booking markups, so the savings do not quietly disappear from your statement. Then we do the work that lifts a value cabin: sharp pricing, strong marketing, inspected turnovers, and 24/7 guest communication.",
+      "In a value market, disciplined operations and honest management decide your real return. We keep costs in check and never pad your statement with hidden booking markups, so the savings do not quietly disappear. Then we do the work that lifts a value cabin: sharp pricing, strong marketing, inspected turnovers, and 24/7 guest communication.",
       "Because we are local, we can be on-site quickly when a gated-community cabin needs attention, and we keep your county permit and inspection on schedule so the asset stays compliant and easy to sell later.",
     ],
     faqs: [
-      { q: "Do you manage cabins on English Mountain?", a: ["Yes. Haven provides full-service management for English Mountain cabins near Sevierville, handling listing, pricing, guest care, cleaning, maintenance, and compliance for one flat fee."] },
+      { q: "Do you manage cabins on English Mountain?", a: ["Yes. Haven provides full-service management for English Mountain cabins near Sevierville, handling listing, pricing, guest care, cleaning, maintenance, and compliance end to end."] },
       { q: "Is English Mountain in Sevierville city limits?", a: ["It carries a Sevierville mailing address, but much of the community is in unincorporated Sevier County, which follows county rules rather than the City of Sevierville framework. We confirm your specific parcel's jurisdiction before relying on any rule."] },
       { q: "Is English Mountain a good value for a rental investment?", a: ["It is one of the more approachable entry points in the Smokies, with seclusion, elevation, and community amenities that guests search for. Returns depend on the specific cabin and how well it is run, so professional operations matter more here than in a premium in-town market. We will give you a grounded estimate."] },
       { q: "What permit and taxes apply to an English Mountain rental?", a: ["Unincorporated parcels follow Sevier County rules, including the county short-term rental permit and an annual life-safety inspection, plus the roughly 12.75% combined Sevier County lodging tax. Haven confirms your jurisdiction and manages the permit, inspection, and tax remittance for you."] },
-      { q: "How is Haven different from a national manager?", a: ["We are local and flat-fee. In a value market, a transparent fee and strong local execution are what protect your net. A distant call center with hidden markups can quietly erase the savings that made the cabin attractive in the first place."] },
+      { q: "How is Haven different from a national manager?", a: ["We are local and transparent. In a value market, honest pricing and strong local execution are what protect your net. A distant call center with hidden markups can quietly erase the savings that made the cabin attractive in the first place."] },
       { q: "How do I get started?", a: ["Book a no-pressure call. We review your English Mountain cabin, confirm its jurisdiction, and show you what it can realistically earn under professional management."] },
     ],
     closingHeading: "Let's talk about your English Mountain cabin",
     closingParagraph:
-      "Book a call with a local Haven advisor for an honest look at what your English Mountain cabin can earn with a flat-fee, full-service team.",
+      "Book a call with a local Haven advisor for an honest look at what your English Mountain cabin can earn with a local, full-service team.",
     relatedCities: ["sevierville", "pigeon-forge", "gatlinburg", "wears-valley"],
   },
 ];
