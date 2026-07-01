@@ -300,13 +300,19 @@ p { text-wrap: pretty; }
    6. Hero
    ---------------------------------------------------------------------------- */
 .hero { position: relative; overflow: hidden; background: var(--brand-deep); color: #fff; isolation: isolate; }
-.hero::after { /* mountain ridge motif */
-  content: ""; position: absolute; inset-inline: 0; bottom: 0; height: 42%; z-index: -1;
-  background:
-    radial-gradient(120% 90% at 80% 0%, rgba(255,86,78,0.22), transparent 60%),
-    radial-gradient(90% 80% at 10% 10%, rgba(255,122,115,0.10), transparent 55%);
+.hero .container { position: relative; z-index: 1; }
+.hero::after { display: none; } /* scenic photo replaces gradient ridge motif */
+.hero__scenic {
+  position: absolute; inset-inline: 0; bottom: 0; height: min(52%, 22rem); z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(180deg, var(--brand-deep) 0%, rgba(29,35,39,0.92) 22%, rgba(29,35,39,0.45) 55%, transparent 88%),
+    var(--hero-scenic);
+  background-size: cover;
+  background-position: center 68%;
+  background-repeat: no-repeat;
 }
-.hero__ridge { position: absolute; inset-inline: 0; bottom: 0; z-index: -1; width: 100%; height: auto; opacity: 0.9; }
+.hero__ridge { display: none; }
 .photo-hero {
   background-image:
     linear-gradient(90deg, rgba(29,35,39,0.9) 0%, rgba(29,35,39,0.7) 52%, rgba(29,35,39,0.48) 100%),
@@ -315,6 +321,11 @@ p { text-wrap: pretty; }
   background-position: center;
 }
 .photo-hero::after {
+  display: block;
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
   z-index: 0;
   height: 100%;
   background:
@@ -812,7 +823,8 @@ body.has-sticky-cta { padding-bottom: 76px; }
 .hero--light {
   color: var(--text);
   background:
-    linear-gradient(90deg, rgba(255,252,246,0.96) 0%, rgba(255,252,246,0.9) 44%, rgba(255,252,246,0.74) 100%),
+    linear-gradient(90deg, rgba(255,252,246,0.97) 0%, rgba(255,252,246,0.92) 38%, rgba(255,252,246,0.72) 58%, rgba(255,252,246,0.42) 100%),
+    linear-gradient(180deg, rgba(255,252,246,0.55) 0%, rgba(255,252,246,0.25) 55%, rgba(255,252,246,0.08) 100%),
     radial-gradient(70% 80% at 78% 18%, rgba(255,86,78,0.12), transparent 64%),
     var(--home-hero-bg),
     var(--surface-3);

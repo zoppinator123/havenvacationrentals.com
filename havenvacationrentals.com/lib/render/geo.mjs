@@ -1,7 +1,6 @@
 import { page } from "../layout.mjs";
 import { icon } from "../icons.mjs";
 import { escapeHtml, paragraphs } from "../util.mjs";
-import { ridgeStrip } from "../art.mjs";
 import {
   breadcrumbs, sectionHead, statsRow, serviceGrid, pillars, steps,
   regulations, callout, faqAccordion, testimonial, crossLinks, ctaBand, leadForm, channelStrip,
@@ -11,7 +10,7 @@ import {
 } from "../seo.mjs";
 import { SITE, SERVICES, PILLARS, PROCESS, CTA_PRIMARY } from "../../content/site.mjs";
 import { MARKETS } from "../../content/markets.mjs";
-import { MARKET_PHOTOS, PHOTOS, coverPhoto } from "../../content/photos.mjs";
+import { MARKET_PHOTOS, PHOTOS, coverPhoto, heroScenicMountains } from "../../content/photos.mjs";
 
 function galleryStrip(market) {
   const set = (MARKET_PHOTOS[market.slug] && MARKET_PHOTOS[market.slug].gallery) ||
@@ -76,7 +75,7 @@ ${breadcrumbs(crumbs)}
 
 <!-- 1. HERO [LOCAL] -->
 <section class="hero">
-  ${ridgeStrip("#15181a")}
+  ${heroScenicMountains()}
   <div class="container">
     <div class="hero__inner">
       <div class="stack">

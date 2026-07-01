@@ -1,7 +1,6 @@
 import { page } from "../layout.mjs";
 import { icon } from "../icons.mjs";
 import { escapeHtml, paragraphs } from "../util.mjs";
-import { ridgeStrip } from "../art.mjs";
 import {
   breadcrumbs, sectionHead, statsRow, serviceGrid, pillars, steps,
   faqAccordion, ctaBand, leadForm, loomEmbed,
@@ -11,7 +10,7 @@ import {
 } from "../seo.mjs";
 import { SITE, SERVICES, PILLARS, PROCESS, HUB_PROOF, CTA_PRIMARY } from "../../content/site.mjs";
 import { MARKETS } from "../../content/markets.mjs";
-import { PHOTOS, MARKET_PHOTOS, coverPhoto } from "../../content/photos.mjs";
+import { PHOTOS, MARKET_PHOTOS, coverPhoto, heroScenicMountains } from "../../content/photos.mjs";
 
 function areaCards(marketCopies) {
   return `<div class="grid grid--4">
@@ -59,7 +58,7 @@ export function renderHub(copy, marketCopies = {}) {
 ${breadcrumbs(crumbs)}
 
 <section class="hero">
-  ${ridgeStrip("#15181a")}
+  ${heroScenicMountains()}
   <div class="container">
     <div class="hero__inner">
       <div class="stack">

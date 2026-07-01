@@ -148,7 +148,7 @@ export function renderHome(copy) {
 
   const body = `
 <!-- HERO -->
-<section class="hero hero--light" style="--home-hero-bg:url('${PHOTOS.wearsValleyCabin}')">
+<section class="hero hero--light" style="--home-hero-bg:url('${PHOTOS.scenicMountains}')">
   <div class="container">
     <div class="hero__inner">
       <div class="stack">
