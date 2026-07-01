@@ -3,9 +3,11 @@ import { icon } from "../icons.mjs";
 import { escapeHtml, escapeAttr, paragraphs } from "../util.mjs";
 import {
   sectionHead, serviceGrid, pillars, faqAccordion, leadForm, videoTestimonials,
+  googleReviewMarquee,
 } from "../components.mjs";
 import { organizationLd, websiteLd, localBusinessLd, faqLd } from "../seo.mjs";
 import { SITE, SERVICES, PILLARS, CTA_PRIMARY } from "../../content/site.mjs";
+import { GOOGLE_REVIEWS, GOOGLE_REVIEWS_META } from "../../content/google-reviews.mjs";
 import { MARKETS } from "../../content/markets.mjs";
 import { PHOTOS, MARKET_PHOTOS, coverPhoto, PHOTO_FALLBACK } from "../../content/photos.mjs";
 
@@ -171,6 +173,9 @@ export function renderHome(copy) {
           <small>Local guest care</small>
         </div>
       </div>
+    </div>
+    <div class="hero__reviews">
+      ${googleReviewMarquee(GOOGLE_REVIEWS, { meta: GOOGLE_REVIEWS_META })}
     </div>
   </div>
 </section>

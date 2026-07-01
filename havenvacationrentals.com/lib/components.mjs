@@ -278,6 +278,30 @@ export function ctaBand({ title, body, showPhone = true }) {
   </div>`;
 }
 
+/* ---- Google review marquee (home hero) ---- */
+export function googleReviewMarquee(reviews, { meta } = {}) {
+  if (!reviews?.length) return "";
+  const card = (r) => `<article class="review-marquee__card">
+    <div class="review-marquee__stars" aria-hidden="true">★★★★★</div>
+    <p class="review-marquee__text">"${escapeHtml(r.text)}"</p>
+    <footer class="review-marquee__foot">
+      <b>${escapeHtml(r.name)}</b>${r.when ? `<span>${escapeHtml(r.when)}</span>` : ""}
+    </footer>
+  </article>`;
+  const doubled = reviews.map(card).join("") + reviews.map(card).join("");
+  const label = meta
+    ? `Scrolling verified five-star reviews from ${escapeHtml(meta.source || "Google")}`
+    : "Scrolling five-star guest reviews";
+  return `<div class="review-marquee" data-review-marquee>
+    <p class="visually-hidden">${label}</p>
+    <div class="review-marquee__edge review-marquee__edge--left" aria-hidden="true"></div>
+    <div class="review-marquee__edge review-marquee__edge--right" aria-hidden="true"></div>
+    <div class="review-marquee__viewport">
+      <div class="review-marquee__track" aria-hidden="true">${doubled}</div>
+    </div>
+  </div>`;
+}
+
 /* ---- Lead form (Book a Call) ---- */
 export function leadForm({ heading = "Book a call about your property", marketDefault = "" } = {}) {
   const opts = ["Gatlinburg", "Pigeon Forge", "Sevierville", "Wears Valley", "Townsend", "Other / not sure"]
