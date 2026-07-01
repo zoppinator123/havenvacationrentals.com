@@ -74,7 +74,7 @@ export const SERVICES = [
   { icon: "broom", title: "Housekeeping & turnovers", desc: "Vetted local cleaners, hotel-grade standards, and inspected turnovers between every stay." },
   { icon: "headset", title: "24/7 guest communication", desc: "We answer guests fast, day or night, so small questions never become bad reviews." },
   { icon: "wrench", title: "Maintenance & contractors", desc: "We coordinate trusted local trades and handle issues before they reach you or your guests." },
-  { icon: "bank", title: "Direct deposit payouts", desc: "Clean monthly owner statements and reliable direct-deposit payouts. No surprises, no nickel-and-diming." },
+  { icon: "bank", title: "Direct deposit payouts", desc: "Clean monthly owner statements and reliable direct-deposit payouts. Reporting you can read without a spreadsheet chase." },
   { icon: "star", title: "Reviews & reputation", desc: "A guest-obsessed experience that earns the five-star reviews that drive future bookings and revenue." },
 ];
 

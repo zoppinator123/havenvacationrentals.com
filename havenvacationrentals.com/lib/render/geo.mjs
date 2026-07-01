@@ -90,7 +90,7 @@ ${breadcrumbs(crumbs)}
         <div class="hero__trust">
           <div class="hero__trust-item"><b>Airbnb</b><span>Superhost guest care</span></div>
           <div class="hero__trust-item"><b>4.9★</b><span>4,000+ Google reviews</span></div>
-          <div class="hero__trust-item"><b>One flat fee</b><span>No hidden booking fees</span></div>
+          <div class="hero__trust-item"><b>Local team</b><span>Based in the Smokies since 2016</span></div>
         </div>
       </div>
       <div class="hero__media">

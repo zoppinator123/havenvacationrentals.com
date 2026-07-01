@@ -154,7 +154,7 @@ export function renderHome(copy) {
       <div class="stack">
         <span class="eyebrow hero__eyebrow">${escapeHtml(copy.heroEyebrow)}</span>
         <h1>${accentH1(copy.h1)}</h1>
-        <p class="hero__sub">${escapeHtml(copy.heroSubhead)} One honest flat fee.</p>
+        <p class="hero__sub">${escapeHtml(copy.heroSubhead)}</p>
         <div class="cta-row hero__cta">
           <a class="btn btn--accent btn--lg" href="${CTA_PRIMARY.href}">${escapeHtml(CTA_PRIMARY.label)}</a>
           <a class="btn btn--ghost btn--lg" href="#how">See how it works</a>
@@ -263,7 +263,7 @@ export function renderHome(copy) {
 <!-- THE NUMBERS -->
 <section class="section section--dark">
   <div class="container">
-    ${sectionHead({ eyebrow: "By the numbers", title: "The numbers behind the difference", intro: "Gross figures from Haven-managed homes. Your net is protected by one flat fee.", center: true })}
+    ${sectionHead({ eyebrow: "By the numbers", title: "The numbers behind the difference", intro: "Gross figures from Haven-managed homes. Professional pricing and guest care are what move your net.", center: true })}
     <div class="numbers">
       ${NUMBERS.map((n) => `<div reveal><b>${escapeHtml(n.value)}</b><span>${escapeHtml(n.label)}</span></div>`).join("")}
     </div>

@@ -7,20 +7,20 @@
 export function geoFallback(m) {
   return {
     metaTitle: `${m.city} Vacation Rental Management | Haven`,
-    metaDescription: `Full-service vacation rental management in ${m.city}, TN. Haven owners earn more with one flat fee, smart local pricing, and a five-star guest experience. Book a call.`,
+    metaDescription: `Full-service vacation rental management in ${m.city}, TN. Local team, smart pricing, five-star guest care. Book a call.`,
     heroEyebrow: "Smoky Mountains property management",
     h1: `Vacation Rental Management in ${m.city}, TN`,
-    heroSubhead: `Full-service cabin and vacation rental management for ${m.city} owners, run by a local team that knows this market.`,
+    heroSubhead: `Full-service cabin management for ${m.city} owners, run by a local team that knows this market.`,
     introHeading: `Owning a ${m.city} cabin should not feel like a second job`,
     introParagraphs: [
       `${m.city} is one of the most competitive short-term rental markets in the country, and standing out takes more than a good listing. Pricing, guest communication, cleaning, maintenance, and local compliance all have to run like clockwork, every single day.`,
-      `Haven handles all of it for one simple flat fee, so your ${m.city} cabin earns more while you do less.`,
+      `Haven runs the full operation for ${m.city} owners who want stronger revenue without living on their phones. Local pricing, guest care, and compliance handled by a team based in the Smokies.`,
     ],
     snapshotHeading: `The ${m.city} market at a glance`,
     snapshotParagraphs: [
       `Here is how the ${m.city} market looks heading into 2026, and where a local manager makes the difference.`,
     ],
-    servicesIntro: `Full-service means we run everything: bookings, pricing, marketing, cleaning, guest communication, maintenance, payouts, and reviews. You get one local point of contact and one flat fee.`,
+    servicesIntro: `Full-service means we run everything: bookings, pricing, marketing, cleaning, guest communication, maintenance, payouts, and reviews. One local point of contact, one accountable team.`,
     whyHeading: `Why ${m.city} owners choose Haven`,
     whyParagraphs: [
       `We are a smaller, local team by design, which means your property gets attention a national manager cannot match.`,
@@ -50,14 +50,14 @@ export function geoFallback(m) {
 export function homeFallback() {
   return {
     metaTitle: "Smoky Mountain Vacation Rental Management | Haven",
-    metaDescription: "Haven is a local, full-service vacation rental management company in the Smoky Mountains. One flat fee, smart human pricing, and a five-star guest experience. Book a call.",
+    metaDescription: "Haven is a local, full-service vacation rental management company in the Smoky Mountains. Smart human pricing, guest-obsessed operations, revenue ahead of market. Book a call.",
     heroEyebrow: "Smoky Mountain vacation rental management",
     h1: "Your Smoky Mountain cabin, managed to earn more",
     heroSubhead: "Haven is a local, full-service property management team for cabin owners across Gatlinburg, Pigeon Forge, Sevierville, and Wears Valley.",
     introHeading: "Local management that treats your cabin like our own",
     introParagraphs: [
       "Most owners do not want a second job. They want their cabin to earn well and run smoothly without the daily firefighting. That is exactly what Haven delivers.",
-      "We are based right here in the Smokies, we charge one simple flat fee, and we obsess over the guest experience that drives your reviews, your ranking, and your revenue.",
+      "We are based right here in the Smokies. We obsess over the guest experience that drives your reviews, your ranking, and your revenue, with a revenue manager who knows this market.",
     ],
     servicesIntro: "From the first inquiry to the final review, one local team handles it all.",
     valueHeading: "Smaller, local, and relentlessly focused on your return",
@@ -73,27 +73,27 @@ export function homeFallback() {
 export function hubFallback() {
   return {
     metaTitle: "Smoky Mountain Property Management | Haven Vacation Rentals",
-    metaDescription: "Full-service Smoky Mountain vacation rental management for cabin owners in Sevier County. One flat fee, local pricing, and a five-star guest experience. Book a call.",
+    metaDescription: "Full-service Smoky Mountain vacation rental management for cabin owners in Sevier County. Local pricing, five-star guest care. Book a call.",
     heroEyebrow: "Smoky Mountain property management",
     h1: "Full-Service Vacation Rental Management in the Smoky Mountains",
-    heroSubhead: "One local team manages your cabin end to end across Sevier County, for one simple flat fee.",
+    heroSubhead: "One local Haven team manages your cabin end to end across Sevier County, so you earn more and do less.",
     introHeading: "Property management built around your net revenue",
     introParagraphs: [
-      "Haven manages cabins and vacation rentals across the Smoky Mountains for owners who want more revenue and less hassle. We handle bookings, pricing, marketing, cleaning, guests, maintenance, and compliance, all for one flat fee.",
+      "Haven manages cabins and vacation rentals across the Smoky Mountains for owners who want more revenue and less hassle. We handle bookings, pricing, marketing, cleaning, guests, maintenance, and compliance with a team based here since 2016.",
     ],
     servicesIntro: "Full-service means truly everything. Here is what we take off your plate.",
     servicesDetail: [
-      "Every service above is included in one flat management fee, with no hidden booking-fee markups and no surprise charges on your statement.",
+      "Every service above is included in professional management, with clear owner reporting and no surprise markups buried in your statement.",
     ],
     whyHeading: "Why Smoky Mountain owners choose Haven",
     whyParagraphs: [
-      "We are local, we are flat-fee, and we are guest-obsessed. That combination is how Haven owners run ahead of the market.",
+      "We are local and guest-obsessed. That combination is how Haven owners run ahead of the market.",
     ],
     areasIntro: "Pick your market for local rates, regulations, and what your cabin can earn.",
     areasNote: "We also manage cabins in Townsend and around Knoxville. If your property is anywhere in or near Sevier County, we would love to talk.",
-    feesHeading: "How our fees work, and what owners earn",
+    feesHeading: "What professional management does for your earnings",
     feesParagraphs: [
-      "Haven charges one simple flat management fee. There are no hidden booking fees, no markups on cleaning, and no nickel-and-diming. You always know what you pay and what you earn.",
+      "We align fees with performance and walk through numbers on a call before you commit. Owners should know what they earn and what they pay, without decoding mystery line items.",
       "Haven owners benefit from professional pricing, guest care, and revenue management. Confirm current projections with our team for your specific property.",
     ],
     faqs: [],
