@@ -10,6 +10,7 @@ import {
 } from "../seo.mjs";
 import { SITE, SERVICES, PILLARS, PROCESS, CTA_PRIMARY } from "../../content/site.mjs";
 import { MARKETS } from "../../content/markets.mjs";
+import { AREAS } from "../../content/areas.mjs";
 import { MARKET_PHOTOS, PHOTOS, coverPhoto, heroScenicMountains } from "../../content/photos.mjs";
 
 function galleryStrip(market) {
@@ -38,6 +39,14 @@ function crossLinksFor(market) {
   return MARKETS.filter((m) => m.slug !== market.slug).map((m) => ({
     label: `${m.city} vacation rental management`,
     href: `/vacation-rental-management-${m.slug}/`,
+  }));
+}
+
+/* Cabin communities that sit within / are associated with this market. */
+function neighborhoodLinksFor(market) {
+  return AREAS.filter((a) => a.associatedCitySlug === market.slug).map((a) => ({
+    label: `${a.name} cabin management`,
+    href: `/vacation-rental-management-${a.slug}/`,
   }));
 }
 
@@ -195,12 +204,20 @@ ${breadcrumbs(crumbs)}
   </div>
 </section>
 
+${neighborhoodLinksFor(market).length ? `<!-- 8b. CABIN COMMUNITIES IN THIS MARKET [LOCAL] -->
+<section class="section--tight">
+  <div class="container">
+    ${sectionHead({ eyebrow: "Cabin communities", title: `Popular cabin communities in ${market.city}`, center: true })}
+    ${crossLinks(neighborhoodLinksFor(market))}
+  </div>
+</section>` : ""}
+
 <!-- 9. CROSS-LINKS TO OTHER MARKETS [SHARED] -->
 <section class="section section--tint section--tight">
   <div class="container">
     ${sectionHead({ eyebrow: "More service areas", title: "We also manage vacation rentals across the Smokies", center: true })}
     ${crossLinks(crossLinksFor(market))}
-    <p class="center" style="margin-top:var(--space-md)"><a class="link-arrow" href="/property-management/">See all Smoky Mountain property management ${icon("arrowRight", { width: 16, height: 16 })}</a></p>
+    <p class="center" style="margin-top:var(--space-md)"><a class="link-arrow" href="/service-areas/">See all Haven service areas ${icon("arrowRight", { width: 16, height: 16 })}</a></p>
   </div>
 </section>
 

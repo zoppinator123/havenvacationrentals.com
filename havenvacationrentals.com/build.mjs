@@ -12,6 +12,14 @@ import { renderGeoPage } from "./lib/render/geo.mjs";
 import { renderHub } from "./lib/render/hub.mjs";
 import { renderHome } from "./lib/render/home.mjs";
 import { renderContact } from "./lib/render/contact.mjs";
+import { renderAbout } from "./lib/render/about.mjs";
+import { renderAreaPage } from "./lib/render/area.mjs";
+import { renderSegmentPage } from "./lib/render/segment.mjs";
+import { renderComparisonPage } from "./lib/render/comparison.mjs";
+import { renderServiceAreas } from "./lib/render/service-areas.mjs";
+import { AREAS } from "./content/areas.mjs";
+import { SEGMENTS } from "./content/segments.mjs";
+import { COMPARISONS } from "./content/comparisons.mjs";
 import { renderBookCall } from "./lib/render/book-call.mjs";
 import { renderBlog } from "./lib/render/blog.mjs";
 import { renderPost } from "./lib/render/post.mjs";
@@ -151,6 +159,7 @@ for (const m of MARKETS) {
 
 /* supporting static pages */
 const staticPages = [
+  { r: renderAbout(), priority: "0.8" },
   { r: renderContact(), priority: "0.8" },
   { r: renderBookCall(), sitemap: false },
   { r: renderRegGuide(), priority: "0.7" },
@@ -159,6 +168,37 @@ const staticPages = [
 for (const { r, priority, sitemap = true } of staticPages) {
   writePage(r.path, r.html);
   if (sitemap) sitemapUrls.push({ path: r.path, priority, changefreq: "monthly" });
+}
+
+/* extended service-area pages (Townsend + cabin communities) */
+for (const a of AREAS) {
+  const { path, html } = renderAreaPage(a);
+  writePage(path, html);
+  sitemapUrls.push({ path, priority: a.kind === "city" ? "0.7" : "0.6", changefreq: "monthly" });
+  reports.push(audit(`area:${a.slug}`, html, a, { keyword: a.primaryKeyword }));
+}
+
+/* property-type (segment) pages */
+for (const s of SEGMENTS) {
+  const { path, html } = renderSegmentPage(s);
+  writePage(path, html);
+  sitemapUrls.push({ path, priority: "0.7", changefreq: "monthly" });
+  reports.push(audit(`segment:${s.slug}`, html, s, { keyword: s.primaryKeyword }));
+}
+
+/* category-level comparison pages */
+for (const c of COMPARISONS) {
+  const { path, html } = renderComparisonPage(c);
+  writePage(path, html);
+  sitemapUrls.push({ path, priority: "0.7", changefreq: "monthly" });
+  reports.push(audit(`compare:${c.slug}`, html, c, { keyword: c.primaryKeyword }));
+}
+
+/* service-areas index */
+{
+  const r = renderServiceAreas();
+  writePage(r.path, r.html);
+  sitemapUrls.push({ path: r.path, priority: "0.7", changefreq: "monthly" });
 }
 
 /* blog index + imported posts */

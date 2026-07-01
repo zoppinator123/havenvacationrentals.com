@@ -62,7 +62,7 @@ export const HUB_PROOF = [
 export const NAV = [
   { label: "Home", href: "/" },
   { label: "Property Management", href: "/property-management/" },
-  { label: "About", href: "/#about" },
+  { label: "About", href: "/about-us/" },
   { label: "Invest", href: "/smoky-mountain-str-investment-listings/" },
   { label: "Blog", href: "/blog/" },
   { label: "Contact", href: "/contact-us/" },
@@ -74,6 +74,7 @@ export const SERVICE_AREA_NAV = [
   { label: "Pigeon Forge", href: "/vacation-rental-management-pigeon-forge/" },
   { label: "Sevierville", href: "/vacation-rental-management-sevierville/" },
   { label: "Wears Valley", href: "/vacation-rental-management-wears-valley/" },
+  { label: "All service areas", href: "/service-areas/" },
 ];
 
 /* Full-service management offering (shared service grid). */
@@ -116,7 +117,9 @@ export const FOOTER_GROUPS = [
   {
     heading: "Company",
     links: [
+      { label: "About", href: "/about-us/" },
       { label: "Property Management", href: "/property-management/" },
+      { label: "Service Areas", href: "/service-areas/" },
       { label: "STR Investment Listings", href: "/smoky-mountain-str-investment-listings/" },
       { label: "Blog", href: "/blog/" },
       { label: "Contact", href: "/contact-us/" },

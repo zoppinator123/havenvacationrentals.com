@@ -141,6 +141,7 @@ ${breadcrumbs(crumbs)}
     ${sectionHead({ eyebrow: "Service areas", title: "Local vacation rental management across the Smokies", intro: copy.areasIntro })}
     ${areaCards(marketCopies)}
     <p class="note-box" style="margin-top:var(--space-md)">${escapeHtml(copy.areasNote || "We also manage cabins in Townsend and around Knoxville. If your property is anywhere in or near Sevier County, we would love to talk.")}</p>
+    <p class="center" style="margin-top:var(--space-md)"><a class="link-arrow" href="/service-areas/">See all Haven service areas and cabin communities ${icon("arrowRight", { width: 16, height: 16 })}</a></p>
   </div>
 </section>
 
