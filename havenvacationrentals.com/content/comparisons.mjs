@@ -37,7 +37,6 @@ export const COMPARISONS = [
         { label: "Permits, inspections & tax filing", a: "You track it all", haven: true },
         { label: "Professional photos & marketing", a: "Do it yourself", haven: true },
         { label: "Revenue vs. the market", a: "At or below", haven: "~30% ahead" },
-        { label: "Cost structure", a: "No fee, but hidden time & revenue cost", haven: "One flat fee, no markups" },
       ],
     },
     sections: [
@@ -99,7 +98,6 @@ export const COMPARISONS = [
         { label: "Local market knowledge", a: "Generic", haven: "Deep, street by street" },
         { label: "Portfolio focus", a: "Thousands of homes", haven: "A select group, run well" },
         { label: "Compliance by jurisdiction", a: "One size fits all", haven: "City vs. county, confirmed" },
-        { label: "Fee transparency", a: "Booking-fee markups common", haven: "One flat fee, no markups" },
       ],
     },
     sections: [
@@ -113,7 +111,7 @@ export const COMPARISONS = [
       {
         heading: "What national scale can quietly cost you",
         paragraphs: [
-          "Scale has a downside for the individual owner. When a company runs thousands of homes, yours is one line on a very long list, and the model often leans on booking-fee markups and padded charges that widen the gap between what your cabin earns and what you keep. A single transparent flat fee keeps that gap small and predictable.",
+          "Scale has a downside for the individual owner. When a company runs thousands of homes, yours is one line on a very long list, and the model often leans on booking-fee markups and padded charges that widen the gap between what your cabin earns and what you keep. Honest, transparent pricing keeps that gap small and predictable.",
           "Haven stays deliberately smaller and manages a select group of homes well rather than thousands at arm's length. That focus is exactly why our owners run ahead of the market on both occupancy and revenue.",
         ],
       },
@@ -128,10 +126,10 @@ export const COMPARISONS = [
     faqs: [
       { q: "Is a local property manager better than a national one?", a: ["In the Smokies, usually yes, for structural reasons. Regulation varies street by street, cabins need on-site attention, and pricing depends on deep local knowledge. A local team like Haven confirms your parcel's jurisdiction, reaches your cabin in minutes, and prices with a human who knows this market."] },
       { q: "What does a national manager do that a local one cannot?", a: ["The genuine advantage is breadth: if you own properties across many distant markets, a national company offers one relationship and one dashboard for all of them. For a single Smoky Mountain market, that breadth rarely outweighs local response, market knowledge, and fee transparency."] },
-      { q: "Do national managers charge more?", a: ["Not always in headline rate, but the model often relies on booking-fee markups and padded charges that widen the gap between gross earnings and your net. Haven charges one flat fee with no hidden markups, so what you see is what you keep."] },
+      { q: "Do national managers charge more?", a: ["Not always in headline rate, but the model often relies on booking-fee markups and padded charges that widen the gap between gross earnings and your net. Haven keeps its pricing transparent, with no hidden markups, so what you see is what you keep."] },
       { q: "Why does being local matter for compliance?", a: ["Because a mailing address does not always match the governing jurisdiction. A cabin can sit in unincorporated Sevier County with a city address, which changes the permit, inspection, and tax rules entirely. A local team verifies this before relying on any rule. A distant one may not."] },
       { q: "How does local pricing beat an algorithm?", a: ["An algorithm guesses from patterns. A local revenue manager knows that a particular weekend will spike because of a specific local event, or that a slow stretch needs a smart adjustment. Human judgment on top of good data is how Haven owners run roughly 30% ahead of the market."] },
-      { q: "How do I decide what fits my cabin?", a: ["Book a no-pressure call. We will show you what your specific property can earn with a local, flat-fee team, and you can weigh that against any alternative. No obligation, and you keep the estimate."] },
+      { q: "How do I decide what fits my cabin?", a: ["Book a no-pressure call. We will show you what your specific property can earn with a local team, and you can weigh that against any alternative. No obligation, and you keep the estimate."] },
     ],
     closingHeading: "Local team, honest fee, real results",
     closingParagraph:
