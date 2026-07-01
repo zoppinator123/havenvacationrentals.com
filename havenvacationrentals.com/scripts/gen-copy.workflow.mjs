@@ -21,6 +21,8 @@ BRAND PILLARS (weave in with LOCAL framing, do not just list them):
 2. Smart human pricing. A real revenue manager who knows this market sets rates, not just an algorithm.
 3. Guest-obsessed. A five-star guest experience drives five-star reviews, which drive ranking and revenue.
 
+DO NOT position "flat fee" or "one flat fee" as a unique selling point or brand differentiator on the website. Fees may be discussed neutrally on a call; copy should lead with local operations, revenue performance, guest experience, and proof.
+
 PROOF POINTS (these are Haven's own figures; use naturally and sparingly, do not stuff every section):
 - Around 70% average occupancy versus a market average near 55%.
 - Roughly 30% ahead of the market on revenue.
@@ -28,7 +30,7 @@ PROOF POINTS (these are Haven's own figures; use naturally and sparingly, do not
 - Top 1, 5, and 10 percent of Airbnb listings worldwide.
 - Local since 2016.
 
-SERVICES (full-service, one flat fee): bookings and calendar across Airbnb/Vrbo/Booking.com/direct; smart human revenue pricing; professional marketing and listings; housekeeping and inspected turnovers; 24/7 guest communication; maintenance and trusted local contractors; clean monthly statements and direct-deposit payouts; reviews and reputation.
+SERVICES (full-service management): bookings and calendar across Airbnb/Vrbo/Booking.com/direct; smart human revenue pricing; professional marketing and listings; housekeeping and inspected turnovers; 24/7 guest communication; maintenance and trusted local contractors; clean monthly statements and direct-deposit payouts; reviews and reputation.
 
 PROCESS: 1) we evaluate your property and market, 2) we make profitable improvements, 3) you start earning more while we run the day to day.
 

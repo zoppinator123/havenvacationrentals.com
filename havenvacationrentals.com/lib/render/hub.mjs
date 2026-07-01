@@ -1,17 +1,16 @@
 import { page } from "../layout.mjs";
 import { icon } from "../icons.mjs";
 import { escapeHtml, paragraphs } from "../util.mjs";
-import { ridgeStrip } from "../art.mjs";
 import {
   breadcrumbs, sectionHead, statsRow, serviceGrid, pillars, steps,
-  faqAccordion, ctaBand, leadForm,
+  faqAccordion, ctaBand, leadForm, loomEmbed,
 } from "../components.mjs";
 import {
   localBusinessLd, serviceLd, faqLd, breadcrumbLd, organizationLd, websiteLd,
 } from "../seo.mjs";
-import { SITE, SERVICES, PILLARS, PROCESS, PROOF, CTA_PRIMARY } from "../../content/site.mjs";
+import { SITE, SERVICES, PILLARS, PROCESS, HUB_PROOF, CTA_PRIMARY } from "../../content/site.mjs";
 import { MARKETS } from "../../content/markets.mjs";
-import { PHOTOS, MARKET_PHOTOS, coverPhoto } from "../../content/photos.mjs";
+import { PHOTOS, MARKET_PHOTOS, coverPhoto, heroScenicMountains } from "../../content/photos.mjs";
 
 function areaCards(marketCopies) {
   return `<div class="grid grid--4">
@@ -59,7 +58,7 @@ export function renderHub(copy, marketCopies = {}) {
 ${breadcrumbs(crumbs)}
 
 <section class="hero">
-  ${ridgeStrip("#15181a")}
+  ${heroScenicMountains()}
   <div class="container">
     <div class="hero__inner">
       <div class="stack">
@@ -71,7 +70,7 @@ ${breadcrumbs(crumbs)}
           <a class="btn btn--ghost-on-dark btn--lg" href="tel:${SITE.phoneTel}">${icon("phone", { width: 18, height: 18 })} ${escapeHtml(SITE.phone)}</a>
         </div>
         <div class="hero__trust">
-          ${PROOF.slice(0, 3).map((p) => `<div class="hero__trust-item"><b>${escapeHtml(p.value)}</b><span>${escapeHtml(p.label)}</span></div>`).join("")}
+          ${HUB_PROOF.slice(0, 3).map((p) => `<div class="hero__trust-item"><b>${escapeHtml(p.value)}</b><span>${escapeHtml(p.label)}</span></div>`).join("")}
         </div>
       </div>
       <div class="hero__visual">
@@ -99,7 +98,24 @@ ${breadcrumbs(crumbs)}
 
 <section class="section section--alt">
   <div class="container">
-    ${statsRow(PROOF.map((p) => ({ value: p.value, label: p.label })), { count: 4 })}
+    ${sectionHead({
+      eyebrow: "See how we work",
+      title: "Explore our offer",
+      intro: "A quick walkthrough of full-service Haven management for Smoky Mountain cabin owners.",
+      center: true,
+    })}
+    <div class="loom-feature" style="max-width:min(960px,100%);margin-inline:auto">
+      ${loomEmbed(SITE.links.loomOffer, {
+        title: "Explore our offer",
+        thumbnail: SITE.links.loomOfferThumb,
+      })}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    ${statsRow(HUB_PROOF.map((p) => ({ value: p.value, label: p.label })), { count: 4 })}
   </div>
 </section>
 

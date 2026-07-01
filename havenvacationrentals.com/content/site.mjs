@@ -21,6 +21,10 @@ export const SITE = {
     investmentListings: "/smoky-mountain-str-investment-listings/",
     blog: "/blog/",
     regulationsGuide: "/sevier-county-short-term-rental-regulations-2026-guide/",
+    loomOffer: "31e3c2e6a77840cea08bc180feb19367",
+    /** From Loom oEmbed (thumbnail_url); refresh if the video is re-recorded. */
+    loomOfferThumb:
+      "https://cdn.loom.com/sessions/thumbnails/31e3c2e6a77840cea08bc180feb19367-4df4af72981bb9bc.gif",
   },
   // Real logo assets (host self-hosted/WebP for production; see README)
   logo: {
@@ -44,6 +48,12 @@ export const PROOF = [
   { value: "~30%", label: "Ahead of market on revenue" },
   { value: "4.9★", label: "From 4,000+ Google reviews" },
   { value: "2016", label: "Locally owned in the Smokies since" },
+];
+
+/* Property-management hub: no founding-year stat (per brand copy). */
+export const HUB_PROOF = [
+  ...PROOF.slice(0, 3),
+  { value: "Local", label: "Locally owned and operated in the Smokies" },
 ];
 
 /* Primary navigation (desktop bar). City spokes are linked sitewide via the
@@ -75,7 +85,7 @@ export const SERVICES = [
   { icon: "broom", title: "Housekeeping & turnovers", desc: "Vetted local cleaners, hotel-grade standards, and inspected turnovers between every stay." },
   { icon: "headset", title: "24/7 guest communication", desc: "We answer guests fast, day or night, so small questions never become bad reviews." },
   { icon: "wrench", title: "Maintenance & contractors", desc: "We coordinate trusted local trades and handle issues before they reach you or your guests." },
-  { icon: "bank", title: "Direct deposit payouts", desc: "Clean monthly owner statements and reliable direct-deposit payouts. No surprises, no nickel-and-diming." },
+  { icon: "bank", title: "Direct deposit payouts", desc: "Clean monthly owner statements and reliable direct-deposit payouts. Reporting you can read without a spreadsheet chase." },
   { icon: "star", title: "Reviews & reputation", desc: "A guest-obsessed experience that earns the five-star reviews that drive future bookings and revenue." },
 ];
 

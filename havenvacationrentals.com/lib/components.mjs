@@ -246,6 +246,18 @@ export function videoTestimonials(items) {
   </div>`;
 }
 
+/* Loom (click-to-load; wired in main.js via data-loom-id). */
+export function loomEmbed(videoId, { title = "Explore our offer", thumbnail } = {}) {
+  const thumb =
+    thumbnail ||
+    `https://cdn.loom.com/sessions/thumbnails/${videoId}-with-play.gif`;
+  const bg = `background-image:url('${thumb}'),linear-gradient(150deg,#3c4143,#1d2327)`;
+  return `<div class="yt loom-facade" data-loom-id="${escapeAttr(videoId)}" role="button" tabindex="0" aria-label="Play video: ${escapeAttr(title)}" style="${bg}">
+    <span class="yt__play" aria-hidden="true">${icon("play", { width: 26, height: 26 })}</span>
+    <span class="yt__label">${escapeHtml(title)}</span>
+  </div>`;
+}
+
 /* ---- Distribution / trust channel strip (social proof) ---- */
 export function channelStrip() {
   const channels = ["airbnb", "Vrbo", "Booking.com", "Marriott", "Google"];
@@ -275,6 +287,30 @@ export function ctaBand({ title, body, showPhone = true }) {
       <a class="btn btn--accent btn--lg" href="${CTA_PRIMARY.href}">${escapeHtml(CTA_PRIMARY.label)}</a>
     </div>
     ${showPhone ? `<a class="phone-link" href="tel:${SITE.phoneTel}">${icon("phone", { width: 18, height: 18 })} Prefer to talk now? Call ${escapeHtml(SITE.phone)}</a>` : ""}
+  </div>`;
+}
+
+/* ---- Google review marquee (home hero) ---- */
+export function googleReviewMarquee(reviews, { meta } = {}) {
+  if (!reviews?.length) return "";
+  const card = (r) => `<article class="review-marquee__card">
+    <div class="review-marquee__stars" aria-hidden="true">★★★★★</div>
+    <p class="review-marquee__text">"${escapeHtml(r.text)}"</p>
+    <footer class="review-marquee__foot">
+      <b>${escapeHtml(r.name)}</b>${r.when ? `<span>${escapeHtml(r.when)}</span>` : ""}
+    </footer>
+  </article>`;
+  const doubled = reviews.map(card).join("") + reviews.map(card).join("");
+  const label = meta
+    ? `Scrolling verified five-star reviews from ${escapeHtml(meta.source || "Google")}`
+    : "Scrolling five-star guest reviews";
+  return `<div class="review-marquee" data-review-marquee>
+    <p class="visually-hidden">${label}</p>
+    <div class="review-marquee__edge review-marquee__edge--left" aria-hidden="true"></div>
+    <div class="review-marquee__edge review-marquee__edge--right" aria-hidden="true"></div>
+    <div class="review-marquee__viewport">
+      <div class="review-marquee__track" aria-hidden="true">${doubled}</div>
+    </div>
   </div>`;
 }
 

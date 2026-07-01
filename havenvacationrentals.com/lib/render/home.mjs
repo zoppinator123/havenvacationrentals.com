@@ -3,9 +3,11 @@ import { icon } from "../icons.mjs";
 import { escapeHtml, escapeAttr, paragraphs } from "../util.mjs";
 import {
   sectionHead, serviceGrid, pillars, faqAccordion, leadForm, videoTestimonials,
+  googleReviewMarquee,
 } from "../components.mjs";
 import { organizationLd, websiteLd, localBusinessLd, faqLd } from "../seo.mjs";
 import { SITE, SERVICES, PILLARS, CTA_PRIMARY } from "../../content/site.mjs";
+import { GOOGLE_REVIEWS, GOOGLE_REVIEWS_META } from "../../content/google-reviews.mjs";
 import { MARKETS } from "../../content/markets.mjs";
 import { PHOTOS, MARKET_PHOTOS, coverPhoto, PHOTO_FALLBACK } from "../../content/photos.mjs";
 
@@ -146,13 +148,13 @@ export function renderHome(copy) {
 
   const body = `
 <!-- HERO -->
-<section class="hero hero--light" style="--home-hero-bg:url('${PHOTOS.wearsValleyCabin}')">
+<section class="hero hero--light" style="--home-hero-bg:url('${PHOTOS.scenicMountains}')">
   <div class="container">
     <div class="hero__inner">
       <div class="stack">
         <span class="eyebrow hero__eyebrow">${escapeHtml(copy.heroEyebrow)}</span>
         <h1>${accentH1(copy.h1)}</h1>
-        <p class="hero__sub">${escapeHtml(copy.heroSubhead)} One honest flat fee.</p>
+        <p class="hero__sub">${escapeHtml(copy.heroSubhead)}</p>
         <div class="cta-row hero__cta">
           <a class="btn btn--accent btn--lg" href="${CTA_PRIMARY.href}">${escapeHtml(CTA_PRIMARY.label)}</a>
           <a class="btn btn--ghost btn--lg" href="#how">See how it works</a>
@@ -171,6 +173,9 @@ export function renderHome(copy) {
           <small>Local guest care</small>
         </div>
       </div>
+    </div>
+    <div class="hero__reviews">
+      ${googleReviewMarquee(GOOGLE_REVIEWS, { meta: GOOGLE_REVIEWS_META })}
     </div>
   </div>
 </section>
@@ -258,7 +263,7 @@ export function renderHome(copy) {
 <!-- THE NUMBERS -->
 <section class="section section--dark">
   <div class="container">
-    ${sectionHead({ eyebrow: "By the numbers", title: "The numbers behind the difference", intro: "Gross figures from Haven-managed homes. Your net is protected by one flat fee.", center: true })}
+    ${sectionHead({ eyebrow: "By the numbers", title: "The numbers behind the difference", intro: "Gross figures from Haven-managed homes. Professional pricing and guest care are what move your net.", center: true })}
     <div class="numbers">
       ${NUMBERS.map((n) => `<div reveal><b>${escapeHtml(n.value)}</b><span>${escapeHtml(n.label)}</span></div>`).join("")}
     </div>

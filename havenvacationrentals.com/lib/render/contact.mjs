@@ -15,7 +15,7 @@ export function renderContact() {
   ];
   const title = "Book a Call About Your Property | Haven Vacation Rentals";
   const description =
-    "Talk to a local Haven advisor about managing your Smoky Mountain cabin. Get a no-pressure revenue estimate and see what one flat-fee, full-service team can do.";
+    "Talk to a local Haven advisor about managing your Smoky Mountain cabin. Get a no-pressure revenue estimate and see what a full-service, Smokies-based team can do.";
 
   const head = {
     title,

@@ -1,7 +1,6 @@
 import { page } from "../layout.mjs";
 import { icon } from "../icons.mjs";
 import { escapeHtml, paragraphs } from "../util.mjs";
-import { ridgeStrip } from "../art.mjs";
 import {
   breadcrumbs, sectionHead, statsRow, serviceGrid, pillars, steps,
   regulations, callout, faqAccordion, testimonial, crossLinks, ctaBand, leadForm, channelStrip,
@@ -12,7 +11,7 @@ import {
 import { SITE, SERVICES, PILLARS, PROCESS, CTA_PRIMARY } from "../../content/site.mjs";
 import { MARKETS } from "../../content/markets.mjs";
 import { AREAS } from "../../content/areas.mjs";
-import { MARKET_PHOTOS, PHOTOS, coverPhoto } from "../../content/photos.mjs";
+import { MARKET_PHOTOS, PHOTOS, coverPhoto, heroScenicMountains } from "../../content/photos.mjs";
 
 function galleryStrip(market) {
   const set = (MARKET_PHOTOS[market.slug] && MARKET_PHOTOS[market.slug].gallery) ||
@@ -85,7 +84,7 @@ ${breadcrumbs(crumbs)}
 
 <!-- 1. HERO [LOCAL] -->
 <section class="hero">
-  ${ridgeStrip("#15181a")}
+  ${heroScenicMountains()}
   <div class="container">
     <div class="hero__inner">
       <div class="stack">
@@ -99,7 +98,7 @@ ${breadcrumbs(crumbs)}
         <div class="hero__trust">
           <div class="hero__trust-item"><b>Airbnb</b><span>Superhost guest care</span></div>
           <div class="hero__trust-item"><b>4.9★</b><span>4,000+ Google reviews</span></div>
-          <div class="hero__trust-item"><b>One flat fee</b><span>No hidden booking fees</span></div>
+          <div class="hero__trust-item"><b>Local team</b><span>Based in the Smokies since 2016</span></div>
         </div>
       </div>
       <div class="hero__media">

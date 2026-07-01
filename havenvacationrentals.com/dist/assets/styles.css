@@ -300,13 +300,19 @@ p { text-wrap: pretty; }
    6. Hero
    ---------------------------------------------------------------------------- */
 .hero { position: relative; overflow: hidden; background: var(--brand-deep); color: #fff; isolation: isolate; }
-.hero::after { /* mountain ridge motif */
-  content: ""; position: absolute; inset-inline: 0; bottom: 0; height: 42%; z-index: -1;
-  background:
-    radial-gradient(120% 90% at 80% 0%, rgba(255,86,78,0.22), transparent 60%),
-    radial-gradient(90% 80% at 10% 10%, rgba(255,122,115,0.10), transparent 55%);
+.hero .container { position: relative; z-index: 1; }
+.hero::after { display: none; } /* scenic photo replaces gradient ridge motif */
+.hero__scenic {
+  position: absolute; inset-inline: 0; bottom: 0; height: min(52%, 22rem); z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(180deg, var(--brand-deep) 0%, rgba(29,35,39,0.92) 22%, rgba(29,35,39,0.45) 55%, transparent 88%),
+    var(--hero-scenic);
+  background-size: cover;
+  background-position: center 42%;
+  background-repeat: no-repeat;
 }
-.hero__ridge { position: absolute; inset-inline: 0; bottom: 0; z-index: -1; width: 100%; height: auto; opacity: 0.9; }
+.hero__ridge { display: none; }
 .photo-hero {
   background-image:
     linear-gradient(90deg, rgba(29,35,39,0.9) 0%, rgba(29,35,39,0.7) 52%, rgba(29,35,39,0.48) 100%),
@@ -315,6 +321,11 @@ p { text-wrap: pretty; }
   background-position: center;
 }
 .photo-hero::after {
+  display: block;
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
   z-index: 0;
   height: 100%;
   background:
@@ -812,17 +823,25 @@ body.has-sticky-cta { padding-bottom: 76px; }
 .hero--light {
   color: var(--text);
   background:
-    linear-gradient(90deg, rgba(255,252,246,0.96) 0%, rgba(255,252,246,0.9) 44%, rgba(255,252,246,0.74) 100%),
+    linear-gradient(90deg, rgba(255,252,246,0.97) 0%, rgba(255,252,246,0.92) 38%, rgba(255,252,246,0.72) 58%, rgba(255,252,246,0.42) 100%),
+    linear-gradient(180deg, rgba(255,252,246,0.55) 0%, rgba(255,252,246,0.25) 55%, rgba(255,252,246,0.08) 100%),
     radial-gradient(70% 80% at 78% 18%, rgba(255,86,78,0.12), transparent 64%),
     var(--home-hero-bg),
     var(--surface-3);
   background-size: cover;
-  background-position: center;
+  background-position: center 38%;
 }
 .hero--light::after { display: none; }
 .hero--light h1 { color: var(--brand-deep); }
 .hero--light .hero__eyebrow { color: var(--brand); }
 .hero--light .hero__sub { color: var(--ink-soft); }
+.hero--light .hero__inner { padding-bottom: clamp(1.25rem, 3vw, 2rem); }
+.hero__reviews {
+  margin-top: 0.25rem;
+  padding-bottom: clamp(1.5rem, 4vw, 2.5rem);
+  width: 100%;
+}
+.hero__reviews .review-marquee { margin-top: 0; }
 .accent-text { color: var(--accent); }
 
 /* Generic cover-photo box. background-image (photo + gradient fallback) is set
@@ -841,6 +860,79 @@ body.has-sticky-cta { padding-bottom: 76px; }
 .rating-row .stars { color: var(--accent); letter-spacing: 0.1em; }
 .rating-row b { color: var(--brand-deep); font-size: var(--step--1); }
 .rating-row .sep { width: 1px; height: 1.2rem; background: var(--line); }
+
+/* ---- Home: Google review marquee (infinite scroll) ---- */
+.review-marquee {
+  position: relative;
+  margin-top: 1.35rem;
+  width: 100%;
+  max-width: 100%;
+}
+.review-marquee__viewport {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+}
+.review-marquee__track {
+  display: flex;
+  gap: 0.85rem;
+  width: max-content;
+  padding: 0.15rem 0 0.35rem;
+  animation: review-marquee-scroll 120s linear infinite;
+  will-change: transform;
+}
+.review-marquee:hover .review-marquee__track,
+.review-marquee:focus-within .review-marquee__track {
+  animation-play-state: paused;
+}
+@keyframes review-marquee-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .review-marquee__track {
+    animation: none;
+    flex-wrap: wrap;
+    width: 100%;
+    max-height: 12rem;
+    overflow-y: auto;
+  }
+}
+.review-marquee__card {
+  flex: 0 0 auto;
+  width: min(18.5rem, 78vw);
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 8px 24px rgba(29, 35, 39, 0.06);
+}
+.review-marquee__stars {
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  margin-bottom: 0.35rem;
+}
+.review-marquee__text {
+  margin: 0;
+  font-size: var(--step--1);
+  line-height: 1.45;
+  color: var(--ink-soft);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.review-marquee__foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.65rem;
+  align-items: baseline;
+  margin-top: 0.55rem;
+  font-size: 0.78rem;
+}
+.review-marquee__foot b { color: var(--brand-deep); font-weight: 600; }
+.review-marquee__foot span { color: var(--muted-soft); }
 
 /* Channel / distribution strip */
 .channel-band { background: var(--surface); border-block: 1px solid var(--line); }
