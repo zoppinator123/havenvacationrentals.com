@@ -9,7 +9,7 @@ import {
 import {
   localBusinessLd, serviceLd, faqLd, breadcrumbLd, organizationLd, websiteLd,
 } from "../seo.mjs";
-import { SITE, SERVICES, PILLARS, PROCESS, PROOF, CTA_PRIMARY } from "../../content/site.mjs";
+import { SITE, SERVICES, PILLARS, PROCESS, HUB_PROOF, CTA_PRIMARY } from "../../content/site.mjs";
 import { MARKETS } from "../../content/markets.mjs";
 import { PHOTOS, MARKET_PHOTOS, coverPhoto } from "../../content/photos.mjs";
 
@@ -71,7 +71,7 @@ ${breadcrumbs(crumbs)}
           <a class="btn btn--ghost-on-dark btn--lg" href="tel:${SITE.phoneTel}">${icon("phone", { width: 18, height: 18 })} ${escapeHtml(SITE.phone)}</a>
         </div>
         <div class="hero__trust">
-          ${PROOF.slice(0, 3).map((p) => `<div class="hero__trust-item"><b>${escapeHtml(p.value)}</b><span>${escapeHtml(p.label)}</span></div>`).join("")}
+          ${HUB_PROOF.slice(0, 3).map((p) => `<div class="hero__trust-item"><b>${escapeHtml(p.value)}</b><span>${escapeHtml(p.label)}</span></div>`).join("")}
         </div>
       </div>
       <div class="hero__visual">
@@ -113,7 +113,7 @@ ${breadcrumbs(crumbs)}
 
 <section class="section">
   <div class="container">
-    ${statsRow(PROOF.map((p) => ({ value: p.value, label: p.label })), { count: 4 })}
+    ${statsRow(HUB_PROOF.map((p) => ({ value: p.value, label: p.label })), { count: 4 })}
   </div>
 </section>
 

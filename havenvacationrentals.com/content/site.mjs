@@ -47,6 +47,12 @@ export const PROOF = [
   { value: "2016", label: "Locally owned in the Smokies since" },
 ];
 
+/* Property-management hub: no founding-year stat (per brand copy). */
+export const HUB_PROOF = [
+  ...PROOF.slice(0, 3),
+  { value: "Local", label: "Locally owned and operated in the Smokies" },
+];
+
 /* Primary navigation (desktop bar). City spokes are linked sitewide via the
    footer, the hub/home Service Areas cards, and each page's cross-links, and
    are added to the mobile drawer under a "Service areas" group. */
