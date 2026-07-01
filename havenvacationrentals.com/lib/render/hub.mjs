@@ -4,7 +4,7 @@ import { escapeHtml, paragraphs } from "../util.mjs";
 import { ridgeStrip } from "../art.mjs";
 import {
   breadcrumbs, sectionHead, statsRow, serviceGrid, pillars, steps,
-  faqAccordion, ctaBand, leadForm,
+  faqAccordion, ctaBand, leadForm, loomEmbed,
 } from "../components.mjs";
 import {
   localBusinessLd, serviceLd, faqLd, breadcrumbLd, organizationLd, websiteLd,
@@ -98,6 +98,20 @@ ${breadcrumbs(crumbs)}
 </section>
 
 <section class="section section--alt">
+  <div class="container">
+    ${sectionHead({
+      eyebrow: "See how we work",
+      title: "Explore our offer",
+      intro: "A quick walkthrough of full-service Haven management for Smoky Mountain cabin owners.",
+      center: true,
+    })}
+    <div class="loom-feature" style="max-width:min(960px,100%);margin-inline:auto">
+      ${loomEmbed(SITE.links.loomOffer, { title: "Explore our offer" })}
+    </div>
+  </div>
+</section>
+
+<section class="section">
   <div class="container">
     ${statsRow(PROOF.map((p) => ({ value: p.value, label: p.label })), { count: 4 })}
   </div>

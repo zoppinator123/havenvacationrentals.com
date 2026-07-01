@@ -246,6 +246,14 @@ export function videoTestimonials(items) {
   </div>`;
 }
 
+/* Loom (click-to-load; wired in main.js via data-loom-id). */
+export function loomEmbed(videoId, { title = "Explore our offer" } = {}) {
+  return `<div class="yt loom-facade" data-loom-id="${escapeAttr(videoId)}" role="button" tabindex="0" aria-label="Play video: ${escapeAttr(title)}" style="background:linear-gradient(150deg,#3c4143,#1d2327)">
+    <span class="yt__play" aria-hidden="true">${icon("play", { width: 26, height: 26 })}</span>
+    <span class="yt__label">${escapeHtml(title)}</span>
+  </div>`;
+}
+
 /* ---- Distribution / trust channel strip (social proof) ---- */
 export function channelStrip() {
   const channels = ["airbnb", "Vrbo", "Booking.com", "Marriott", "Google"];

@@ -21,6 +21,7 @@ export const SITE = {
     investmentListings: "/smoky-mountain-str-investment-listings/",
     blog: "/blog/",
     regulationsGuide: "/sevier-county-short-term-rental-regulations-2026-guide/",
+    loomOffer: "31e3c2e6a77840cea08bc180feb19367",
   },
   // Real logo assets (host self-hosted/WebP for production; see README)
   logo: {

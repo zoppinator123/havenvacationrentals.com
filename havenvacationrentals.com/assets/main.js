@@ -144,4 +144,25 @@
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); load(); }
     });
   });
+
+  doc.querySelectorAll("[data-loom-id]").forEach(function (el) {
+    function load() {
+      if (el.classList.contains("yt--loaded")) return;
+      var id = el.getAttribute("data-loom-id");
+      var frame = doc.createElement("iframe");
+      frame.src = "https://www.loom.com/embed/" + id;
+      frame.title = el.getAttribute("aria-label") || "Loom video";
+      frame.setAttribute("allowfullscreen", "");
+      frame.loading = "lazy";
+      el.innerHTML = "";
+      el.appendChild(frame);
+      el.classList.add("yt--loaded");
+      el.removeAttribute("role");
+      el.removeAttribute("tabindex");
+    }
+    el.addEventListener("click", load);
+    el.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); load(); }
+    });
+  });
 })();
