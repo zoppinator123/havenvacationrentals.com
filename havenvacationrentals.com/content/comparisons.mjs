@@ -37,7 +37,6 @@ export const COMPARISONS = [
         { label: "Permits, inspections & tax filing", a: "You track it all", haven: true },
         { label: "Professional photos & marketing", a: "Do it yourself", haven: true },
         { label: "Revenue vs. the market", a: "At or below", haven: "~30% ahead" },
-        { label: "Cost structure", a: "No fee, but hidden time & revenue cost", haven: "One flat fee, no markups" },
       ],
     },
     sections: [
@@ -99,7 +98,6 @@ export const COMPARISONS = [
         { label: "Local market knowledge", a: "Generic", haven: "Deep, street by street" },
         { label: "Portfolio focus", a: "Thousands of homes", haven: "A select group, run well" },
         { label: "Compliance by jurisdiction", a: "One size fits all", haven: "City vs. county, confirmed" },
-        { label: "Fee transparency", a: "Booking-fee markups common", haven: "One flat fee, no markups" },
       ],
     },
     sections: [
