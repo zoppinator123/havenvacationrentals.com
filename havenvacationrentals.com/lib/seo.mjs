@@ -1,7 +1,7 @@
 import { SITE } from "../content/site.mjs";
 import { escapeAttr, jsonLdScript } from "./util.mjs";
 
-const abs = (path) => (path.startsWith("http") ? path : SITE.baseUrl + path);
+export const abs = (path) => (path.startsWith("http") ? path : SITE.baseUrl + path);
 
 /* ---- <head> builder -------------------------------------------------------
    Produces title, description, canonical, robots, OG/Twitter, theme-color,
@@ -68,7 +68,7 @@ export function organizationLd() {
     "@id": `${SITE.baseUrl}/#organization`,
     name: SITE.name,
     url: SITE.baseUrl + "/",
-    logo: SITE.logo.dark,
+    logo: abs(SITE.logo.dark),
     telephone: SITE.phoneTel,
     foundingDate: SITE.foundingYear,
     areaServed: "Smoky Mountains, Tennessee",
@@ -98,8 +98,8 @@ export function localBusinessLd({ path, cityName, region = "TN", description, im
     description,
     url: abs(path),
     telephone: SITE.phoneTel,
-    image: image || SITE.logo.dark,
-    logo: SITE.logo.dark,
+    image: abs(image || SITE.logo.dark),
+    logo: abs(SITE.logo.dark),
     priceRange: "$$",
     areaServed: { "@type": "City", name: `${cityName}, Tennessee` },
     address: {

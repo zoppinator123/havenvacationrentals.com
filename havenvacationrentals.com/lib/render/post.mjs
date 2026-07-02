@@ -2,7 +2,7 @@ import { page } from "../layout.mjs";
 import { icon } from "../icons.mjs";
 import { escapeHtml, escapeAttr } from "../util.mjs";
 import { breadcrumbs, ctaBand } from "../components.mjs";
-import { organizationLd, websiteLd, breadcrumbLd } from "../seo.mjs";
+import { abs, organizationLd, websiteLd, breadcrumbLd } from "../seo.mjs";
 import { SITE } from "../../content/site.mjs";
 
 const AUTHORS = { havenadmin: "The Haven Team" };
@@ -37,7 +37,7 @@ export function renderPost(post, allPosts = []) {
     { label: "Blog", href: "/blog/" },
     { label: post.title, href: path },
   ];
-  const img = post.featuredImage || SITE.baseUrl + "/assets/og/blog.png";
+  const img = abs(post.featuredImage || "/assets/og/blog.png");
   const author = authorName(post.author);
 
   const withBrand = `${post.title} | Haven`;
