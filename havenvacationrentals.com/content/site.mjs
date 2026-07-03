@@ -118,6 +118,7 @@ export const FOOTER_GROUPS = [
     heading: "Company",
     links: [
       { label: "About", href: "/about-us/" },
+      { label: "Reviews", href: "/reviews/" },
       { label: "Property Management", href: "/property-management/" },
       { label: "Service Areas", href: "/service-areas/" },
       { label: "STR Investment Listings", href: "/smoky-mountain-str-investment-listings/" },
