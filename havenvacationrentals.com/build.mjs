@@ -13,6 +13,7 @@ import { renderHub } from "./lib/render/hub.mjs";
 import { renderHome } from "./lib/render/home.mjs";
 import { renderContact } from "./lib/render/contact.mjs";
 import { renderAbout } from "./lib/render/about.mjs";
+import { renderReviews } from "./lib/render/reviews.mjs";
 import { renderAreaPage } from "./lib/render/area.mjs";
 import { renderSegmentPage } from "./lib/render/segment.mjs";
 import { renderComparisonPage } from "./lib/render/comparison.mjs";
@@ -161,6 +162,7 @@ for (const m of MARKETS) {
 /* supporting static pages */
 const staticPages = [
   { r: renderAbout(), priority: "0.8" },
+  { r: renderReviews(), priority: "0.7" },
   { r: renderContact(), priority: "0.8" },
   { r: renderBookCall(), sitemap: false },
   { r: renderRegGuide(), priority: "0.7" },

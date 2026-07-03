@@ -1,4 +1,5 @@
 import { SITE } from "../content/site.mjs";
+import { GOOGLE_REVIEWS_META } from "../content/google-reviews.mjs";
 import { escapeAttr, jsonLdScript } from "./util.mjs";
 
 export const abs = (path) => (path.startsWith("http") ? path : SITE.baseUrl + path);
@@ -88,8 +89,26 @@ export function websiteLd() {
   };
 }
 
-/* LocalBusiness for a geo page (or the region for the hub/home). */
-export function localBusinessLd({ path, cityName, region = "TN", description, image }) {
+/* Sitewide aggregate rating, sourced from the verified Google-review data in
+   content/google-reviews.mjs (rating + numeric count parsed from countLabel,
+   e.g. "4,000+ reviews" -> 4000). Update that one file and every page's
+   markup follows. */
+export function aggregateRatingLd() {
+  const count = parseInt(String(GOOGLE_REVIEWS_META.countLabel).replace(/\D/g, ""), 10);
+  if (!GOOGLE_REVIEWS_META.rating || !count) return null;
+  return {
+    "@type": "AggregateRating",
+    ratingValue: GOOGLE_REVIEWS_META.rating,
+    reviewCount: count,
+    bestRating: "5",
+    worstRating: "1",
+  };
+}
+
+/* LocalBusiness for a geo page (or the region for the hub/home).
+   `reviews` optionally embeds individual Review objects (used by /reviews/). */
+export function localBusinessLd({ path, cityName, region = "TN", description, image, reviews }) {
+  const rating = aggregateRatingLd();
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -101,6 +120,17 @@ export function localBusinessLd({ path, cityName, region = "TN", description, im
     image: abs(image || SITE.logo.dark),
     logo: abs(SITE.logo.dark),
     priceRange: "$$",
+    ...(rating ? { aggregateRating: rating } : {}),
+    ...(reviews && reviews.length
+      ? {
+          review: reviews.map((r) => ({
+            "@type": "Review",
+            author: { "@type": "Person", name: r.name },
+            reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+            reviewBody: r.text,
+          })),
+        }
+      : {}),
     areaServed: { "@type": "City", name: `${cityName}, Tennessee` },
     address: {
       "@type": "PostalAddress",
