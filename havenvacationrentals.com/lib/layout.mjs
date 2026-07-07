@@ -18,6 +18,7 @@ ${body}
 ${footer()}
 ${drawer(currentPath)}
 ${stickyCTA ? stickyCta() : ""}
+<script src="/assets/lead-capture.js" defer></script>
 <script src="/assets/main.js" defer></script>
 </body>
 </html>`;
