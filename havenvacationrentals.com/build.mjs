@@ -28,6 +28,7 @@ import { renderRegGuide } from "./lib/render/regguide.mjs";
 import { renderMarketRegulationPage } from "./lib/render/market-regulations.mjs";
 import { renderListings } from "./lib/render/listings.mjs";
 import { renderNotFound } from "./lib/render/notfound.mjs";
+import { renderPrivacy } from "./lib/render/privacy.mjs";
 import { renderLlmsTxt } from "./content/llms.mjs";
 import { wordCount, findEmDashes } from "./lib/util.mjs";
 
@@ -179,6 +180,14 @@ const staticPages = [
 for (const { r, priority, sitemap = true } of staticPages) {
   writePage(r.path, r.html);
   if (sitemap) sitemapUrls.push({ path: r.path, priority, changefreq: "monthly" });
+}
+
+/* privacy policy */
+{
+  const { copy } = loadCopy("privacy", {});
+  const { path, html } = renderPrivacy(copy);
+  writePage(path, html);
+  sitemapUrls.push({ path, priority: "0.5", changefreq: "yearly" });
 }
 
 /* extended service-area pages (Townsend + cabin communities) */

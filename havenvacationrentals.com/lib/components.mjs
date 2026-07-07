@@ -323,7 +323,7 @@ export function leadForm({ heading = "Book a call about your property", marketDe
     .map((m) => `<option value="${escapeAttr(m)}"${m === marketDefault ? " selected" : ""}>${escapeHtml(m)}</option>`)
     .join("");
   return `<div>
-  <form class="lead-form" data-lead-form data-calendly-redirect="/book-a-call/" action="/book-a-call/" method="get" novalidate>
+  <form class="lead-form" data-lead-form data-calendly-redirect="/book-a-call/" action="/api/lead/" method="post" novalidate>
     <h3>${escapeHtml(heading)}</h3>
     <p class="form-note">Tell us about your cabin and we will show you what it can earn with Haven. No pressure, no obligation.</p>
     <div class="field-row">

@@ -104,20 +104,43 @@
     }, 3500);
   });
 
-  /* ---- Lead form -> Calendly scheduling page ----
-     Once a visitor fills out a lead form, send them to the booking page with
-     Calendly embedded. The form uses GET so field data is not posted anywhere
-     until a CRM endpoint is wired in. */
+  /* ---- Lead form -> StaydOS CRM + Calendly scheduling page ----
+     Once a visitor fills out a lead form, post the lead to the Vercel API
+     route. The API creates a StaydOS Haven CRM deal and emails Sales, then
+     sends the visitor to the booking page with Calendly embedded. */
   doc.querySelectorAll("form[data-lead-form]").forEach(function (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      var submit = form.querySelector('button[type="submit"]');
+      var originalText = submit ? submit.textContent : "";
+      if (submit) { submit.disabled = true; submit.textContent = "Sending..."; }
+
       var success = form.parentNode.querySelector(".form-success");
-      var redirect = form.getAttribute("data-calendly-redirect") || form.getAttribute("action") || "/book-a-call/";
-      form.style.display = "none";
-      if (success) { success.classList.add("is-visible"); success.focus && success.focus(); }
-      window.dataLayer && window.dataLayer.push({ event: "book_a_call_submit" });
-      window.location.href = redirect;
+      var redirect = form.getAttribute("data-calendly-redirect") || "/book-a-call/";
+      var payload = {};
+      new FormData(form).forEach(function (value, key) { payload[key] = value; });
+      payload.page = window.location.href;
+
+      fetch(form.getAttribute("action") || "/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+        credentials: "same-origin"
+      }).then(function (res) {
+        if (!res.ok) throw new Error("Lead submission failed");
+        return res.json();
+      }).then(function () {
+        form.style.display = "none";
+        if (success) { success.classList.add("is-visible"); success.focus && success.focus(); }
+        window.dataLayer && window.dataLayer.push({ event: "book_a_call_submit" });
+        window.location.href = redirect;
+      }).catch(function (err) {
+        console.error(err);
+        alert("Sorry, we couldn't submit the form. Please call Haven at 865-205-4650 or email sales@havenvacationrentals.com.");
+        if (submit) { submit.disabled = false; submit.textContent = originalText; }
+      });
     });
   });
 

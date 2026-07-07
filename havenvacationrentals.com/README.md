@@ -162,11 +162,21 @@ Haven-managed cabins in each market:
 
 ## The Book-a-Call form
 
-`components.leadForm()` validates the lead fields client-side, then redirects
-the visitor to `/book-a-call/`, which embeds the Haven Calendly scheduler. The
-form currently uses `GET` with no CRM post endpoint. **Wire it to HubSpot / your
-existing CRM** by posting the form data first, then keep the successful-submit
-redirect to `/book-a-call/` so leads can immediately schedule a call.
+`components.leadForm()` validates the lead fields client-side, posts the lead to
+`/api/lead`, then redirects the visitor to `/book-a-call/`, which embeds the
+Haven Calendly scheduler. The API route creates/uses the Haven `Warm Leads`
+stage in StaydOS Supabase, inserts a `deals` row with the submitted contact and
+property context, and sends a notification email to `sales@havenvacationrentals.com`.
+
+Required Vercel env vars for the API route:
+
+| Name | Purpose |
+| --- | --- |
+| `STAYDOS_SUPABASE_SERVICE_ROLE_KEY` | Server-only key for the StaydOS Supabase project. |
+| `RESEND_API_KEY` | Sends the sales notification email. |
+
+Optional env vars: `STAYDOS_SUPABASE_URL`, `HAVEN_STAYDOS_COMPANY_ID`,
+`HAVEN_LEAD_NOTIFY_TO`, `HAVEN_LEAD_NOTIFY_FROM`.
 
 ---
 
