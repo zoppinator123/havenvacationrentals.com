@@ -25,6 +25,7 @@ import { renderBookCall } from "./lib/render/book-call.mjs";
 import { renderBlog } from "./lib/render/blog.mjs";
 import { renderPost } from "./lib/render/post.mjs";
 import { renderRegGuide } from "./lib/render/regguide.mjs";
+import { renderMarketRegulationPage } from "./lib/render/market-regulations.mjs";
 import { renderListings } from "./lib/render/listings.mjs";
 import { renderNotFound } from "./lib/render/notfound.mjs";
 import { renderLlmsTxt } from "./content/llms.mjs";
@@ -139,6 +140,13 @@ for (const m of MARKETS) {
   writePage(path, html);
   sitemapUrls.push({ path, priority: "0.9", changefreq: "monthly" });
   reports.push(audit(`geo:${m.slug}`, html, copy, { keyword: m.primaryKeyword }));
+}
+
+/* detailed per-market permit, inspection, tax, and regulation pages */
+for (const m of MARKETS) {
+  const { path, html } = renderMarketRegulationPage(m);
+  writePage(path, html);
+  sitemapUrls.push({ path, priority: "0.75", changefreq: "monthly" });
 }
 
 /* hub */

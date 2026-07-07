@@ -50,6 +50,10 @@ function neighborhoodLinksFor(market) {
   }));
 }
 
+function regulationDetailPath(market) {
+  return `/vacation-rental-management-${market.slug}-regulations-permits-taxes/`;
+}
+
 export function renderGeoPage(market, copy) {
   const path = `/vacation-rental-management-${market.slug}/`;
   const heroPhoto = (MARKET_PHOTOS[market.slug] && MARKET_PHOTOS[market.slug].hero) || PHOTOS.heroExterior;
@@ -182,6 +186,7 @@ ${breadcrumbs(crumbs)}
     <div style="margin-top:var(--space-md)">${callout(market.regCallout)}</div>
     <div class="prose stack" style="margin-top:var(--space-lg)">
       <p>${escapeHtml(copy.regClosing)}</p>
+      <p><a class="link-arrow" href="${regulationDetailPath(market)}">Read the full ${escapeHtml(market.city)} permits, inspections, taxes, and regulations guide ${icon("arrowRight", { width: 16, height: 16 })}</a></p>
       <p><a class="link-arrow" href="${SITE.links.regulationsGuide}">Read our full Sevier County short-term rental regulations guide ${icon("arrowRight", { width: 16, height: 16 })}</a></p>
     </div>
     <p class="form-disclaimer" style="margin-top:1rem">This summary is for general guidance and is current as of mid-2026. Rules change. Confirm details with the relevant city or county office, or let Haven handle it for you.</p>
