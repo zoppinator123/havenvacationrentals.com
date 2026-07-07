@@ -26,7 +26,7 @@ const PHOTO = {
   step1: PHOTOS.deckView,
   step2: PHOTOS.interiorLiving,
   step3: PHOTOS.interiorKitchen,
-  step4: PHOTOS.interiorDetail,
+  step4: PHOTOS.aboutBedroom, // Use bedroom photo for "you get paid" step
   contact: PHOTOS.contactBg,
   aboutA: PHOTOS.aboutFamily,
   aboutB: PHOTOS.aboutDillon,
