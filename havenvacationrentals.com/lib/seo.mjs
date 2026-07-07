@@ -28,6 +28,9 @@ export function renderHead({
     `<meta name="robots" content="${escapeAttr(robots)}">`,
     `<meta name="theme-color" content="#1d2327">`,
     `<meta name="format-detection" content="telephone=yes">`,
+    // Google Analytics (gtag.js)
+    `<script async src="https://www.googletagmanager.com/gtag/js?id=G-WJLZZMLR1S"></script>`,
+    `<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'G-WJLZZMLR1S');\n</script>`,
     // Open Graph
     `<meta property="og:type" content="${ogType}">`,
     `<meta property="og:site_name" content="${escapeAttr(SITE.name)}">`,
