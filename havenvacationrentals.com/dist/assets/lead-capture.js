@@ -6,6 +6,7 @@
   var BRAND_ID = 'haven';    // Haven — StaydOS leaf brand id
   var CHANNEL  = '';          // blank = auto-detect from UTMs
   var ENDPOINT = 'https://stayd-os-rho.vercel.app/api/leads/inbound';
+  var SHEET_ENDPOINT = '/api/leads/google-sheet';
   var COOKIE_DOMAIN = '.' + location.hostname.split('.').slice(-2).join('.'); // e.g. .havenvacationrentals.com
   // ====================================================
 
@@ -74,6 +75,11 @@
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload), keepalive: true
     }).catch(function (err) { console.error('lead capture failed', err); });
+
+    fetch(SHEET_ENDPOINT, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload), keepalive: true
+    }).catch(function (err) { console.error('lead sheet copy failed', err); });
   }
 
   // Hook every form — capture phase, non-blocking (the form still submits/redirects).
