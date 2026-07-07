@@ -31,6 +31,9 @@ export function renderHead({
     // Google Analytics (gtag.js)
     `<script async src="https://www.googletagmanager.com/gtag/js?id=G-WJLZZMLR1S"></script>`,
     `<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'G-WJLZZMLR1S');\n</script>`,
+    // Meta Pixel
+    `<script>\n  !function(f,b,e,v,n,t,s)\n  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?\n  n.callMethod.apply(n,arguments):n.queue.push(arguments)};\n  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';\n  n.queue=[];t=b.createElement(e);t.async=!0;\n  t.src=v;s=b.getElementsByTagName(e)[0];\n  s.parentNode.insertBefore(t,s)}(window, document,'script',\n  'https://connect.facebook.net/en_US/fbevents.js');\n  fbq('init', '997603731702750');\n  fbq('track', 'PageView');\n</script>`,
+    `<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=997603731702750&ev=PageView&noscript=1"></noscript>`,
     // Open Graph
     `<meta property="og:type" content="${ogType}">`,
     `<meta property="og:site_name" content="${escapeAttr(SITE.name)}">`,
