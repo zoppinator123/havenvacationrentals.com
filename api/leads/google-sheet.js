@@ -134,7 +134,7 @@ async function ensureHeaders(accessToken) {
   }
 }
 
-export default async function handler(req, res) {
+async function handler(req, res) {
   setCors(res);
 
   if (req.method === 'OPTIONS') return res.status(204).end();
@@ -153,3 +153,5 @@ export default async function handler(req, res) {
     return res.status(500).json({ ok: false, error: error.message || 'Google Sheet append failed' });
   }
 }
+
+module.exports = handler;
