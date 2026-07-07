@@ -5,6 +5,19 @@
   "installCommand": "echo 'zero dependencies, nothing to install'",
   "trailingSlash": true,
   "cleanUrls": true,
+  "redirects": [
+    { "source": "/about/", "destination": "/about-us/", "permanent": true },
+    { "source": "/thank-you/", "destination": "/book-a-call/", "permanent": false },
+    { "source": "/privacy/", "destination": "/contact-us/", "permanent": true },
+    { "source": "/first-impressions/", "destination": "/property-management/", "permanent": true },
+    { "source": "/hiring/", "destination": "/about-us/", "permanent": true },
+    { "source": "/hiring-account-manager/", "destination": "/about-us/", "permanent": true },
+    { "source": "/insurance-policy-submission-form/", "destination": "/contact-us/", "permanent": false },
+    { "source": "/hiring/onboarding-specialist/", "destination": "/about-us/", "permanent": true },
+    { "source": "/win-1-vacation-rental-management-for-a-full-year/", "destination": "/property-management/", "permanent": true },
+    { "source": "/fall2025revenueupdate/", "destination": "/smoky-mountain-fall-2025-revenue-strategies/", "permanent": true },
+    { "source": "/howcommissionworks/", "destination": "/property-management/", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/assets/og/(.*)",
