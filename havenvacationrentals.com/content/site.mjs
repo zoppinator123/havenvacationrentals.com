@@ -61,6 +61,7 @@ export const HUB_PROOF = [
    are added to the mobile drawer under a "Service areas" group. */
 export const NAV = [
   { label: "Home", href: "/" },
+  { label: "Stay With Us", href: SITE.links.guestSite },
   { label: "Property Management", href: "/property-management/" },
   { label: "About", href: "/about-us/" },
   { label: "Invest", href: "/smoky-mountain-str-investment-listings/" },
