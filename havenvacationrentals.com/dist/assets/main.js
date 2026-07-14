@@ -104,17 +104,15 @@
     }, 3500);
   });
 
-  /* ---- Lead form -> StaydOS CRM + Calendly scheduling page ----
-     Once a visitor fills out a lead form, post the lead to the Vercel API
-     route. The API creates a StaydOS Haven CRM deal and emails Sales, then
-     sends the visitor to the booking page with Calendly embedded. */
+  /* ---- Lead form -> Google Sheet + Calendly scheduling page ----
+     StaydOS capture runs independently in lead-capture.js. The same-origin
+     Sheet copy is best-effort and must never block the booking redirect. */
   doc.querySelectorAll("form[data-lead-form]").forEach(function (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
 
       var submit = form.querySelector('button[type="submit"]');
-      var originalText = submit ? submit.textContent : "";
       if (submit) { submit.disabled = true; submit.textContent = "Sending..."; }
 
       var success = form.parentNode.querySelector(".form-success");
@@ -123,24 +121,26 @@
       new FormData(form).forEach(function (value, key) { payload[key] = value; });
       payload.page = window.location.href;
 
-      fetch(form.getAttribute("action") || "/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-        credentials: "same-origin"
-      }).then(function (res) {
-        if (!res.ok) throw new Error("Lead submission failed");
-        return res.json();
-      }).then(function () {
+      function finishSubmission() {
         form.style.display = "none";
         if (success) { success.classList.add("is-visible"); success.focus && success.focus(); }
         window.dataLayer && window.dataLayer.push({ event: "book_a_call_submit" });
         window.location.href = redirect;
+      }
+
+      fetch(form.getAttribute("action") || "/api/leads/google-sheet/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+        credentials: "same-origin",
+        keepalive: true
+      }).then(function (res) {
+        if (!res.ok) throw new Error("Lead sheet copy failed with status " + res.status);
+        return res.json();
       }).catch(function (err) {
-        console.error(err);
-        alert("Sorry, we couldn't submit the form. Please call Haven at 865-205-4650 or email sales@havenvacationrentals.com.");
-        if (submit) { submit.disabled = false; submit.textContent = originalText; }
+        console.error("Lead sheet copy failed", err);
       });
+      finishSubmission();
     });
   });
 
