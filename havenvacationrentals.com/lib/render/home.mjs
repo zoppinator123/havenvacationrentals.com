@@ -23,9 +23,9 @@ const PHOTO = {
   howBg: PHOTOS.heroExterior,
   difA:  PHOTOS.interiorLiving,  // great room
   difB:  PHOTOS.interiorDetail,
-  step1: PHOTOS.deckView,
+  step1: PHOTOS.heroExterior, // Self-hosted cabin exterior for listing and marketing
   step2: PHOTOS.interiorLiving,
-  step3: PHOTOS.interiorKitchen,
+  step3: PHOTOS.wearsValleyCabin, // Self-hosted guest-experience view
   step4: PHOTOS.aboutBedroom, // Use bedroom photo for "you get paid" step
   contact: PHOTOS.contactBg,
   aboutA: PHOTOS.aboutFamily,
