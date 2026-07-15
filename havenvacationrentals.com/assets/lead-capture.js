@@ -1,8 +1,10 @@
-/* StaydOS unified tracker — lead capture + form funnel (Haven).
+/* StaydOS unified tracker — lead capture + form funnel (Haven, v2).
    Non-blocking: hooks every form (capture phase), sends the lead to the StaydOS inbound
    endpoint, AND tracks the form-funnel session (start / step / drop / submit) so
    Marketing -> Funnels and the Website (SEO) funnel populate. The form's own submit/redirect
-   still runs. */
+   still runs.
+   v2: first-touch attribution (external referrer + landing persisted; internal navigation never
+   overwrites it) and SPA-aware drop detection (client-side route change fires `dropped`). */
 (function () {
   // ===== per-brand config (only BRAND_ID matters) =====
   var BRAND_ID    = 'haven';   // Haven — StaydOS leaf brand id
@@ -25,8 +27,21 @@
   }
   var qs = new URLSearchParams(location.search), store = readStore(), changed = false;
   CLICK_KEYS.forEach(function (k) { var v = qs.get(k); if (v && !store[k]) { store[k] = v; changed = true; } });
+
+  // First-touch referrer + landing page: recorded once, from the first page whose referrer is
+  // external or empty. Internal (same-host) referrers never set it, so navigating within the
+  // site can't rewrite "arrived via Google / direct" into a same-site "referral".
+  if (!store.rt) {
+    var ref = document.referrer || '';
+    var internal = false;
+    try { internal = !!ref && new URL(ref).host === location.host; } catch (e) {}
+    if (!internal) { store.ref = ref; store.land = location.origin + location.pathname; store.rt = 1; changed = true; }
+  }
   if (changed) writeStore(store);
+
   function attr(k) { return qs.get(k) || store[k] || null; }
+  function firstRef() { return store.ref || null; }                                   // '' (direct) -> null
+  function firstLand() { return store.land || (location.origin + location.pathname); }
 
   function channel() {
     if (CHANNEL) return CHANNEL;
@@ -47,13 +62,14 @@
     } catch (e) { return 'fs_' + Date.now(); }
   }
   var sessions = new WeakMap();
-  function st(form) { var s = sessions.get(form); if (!s) { s = { started: false, submitted: false, lastStep: null }; sessions.set(form, s); } return s; }
+  var startedForms = [];
+  function st(form) { var s = sessions.get(form); if (!s) { s = { started: false, submitted: false, dropped: false, lastStep: null }; sessions.set(form, s); } return s; }
   function formName(form) { return form.getAttribute('data-stayd-form') || form.getAttribute('name') || form.id || 'website-form'; }
   function sessPayload(form, extra) {
     var p = {
       sessionKey: sessionKey(), brandId: BRAND_ID, form: formName(form), channel: channel(),
-      campaign: attr('utm_campaign'), page: location.pathname, landingPage: location.origin + location.pathname,
-      referrer: document.referrer || null, utmSource: attr('utm_source'), utmMedium: attr('utm_medium'), utmCampaign: attr('utm_campaign')
+      campaign: attr('utm_campaign'), page: location.pathname, landingPage: firstLand(),
+      referrer: firstRef(), utmSource: attr('utm_source'), utmMedium: attr('utm_medium'), utmCampaign: attr('utm_campaign')
     };
     for (var k in extra) p[k] = extra[k];
     return p;
@@ -63,9 +79,21 @@
     if (beacon && navigator.sendBeacon) { navigator.sendBeacon(SESSION_URL, new Blob([body], { type: 'application/json' })); return; }
     fetch(SESSION_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body, keepalive: true }).catch(function () {});
   }
+  // Fire `dropped` for started, non-submitted forms. force=true (real unload) drops all;
+  // otherwise only forms no longer in the DOM (unmounted by a client-side route change).
+  function flushDrops(force) {
+    for (var i = 0; i < startedForms.length; i++) {
+      var form = startedForms[i], s = sessions.get(form);
+      if (s && s.started && !s.submitted && !s.dropped && (force || !document.contains(form))) {
+        s.dropped = true;
+        sendSession(form, { status: 'dropped', lastStep: s.lastStep, droppedAt: new Date().toISOString() }, force);
+      }
+    }
+  }
   document.addEventListener('focusin', function (e) {
     var form = e.target && e.target.form; if (!form) return;
     var s = st(form); if (s.started) return; s.started = true;
+    if (startedForms.indexOf(form) < 0) startedForms.push(form);
     sendSession(form, { status: 'in_progress' });
   }, true);
   document.addEventListener('change', function (e) {
@@ -74,12 +102,14 @@
     var s = st(form); if (s.lastStep === name) return; s.lastStep = name;
     if (s.started) sendSession(form, { status: 'in_progress', lastStep: name });
   }, true);
-  window.addEventListener('pagehide', function () {
-    document.querySelectorAll('form').forEach(function (form) {
-      var s = sessions.get(form);
-      if (s && s.started && !s.submitted) sendSession(form, { status: 'dropped', lastStep: s.lastStep, droppedAt: new Date().toISOString() }, true);
-    });
-  });
+  window.addEventListener('pagehide', function () { flushDrops(true); });
+  // SPA route changes: patch pushState + listen to popstate; a short delay lets the framework
+  // unmount the old page's forms before we check document.contains().
+  (function () {
+    var _push = history.pushState;
+    history.pushState = function () { var r = _push.apply(this, arguments); setTimeout(function () { flushDrops(false); }, 400); return r; };
+    window.addEventListener('popstate', function () { setTimeout(function () { flushDrops(false); }, 400); });
+  })();
 
   // ---- lead capture ----
   function pick(form, type, re) {
@@ -109,8 +139,8 @@
       property_address: pick(form, null, /(address|street|property)/),
       management_situation: pick(form, null, /(manage|management|managed)/),
       form: formName(form),
-      landing_page: location.origin + location.pathname,
-      referrer: document.referrer || null
+      landing_page: firstLand(),
+      referrer: firstRef()
     };
     CLICK_KEYS.forEach(function (k) { var v = attr(k); if (v) payload[k] = v; });
     try { new FormData(form).forEach(function (v, k) { if (payload[k] === undefined) payload[k] = v; }); } catch (e) {}
