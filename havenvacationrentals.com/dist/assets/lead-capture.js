@@ -1,16 +1,20 @@
-/* StaydOS lead capture — Haven.
-   Non-blocking: hooks every form on the page (capture phase) and dual-sends the
-   lead to the StaydOS inbound endpoint. The form's own submit/redirect still runs. */
+/* StaydOS unified tracker — lead capture + form funnel (Haven).
+   Non-blocking: hooks every form (capture phase), sends the lead to the StaydOS inbound
+   endpoint, AND tracks the form-funnel session (start / step / drop / submit) so
+   Marketing -> Funnels and the Website (SEO) funnel populate. The form's own submit/redirect
+   still runs. */
 (function () {
   // ===== per-brand config (only BRAND_ID matters) =====
-  var BRAND_ID = 'haven';    // Haven — StaydOS leaf brand id
-  var CHANNEL  = '';          // blank = auto-detect from UTMs
-  var ENDPOINT = 'https://stayd-os-rho.vercel.app/api/leads/inbound';
+  var BRAND_ID    = 'haven';   // Haven — StaydOS leaf brand id
+  var CHANNEL     = '';         // blank = auto-detect from UTMs
+  var LEAD_URL    = 'https://stayd-os-rho.vercel.app/api/leads/inbound';
+  var SESSION_URL = 'https://stayd-os-rho.vercel.app/api/forms/session';
   var COOKIE_DOMAIN = '.' + location.hostname.split('.').slice(-2).join('.'); // e.g. .havenvacationrentals.com
   // ====================================================
 
-  var CLICK_KEYS = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','fbclid'];
+  var CLICK_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid'];
 
+  // ---- attribution (persisted 90d, first-touch wins) ----
   function readStore() {
     var m = document.cookie.match(/(?:^|;\s*)sc_attr=([^;]+)/);
     try { return m ? JSON.parse(decodeURIComponent(m[1])) : {}; } catch (e) { return {}; }
@@ -19,8 +23,6 @@
     document.cookie = 'sc_attr=' + encodeURIComponent(JSON.stringify(obj)) +
       ';domain=' + COOKIE_DOMAIN + ';path=/;max-age=' + (90 * 86400) + ';samesite=lax';
   }
-
-  // Merge this page's UTMs into the shared cookie (first-touch wins).
   var qs = new URLSearchParams(location.search), store = readStore(), changed = false;
   CLICK_KEYS.forEach(function (k) { var v = qs.get(k); if (v && !store[k]) { store[k] = v; changed = true; } });
   if (changed) writeStore(store);
@@ -36,6 +38,50 @@
     return 'website';
   }
 
+  // ---- form-session funnel (start / step / drop / submit) ----
+  function sessionKey() {
+    try {
+      var k = sessionStorage.getItem('sc_fs_key');
+      if (!k) { k = 'fs_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10); sessionStorage.setItem('sc_fs_key', k); }
+      return k;
+    } catch (e) { return 'fs_' + Date.now(); }
+  }
+  var sessions = new WeakMap();
+  function st(form) { var s = sessions.get(form); if (!s) { s = { started: false, submitted: false, lastStep: null }; sessions.set(form, s); } return s; }
+  function formName(form) { return form.getAttribute('data-stayd-form') || form.getAttribute('name') || form.id || 'website-form'; }
+  function sessPayload(form, extra) {
+    var p = {
+      sessionKey: sessionKey(), brandId: BRAND_ID, form: formName(form), channel: channel(),
+      campaign: attr('utm_campaign'), page: location.pathname, landingPage: location.origin + location.pathname,
+      referrer: document.referrer || null, utmSource: attr('utm_source'), utmMedium: attr('utm_medium'), utmCampaign: attr('utm_campaign')
+    };
+    for (var k in extra) p[k] = extra[k];
+    return p;
+  }
+  function sendSession(form, extra, beacon) {
+    var body = JSON.stringify(sessPayload(form, extra));
+    if (beacon && navigator.sendBeacon) { navigator.sendBeacon(SESSION_URL, new Blob([body], { type: 'application/json' })); return; }
+    fetch(SESSION_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body, keepalive: true }).catch(function () {});
+  }
+  document.addEventListener('focusin', function (e) {
+    var form = e.target && e.target.form; if (!form) return;
+    var s = st(form); if (s.started) return; s.started = true;
+    sendSession(form, { status: 'in_progress' });
+  }, true);
+  document.addEventListener('change', function (e) {
+    var form = e.target && e.target.form; if (!form) return;
+    var name = e.target.name || e.target.id; if (!name) return;
+    var s = st(form); if (s.lastStep === name) return; s.lastStep = name;
+    if (s.started) sendSession(form, { status: 'in_progress', lastStep: name });
+  }, true);
+  window.addEventListener('pagehide', function () {
+    document.querySelectorAll('form').forEach(function (form) {
+      var s = sessions.get(form);
+      if (s && s.started && !s.submitted) sendSession(form, { status: 'dropped', lastStep: s.lastStep, droppedAt: new Date().toISOString() }, true);
+    });
+  });
+
+  // ---- lead capture ----
   function pick(form, type, re) {
     var el = type && form.querySelector('input[type="' + type + '"]');
     if (el && el.value.trim()) return el.value.trim();
@@ -48,14 +94,13 @@
     }
     return null;
   }
-
-  function send(form) {
-    var name  = pick(form, null, /(full[\s_-]?name|your[\s_-]?name|^name$|contact|\bname\b)/) ||
-                [pick(form, null, /(first[\s_-]?name|fname|given)/),
-                 pick(form, null, /(last[\s_-]?name|lname|surname|family)/)].filter(Boolean).join(' ').trim() || null;
+  function sendLead(form) {
+    var name = pick(form, null, /(full[\s_-]?name|your[\s_-]?name|^name$|contact|\bname\b)/) ||
+      [pick(form, null, /(first[\s_-]?name|fname|given)/),
+       pick(form, null, /(last[\s_-]?name|lname|surname|family)/)].filter(Boolean).join(' ').trim() || null;
     var email = pick(form, 'email', /e-?mail/);
     var phone = pick(form, 'tel', /(phone|tel|mobile|cell)/);
-    if (!name && !email && !phone) return; // not a lead form — skip
+    if (!name && !email && !phone) return Promise.resolve(null); // not a lead form — skip
 
     var payload = {
       brandId: BRAND_ID, channel: channel(), campaign: attr('utm_campaign'),
@@ -63,21 +108,26 @@
       message: pick(form, null, /(message|comment|note|details|tell us)/),
       property_address: pick(form, null, /(address|street|property)/),
       management_situation: pick(form, null, /(manage|management|managed)/),
+      form: formName(form),
       landing_page: location.origin + location.pathname,
       referrer: document.referrer || null
     };
     CLICK_KEYS.forEach(function (k) { var v = attr(k); if (v) payload[k] = v; });
-    // Forward EVERY named field too, so nothing is lost (stored in raw_payload).
     try { new FormData(form).forEach(function (v, k) { if (payload[k] === undefined) payload[k] = v; }); } catch (e) {}
 
-    fetch(ENDPOINT, {
+    return fetch(LEAD_URL, {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload), keepalive: true
-    }).catch(function (err) { console.error('lead capture failed', err); });
+    }).then(function (r) { return r.json(); }).then(function (j) { return (j && j.id) || null; })
+      .catch(function (err) { console.error('lead capture failed', err); return null; });
   }
 
-  // Hook every form — capture phase, non-blocking (the form still submits/redirects).
   document.addEventListener('submit', function (e) {
-    if (e.target && e.target.tagName === 'FORM') { try { send(e.target); } catch (err) {} }
+    var form = e.target; if (!form || form.tagName !== 'FORM') return;
+    var s = st(form); s.submitted = true;
+    // completion — sent immediately so it survives the form's own redirect
+    sendSession(form, { status: 'submitted', lastStep: s.lastStep });
+    // capture the lead, then link its id back to the session (best-effort)
+    try { sendLead(form).then(function (leadId) { if (leadId) sendSession(form, { status: 'submitted', lastStep: s.lastStep, leadId: leadId }); }); } catch (err) {}
   }, true);
 })();
