@@ -5,7 +5,9 @@
    still runs.
    v2: first-touch attribution + SPA-aware drop detection.
    v3: capture the form's field order (→ true ordered funnel) and NON-PII qualifier answers
-   (dropdowns/radios + qualifier-named fields; never name/email/phone/address) → segmentation. */
+   (dropdowns/radios + qualifier-named fields; never name/email/phone/address) → segmentation.
+   v4: send the funnel session key (fsKey) with the lead so StaydOS links the session to its
+   lead server-side (the page usually navigates away before a client-side link POST can fire). */
 (function () {
   // ===== per-brand config (only BRAND_ID matters) =====
   var BRAND_ID    = 'haven';   // Haven — StaydOS leaf brand id
@@ -169,6 +171,7 @@
       property_address: pick(form, null, /(address|street|property)/),
       management_situation: pick(form, null, /(manage|management|managed)/),
       form: formName(form),
+      fsKey: sessionKey(), // ties this lead to its form-funnel session server-side (page may navigate away before a client link fires)
       landing_page: firstLand(),
       referrer: firstRef()
     };
