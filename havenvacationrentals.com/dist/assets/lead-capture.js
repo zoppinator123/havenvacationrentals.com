@@ -1,10 +1,13 @@
-/* StaydOS unified tracker — lead capture + form funnel (Haven, v2).
+/* StaydOS unified tracker — lead capture + form funnel (Haven, v3).
    Non-blocking: hooks every form (capture phase), sends the lead to the StaydOS inbound
    endpoint, AND tracks the form-funnel session (start / step / drop / submit) so
    Marketing -> Funnels and the Website (SEO) funnel populate. The form's own submit/redirect
    still runs.
-   v2: first-touch attribution (external referrer + landing persisted; internal navigation never
-   overwrites it) and SPA-aware drop detection (client-side route change fires `dropped`). */
+   v2: first-touch attribution + SPA-aware drop detection.
+   v3: capture the form's field order (→ true ordered funnel) and NON-PII qualifier answers
+   (dropdowns/radios + qualifier-named fields; never name/email/phone/address) → segmentation.
+   v4: send the funnel session key (fsKey) with the lead so StaydOS links the session to its
+   lead server-side (the page usually navigates away before a client-side link POST can fire). */
 (function () {
   // ===== per-brand config (only BRAND_ID matters) =====
   var BRAND_ID    = 'haven';   // Haven — StaydOS leaf brand id
@@ -15,6 +18,9 @@
   // ====================================================
 
   var CLICK_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid'];
+  // Fields we NEVER capture as answers (PII / freeform). Qualifiers we DO capture.
+  var PII_RE  = /name|e-?mail|phone|tel\b|mobile|cell|address|street|zip|postal|\bcity\b|\bstate\b|message|comment|first|last/i;
+  var QUAL_RE = /manage|market|service|interest|property|type|bedroom|\bunit|\broom|timeline|timeframe|budget|revenue|goal|situation|\bwhen\b|\bhow\b|source|hear/i;
 
   // ---- attribution (persisted 90d, first-touch wins) ----
   function readStore() {
@@ -27,10 +33,6 @@
   }
   var qs = new URLSearchParams(location.search), store = readStore(), changed = false;
   CLICK_KEYS.forEach(function (k) { var v = qs.get(k); if (v && !store[k]) { store[k] = v; changed = true; } });
-
-  // First-touch referrer + landing page: recorded once, from the first page whose referrer is
-  // external or empty. Internal (same-host) referrers never set it, so navigating within the
-  // site can't rewrite "arrived via Google / direct" into a same-site "referral".
   if (!store.rt) {
     var ref = document.referrer || '';
     var internal = false;
@@ -40,7 +42,7 @@
   if (changed) writeStore(store);
 
   function attr(k) { return qs.get(k) || store[k] || null; }
-  function firstRef() { return store.ref || null; }                                   // '' (direct) -> null
+  function firstRef() { return store.ref || null; }
   function firstLand() { return store.land || (location.origin + location.pathname); }
 
   function channel() {
@@ -53,7 +55,7 @@
     return 'website';
   }
 
-  // ---- form-session funnel (start / step / drop / submit) ----
+  // ---- form-session funnel ----
   function sessionKey() {
     try {
       var k = sessionStorage.getItem('sc_fs_key');
@@ -63,13 +65,43 @@
   }
   var sessions = new WeakMap();
   var startedForms = [];
-  function st(form) { var s = sessions.get(form); if (!s) { s = { started: false, submitted: false, dropped: false, lastStep: null }; sessions.set(form, s); } return s; }
+  function st(form) { var s = sessions.get(form); if (!s) { s = { started: false, submitted: false, dropped: false, lastStep: null, order: [], answers: {} }; sessions.set(form, s); } return s; }
   function formName(form) { return form.getAttribute('data-stayd-form') || form.getAttribute('name') || form.id || 'website-form'; }
+
+  function fieldName(el) { return el.name || el.id || null; }
+  // Record the form's field sequence once (for the ordered funnel).
+  function captureOrder(form, s) {
+    if (s.order.length) return;
+    var els = form.querySelectorAll('input, select, textarea'), order = [];
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i], t = (el.type || '').toLowerCase(), n = fieldName(el);
+      if (n && t !== 'hidden' && t !== 'submit' && t !== 'button' && order.indexOf(n) < 0) order.push(n);
+    }
+    s.order = order;
+  }
+  // Capture a NON-PII qualifier answer (dropdowns/radios, or qualifier-named fields).
+  function captureQual(s, el) {
+    var n = fieldName(el); if (!n || PII_RE.test(n)) return;
+    var isChoice = el.tagName === 'SELECT' || (el.type || '').toLowerCase() === 'radio';
+    if (!isChoice && !QUAL_RE.test(n)) return;
+    if (el.type === 'radio' && !el.checked) return;
+    var v = el.value; if (v != null && String(v).trim()) s.answers[n] = String(v).trim().slice(0, 120);
+  }
+  function captureAll(form, s) {
+    var els = form.querySelectorAll('select, input[type="radio"], input, textarea');
+    for (var i = 0; i < els.length; i++) captureQual(s, els[i]);
+  }
+
   function sessPayload(form, extra) {
+    var s = st(form);
+    var answers = {};
+    if (s.order.length) answers.__order = s.order;
+    for (var a in s.answers) answers[a] = s.answers[a];
     var p = {
       sessionKey: sessionKey(), brandId: BRAND_ID, form: formName(form), channel: channel(),
       campaign: attr('utm_campaign'), page: location.pathname, landingPage: firstLand(),
-      referrer: firstRef(), utmSource: attr('utm_source'), utmMedium: attr('utm_medium'), utmCampaign: attr('utm_campaign')
+      referrer: firstRef(), utmSource: attr('utm_source'), utmMedium: attr('utm_medium'), utmCampaign: attr('utm_campaign'),
+      answers: answers
     };
     for (var k in extra) p[k] = extra[k];
     return p;
@@ -79,13 +111,12 @@
     if (beacon && navigator.sendBeacon) { navigator.sendBeacon(SESSION_URL, new Blob([body], { type: 'application/json' })); return; }
     fetch(SESSION_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body, keepalive: true }).catch(function () {});
   }
-  // Fire `dropped` for started, non-submitted forms. force=true (real unload) drops all;
-  // otherwise only forms no longer in the DOM (unmounted by a client-side route change).
   function flushDrops(force) {
     for (var i = 0; i < startedForms.length; i++) {
       var form = startedForms[i], s = sessions.get(form);
       if (s && s.started && !s.submitted && !s.dropped && (force || !document.contains(form))) {
         s.dropped = true;
+        if (document.contains(form)) captureAll(form, s);
         sendSession(form, { status: 'dropped', lastStep: s.lastStep, droppedAt: new Date().toISOString() }, force);
       }
     }
@@ -94,17 +125,18 @@
     var form = e.target && e.target.form; if (!form) return;
     var s = st(form); if (s.started) return; s.started = true;
     if (startedForms.indexOf(form) < 0) startedForms.push(form);
+    captureOrder(form, s);
     sendSession(form, { status: 'in_progress' });
   }, true);
   document.addEventListener('change', function (e) {
     var form = e.target && e.target.form; if (!form) return;
-    var name = e.target.name || e.target.id; if (!name) return;
-    var s = st(form); if (s.lastStep === name) return; s.lastStep = name;
-    if (s.started) sendSession(form, { status: 'in_progress', lastStep: name });
+    var s = st(form);
+    captureQual(s, e.target);
+    var name = fieldName(e.target);
+    if (name) s.lastStep = name;
+    if (s.started) sendSession(form, { status: 'in_progress', lastStep: s.lastStep });
   }, true);
   window.addEventListener('pagehide', function () { flushDrops(true); });
-  // SPA route changes: patch pushState + listen to popstate; a short delay lets the framework
-  // unmount the old page's forms before we check document.contains().
   (function () {
     var _push = history.pushState;
     history.pushState = function () { var r = _push.apply(this, arguments); setTimeout(function () { flushDrops(false); }, 400); return r; };
@@ -139,6 +171,7 @@
       property_address: pick(form, null, /(address|street|property)/),
       management_situation: pick(form, null, /(manage|management|managed)/),
       form: formName(form),
+      fsKey: sessionKey(), // ties this lead to its form-funnel session server-side (page may navigate away before a client link fires)
       landing_page: firstLand(),
       referrer: firstRef()
     };
@@ -155,9 +188,8 @@
   document.addEventListener('submit', function (e) {
     var form = e.target; if (!form || form.tagName !== 'FORM') return;
     var s = st(form); s.submitted = true;
-    // completion — sent immediately so it survives the form's own redirect
+    captureAll(form, s);
     sendSession(form, { status: 'submitted', lastStep: s.lastStep });
-    // capture the lead, then link its id back to the session (best-effort)
     try { sendLead(form).then(function (leadId) { if (leadId) sendSession(form, { status: 'submitted', lastStep: s.lastStep, leadId: leadId }); }); } catch (err) {}
   }, true);
 })();
