@@ -17,7 +17,7 @@
   var COOKIE_DOMAIN = '.' + location.hostname.split('.').slice(-2).join('.'); // e.g. .havenvacationrentals.com
   // ====================================================
 
-  var CLICK_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid'];
+  var CLICK_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'wbraid', 'gbraid', 'fbclid'];
   // Fields we NEVER capture as answers (PII / freeform). Qualifiers we DO capture.
   var PII_RE  = /name|e-?mail|phone|tel\b|mobile|cell|address|street|zip|postal|\bcity\b|\bstate\b|message|comment|first|last/i;
   var QUAL_RE = /manage|market|service|interest|property|type|bedroom|\bunit|\broom|timeline|timeframe|budget|revenue|goal|situation|\bwhen\b|\bhow\b|source|hear/i;
@@ -37,19 +37,19 @@
     var ref = document.referrer || '';
     var internal = false;
     try { internal = !!ref && new URL(ref).host === location.host; } catch (e) {}
-    if (!internal) { store.ref = ref; store.land = location.origin + location.pathname; store.rt = 1; changed = true; }
+    if (!internal) { store.ref = ref; store.land = location.origin + location.pathname + location.search; store.rt = 1; changed = true; }
   }
   if (changed) writeStore(store);
 
   function attr(k) { return qs.get(k) || store[k] || null; }
   function firstRef() { return store.ref || null; }
-  function firstLand() { return store.land || (location.origin + location.pathname); }
+  function firstLand() { return store.land || (location.origin + location.pathname + location.search); }
 
   function channel() {
     if (CHANNEL) return CHANNEL;
     var s = ((attr('utm_source') || '') + ' ' + (attr('utm_medium') || '')).toLowerCase();
     if (/direct[-_ ]?mail|mailer|postcard|eddm/.test(s)) return 'direct_mail';
-    if (attr('gclid') || /google|adwords|gads/.test(s)) return 'google_ads';
+    if (attr('gclid') || attr('wbraid') || attr('gbraid') || /google|adwords|gads/.test(s)) return 'google_ads';
     if (attr('fbclid') || /facebook|meta|instagram|\bfb\b|\big\b/.test(s)) return 'meta_ads';
     if (/email|newsletter|klaviyo|mailchimp/.test(s)) return 'inbound';
     return 'website';
